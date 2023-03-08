@@ -135,3 +135,5 @@ const iniciarLogicaGeral = () => {
 };
 
 iniciarLogicaGeral();
+
+

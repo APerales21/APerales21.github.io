@@ -5,7 +5,8 @@
 }
 body{
    background-color: #1F4A82;
-    /*background-image: url("../img/montaña0.jpg");*/   
+    /*background-image: url("../img/montaña0.jpg");*/  
+  
 }
 html{
   scroll-behavior: smooth;
@@ -40,8 +41,7 @@ background: linear-gradient(60deg, #1b467b 0%, #052042 30%, #1F4A82 calc(30% + 1
 }
 .map{
     width: auto;
-    height: 500px;
-    
+    height: 500px; 
 }
 
 /*Inicio-------------------------------------------------------------------------*/
@@ -124,8 +124,6 @@ background: linear-gradient(60deg, #1b467b 0%, #052042 30%, #1F4A82 calc(30% + 1
   justify-content: left;
   /*background: linear-gradient(180deg, #ffffff  50%, #aaa4a4 100%);*/
 }
-
-
 #trabajos h4{
   color: white;
   font-size: 30px;
@@ -166,7 +164,7 @@ p {
 .tabs {
     position: relative;
     margin: 40px auto;
-    width: 1024px;
+    width: 1000px;
     max-width: 100%;
     overflow: hidden;
     padding-top: 10px;
@@ -192,8 +190,10 @@ p {
     left: 50%;
 }
 .tabs input#tab-4 {
-    left: 75%;
+    left: auto;
 }
+
+
 .tabs label {
     background: #1F4A82;
     color: white;
@@ -391,7 +391,11 @@ footer{
 }
 
 /* Responsive -------------------------------------------------------------------*/
-
+@media(max-width:1085px){
+  body{
+    width: auto;
+  }
+}
 @media(max-width:1085px){
     .container{
         width: 95%;
@@ -415,7 +419,13 @@ footer{
 @media(max-width:1085px){
   .tabs label{
       font-size: 16px;
+      
   }
+  .tabs input{
+    height: 10px;
+    width: 10px;
+  }
+
   .content div p{
     font-size: 16px;
   }
@@ -444,12 +454,6 @@ footer{
         width: 300px;
     }
 }
-@media(max-width:1085px){
-  .map{
-      height:300px;
-      width: 300px;
-  }
-}
 
 @media(max-width:1085px){
   .conteudo-geral{
@@ -457,7 +461,6 @@ footer{
     width: auto;
   }
 }
-
 
 
 
@@ -602,23 +605,22 @@ background-blend-mode: screen, color-dodge, color-burn, screen, overlay, differe
 }
 @media screen and (max-width: 1085px) {
   .conteudo-geral-sliderGeral {
-    --larguraDoItem: 150px; 
-    --alturaDoItem: 150px;
+    --larguraDoItem: 95px; 
+    --alturaDoItem: 120px;
+    perspective: 1000px;
   }
   .sliderGeral-card h1{
-    font-size: 15px;
+    font-size: 10px;
   }
   .sliderGeral-card p{
     font-size: 10px;
   }
   .sliderGeral-card img{
-    height: 30px;
-    width: 30px;  
+    height: 25px;
+    width: 25px;  
   }
   .cnt{
-    margin: -90px;
-    
-    
+    margin: -100px;
   }
   .sc2{
     height: 350px;
