@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mantenimiento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" href="img/tapir.png" />
+  <style>
+     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+    .exago {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+        filter: blur(10px);
+        pointer-events: none;
+    }
+   
+  .logo {
+      font-size: 80px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: black;
+      filter: drop-shadow(0 0 10px #FFA500);
+    }
+    :root[data-theme='dark'] .logo {
+        color: white;
+    }
+
+    .container {
+      position: relative;
+      text-align: center;
+      padding: 20px;
+      z-index: 9999;
+      height: 200px;
+    }
+     .ti_h1 {
+      font-weight: 700;
+      margin: 10px 0 0 0;
+      font-size: 24px;
+      letter-spacing: 1.2px;
+      filter: drop-shadow(0 0 10px #FFA500);
+    }
+  </style>
+  <!--Dark-->
+  <style>
+         /* Variables de color (modo claro por defecto) */
+    :root{
+      --bg: #ffffff;
+      --text: #111827;
+      --card: #f8fafc;
+      --accent: #2563eb;
+      --muted: #6b7280;
+      --glass: rgba(0,0,0,0.04);
+      --transition: 250ms ease;
+    }
+
+    /* Modo oscuro */
+    :root[data-theme='dark']{
+      --bg: #0b1220;
+      --text: #e6eef8;
+      --card: #091021;
+      --accent: #60a5fa;
+      --muted: #9aa6b2;
+      --glass: rgba(255,255,255,0.03);
+    }
+ 
+    /* Tipografía y layout */
+    
+    body{
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      transition: background var(--transition), color var(--transition);
+      box-sizing:border-box;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:18px;
+    }
+
+    
+    p.lead{margin:6px 0 0;color:var(--muted)}
+
+    .card{
+      background:linear-gradient(180deg, var(--card), rgba(0,0,0,0));
+      border-radius:12px;
+      padding:18px;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.08);
+      backdrop-filter: blur(6px);
+      transition: box-shadow var(--transition), background var(--transition);
+    }
+
+    /* Botón toggle */
+    .toggle-btn{
+      appearance:none;
+      border:0;
+      padding:8px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:var(--glass);
+      color:var(--text);
+      transition: transform 120ms ease, background var(--transition), color var(--transition);
+      font-weight:600;
+      font-size:0.95rem;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .toggle-btn:active{transform:scale(0.98)}
+
+    
+    .moon{
+      width:18px;height:18px;display:inline-block;flex-shrink:0;
+    }
+
+    /* Ejemplo de contenido */
+    .grid{display:grid;grid-template-columns:1fr 280px;gap:14px;margin-top:14px}
+    .main{min-height:220px}
+    .sidebar{min-height:220px}
+
+    .card p{line-height:1.5;color:var(--muted)}
+
+    /* Pequeñas adaptaciones responsive */
+    @media (max-width:720px){
+      .grid{grid-template-columns:1fr;}
+    }
+
+    
+    /* Fondo modo claro */
+body {
+  background: var(--bg) url('img/day.gif') 
+              no-repeat center center fixed;
+  background-size: cover;
+  transition: background 0.6s ease, color 0.6s ease;
+}
+/* Fondo modo oscuro */
+:root[data-theme='dark'] body {
+  background: var(--bg) url('img/not.gif') 
+              no-repeat center center fixed;
+  background-size: cover;
+}
+
+    body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(228, 228, 228, 0.2);
+  transition: background 0.6s ease;
+}
+
+
+:root[data-theme='dark'] body::before {
+  background: rgba(0, 0, 0, 0.5); /* capa oscura */
+}
+
+/*  claro  */
+:root[data-theme='light'] .tooltip-text {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+}
+
+/*oscuro*/
+:root[data-theme='dark'] .tooltip-text {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000;
+}
+
+
+/*  claro  */
+:root[data-theme='light'] .toggle-btn{
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+
+/*oscuro*/
+:root[data-theme='dark'] .toggle-btn {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #000;
+}
+
+
+:root[data-theme='dark'] .card {
+  /*background-color: rgba(0, 0, 0, 0.8);*/
+  background-color: black;
+  color: #fff;
+  border: 5px solid white;
+
+}
+
+:root[data-theme='light'] .card {
+  /*background-color: rgba(255, 255, 255, 0.9);*/
+  background-color: white;
+  color: #000;
+  border: 5px solid black;
+}
+
+:root[data-theme='light'] .sb {
+  /*background-color: rgba(255, 255, 255, 0.9);*/
+  color: #000;
+}
+
+:root[data-theme='light'] .logo {
+  color: #000;
+  filter: drop-shadow(0 0 10px #FFA500);
+}
+
+:root[data-theme='light'] .card p {
+  color: #000;
+}
+
+
+:root[data-theme='light'] .fas {
+  color: #000;
+}
+:root[data-theme='light'] .title {
+  color: #000;
+}
+
+/*.hd {
+  position: fixed;
+  top: 5px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  z-index: 9999;
+}*/
+ .hd1 {
+    position: fixed;
+    top: 5px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    z-index: 10;
+  }
+
+  .hd2 {
+    position: fixed;
+    top: 5px;
+    left: 100px; 
+    width: 80px;
+    height: 80px;
+    z-index: 10;
+  }
+
+.header-top {
+  position: fixed;
+  top: 1px; /* Distancia desde el borde superior */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 999;
+
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin-top: 30px;
+    }
+}
+@media (max-width: 480px) {
+  #toggleLabel {
+    display: none;
+  }
+  div.logo{
+    font-size: 45px;
+  }
+  h1 .ti_h1{
+    font-size: 35px;
+  }
+  a .hd1{
+    width: 40px;
+    height: 40px;
+  }
+  .hd2{
+    width: 0px;
+    height: 0px;
+  }
+
+}
+  </style>
+
+   <style>
+            .dark-image,
+            .light-image {
+            display: none;
+            }
+
+            /* Mostrar imagen clara cuando el tema es claro */
+            html[data-theme='light'] .light-image {
+            display: inline;
+            }
+
+            /* Mostrar imagen oscura cuando el tema es oscuro */
+            html[data-theme='dark'] .dark-image {
+            display: inline;
+            }
+     .td{
+            height: 200px;
+            width: 200px;
+            aspect-ratio: 4 / 3; /* ajusta a la proporción de tu imagen */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        @media (max-width: 480px) {
+            .td {
+                height: 150px;
+                width: 150px;
+            }
+        }
+        
+        .text-center{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tbl {
+            border-collapse: collapse;
+        }
+
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip-text {
+            position: absolute;
+            top: 45%; /* 👈 Ajustado */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #000;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+            text-align: center;
+            }
+  
+        .tooltip-container:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        @media (max-width: 480px) {
+           .tooltip-text {
+            visibility: visible;
+            opacity: 0.5;
+
+        }
+        }
+    </style>
+    <style>
+        /* Sección general */
+.services {
+  background-color: #0f0f10;
+  color: #ffffff;
+  text-align: center;
+  padding: 80px 20px;
+  font-family: "Poppins", sans-serif;
+}
+        /* Contenedor de tarjetas */
+        .title{
+            text-align: center;
+        }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+/* Tarjeta individual */
+.card {
+  background-color: #1c1c1f;
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  filter: drop-shadow(0 0 8px #FFA500);
+}
+/* Icono cuadrado */
+
+.icon {
+  width: 100%;
+  height: 40px;
+  /*background-color: #6366f1;*/
+  background-color: #ffa600;
+  border-radius: 10px;
+  display: flex;                /* Flexbox para centrar */
+  align-items: center;          /* Centra verticalmente */
+  justify-content: center;      /* Centra horizontalmente */
+}
+
+.icon i {
+  color: white;
+  font-size: 1.5rem;
+}
+
+/* Títulos de tarjeta */
+.card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Texto de tarjeta */
+.card p {
+  color: #d1d5db;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .services h2 {
+    font-size: 1.5rem;
+  }
+
+  .card {
+    text-align: center;
+  }
+ 
+  .icon {
+    margin: 0 auto 15px;
+  }
+}
+/* Diseño RESPONSIVO para móviles */
+@media (max-width: 480px) {
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+    max-width: none;
+  }
+          .hd2{
+            width: 0px;
+            height: 0px;
+          }
+          .hd1{
+             width: 40px;
+            height: 40px;
+          }
+}
+    </style>
+    <style>
+        .sec_ti{
+            position: relative;
+            text-align: center;
+            padding: 20px;
+            z-index: 1;
+        }
+        .p_ti{
+          color: black;
+        }
+        .qt{
+          width: auto;
+          height: 100px;
+          border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+  
+    <header>
+      <div class="container"> 
+        <a href="../pages/menu.html">
+          <img src="../img/atras.png" class="hd1 dark-image" title="Atras">
+            <img src="../img/day/atras.png" class="hd1 light-image" title="Atras">
+        </a>
+        <img src="../img/tapir.png"  class="hd2 dark-image" title="TI (Tapir Industris)">
+          <img src="../img/day/tapir.png"  class="hd2 light-image" title="TI (Tapir Industris)">
+        <div class="header-top">
+            <!--div class="logo">TI</div-->
+            <h1 class="ti_h1">TAPIR INDUSTRIES</h1>
+        </div>
+  
+            <button id="themeToggle" class="toggle-btn" aria-pressed="false" title="Alternar modo claro/oscuro">
+                <svg class="moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span id="toggleLabel">Modo nocturno</span>
+            </button>
+        </div> 
+    </header>
+
+     <section class="sec_ti">
+      <div class="title"> <h1>Brindamos soporte, mantenimiento y<br> prevenimos problemas en tu Computadora.</h1></div><br>
+      <div class="cards">
+        <div class="card">
+          <div class="icon"><center><i class="fas fa-desktop"></i></center></div><br>
+          <h3>Mantenimiento preventivo</h3>
+          <p class="p_ti">Protege y mejora el rendimiento de tu equipo de cómputo. Nuestros especialistas realizan una detallada inspección de tu PC para identificar y resolver posibles fallas antes de que ocurran.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon"><center><i class="fas fa-screwdriver-wrench"></i></center></div><br>
+          <h3>Mantenimiento correctivo</h3>
+          <p class="p_ti">Si estás experimentando fallos repentinos en tu PC, nuestro equipo de expertos está listo para diagnosticar y solucionar de manera efectiva cualquier problema en tu computadora.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon"><center><i class="fas fa-brain"></i></center></div><br>
+          <h3>Mantenimiento lógico</h3>
+          <p class="p_ti">Nuestros especialistas mejoran la salud digital de tu computadora detectando y corrigiendo errores en el software, eliminando archivos innecesarios para obtener la máxima eficiencia de tu PC.</p>
+        </div>
+      </div>
+    </section><br><br><br>
+
+    <nav class="sec_ti">
+      <div class="cards-containerCs">
+          <!-- Carta 1-->
+          <div class="cardCs" data-color="green">
+            <canvas class="wave-bgCs"></canvas>
+            <div class="card-contentCs">
+              <div class="card-headerCs">
+                <img src="../img/tapir.png" alt="TI" class="logoCs">
+                <h2>Mantenimiento <span class="badgeCs green">Preventivo</span></h2>
+              </div>
+              <div class="card-priceCs">
+                <h3 class="h3_tiCs">Mantenimiento $500.00</h3>
+                <p class="pc_tiCs">$219.00 por revisión</p>
+              </div>
+              <ul class="card-listCs">
+                <li class="li_tiCs">✔️ Limpieza completa</li>
+                <li class="li_tiCs">✔️ Archivos seguros</li>
+                <li class="li_tiCs">✔️ Ofertas y descuentos para miembros</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cardCs" data-color="orange">
+            <canvas class="wave-bgCs"></canvas>
+            <div class="card-contentCs">
+              <div class="card-headerCs">
+                <img src="../img/tapir.png" alt="TI" class="logoCs">
+                <h2>Mantenimiento <span class="badgeCs orange">Correctivo</span></h2>
+              </div>
+
+              <div class="card-priceCs">
+                <h3 class="h3_tiCs">Servicio $800.00</h3>
+                <p class="pc_tiCs">$350.00 por diagnóstico</p>
+              </div>
+
+              <ul class="card-listCs">
+                <li class="li_tiCs">✔️ Revisión de hardware</li>
+                <li class="li_tiCs">✔️ Sustitución de piezas</li>
+                <li class="li_tiCs">✔️ Optimización del sistema</li>
+              </ul>
+            </div>
+          </div>
+
+        
+          <div class="cardCs" data-color="purple">
+            <canvas class="wave-bgCs"></canvas>
+            <div class="card-contentCs">
+              <div class="card-headerCs">
+                <img src="../img/tapir.png" alt="TI" class="logoCs">
+                <h2>Mantenimiento <span class="badgeCs purple">Preventivo</span></h2>
+              </div>
+
+              <div class="card-priceCs">
+                <h3 class="h3_tiCs">Mantenimiento $500.00</h3>
+                <p class="pc_tiCs">$219.00 por revisión</p>
+              </div>
+
+              <ul class="card-listCs">
+                <li class="li_tiCs">✔️ Limpieza completa</li>
+                <li class="li_tiCs">✔️ Archivos seguros</li>
+                <li class="li_tiCs">✔️ Ofertas y descuentos para miembros</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Carta 1: Azul Rey -->
+          <div class="cardCs" data-color="blue">
+            <canvas class="wave-bgCs"></canvas>
+            <div class="card-contentCs">
+              <div class="card-headerCs">
+                <img src="../img/tapir.png" alt="TI" class="logoCs">
+                <h2>Mantenimiento <span class="badgeCs blue">Preventivo</span></h2>
+              </div>
+
+              <div class="card-priceCs">
+                <h3 class="h3_tiCs">Mantenimiento $500.00</h3>
+                <p class="pc_tiCs">$219.00 por revisión</p>
+              </div>
+
+              <ul class="card-listCs">
+                <li class="li_tiCs">✔️ Limpieza completa</li>
+                <li class="li_tiCs">✔️ Archivos seguros</li>
+                <li class="li_tiCs">✔️ Ofertas y descuentos para miembros</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+    </nav>
+
+<style>
+
+/* Contenedor de cartas */
+.cards-containerCs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+/* ---- CARTAS ---- */
+.cardCs {
+  position: relative;
+  width: 350px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.cardCs:hover {
+  transform: scale(1.03);
+}
+
+/* Fondo animado interno */
+.wave-bgCs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Contenido encima del fondo animado */
+.card-contentCs {
+  position: relative;
+  z-index: 1;
+  background: rgba(10, 30, 20, 0.55)!important;
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(4px);
+}
+
+
+
+/* Cabecera y logo */
+.card-headerCs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.logoCs {
+  width: 80px;
+  height: 70px;
+}
+
+.badgeCs {
+  background: #2ecc71;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.badgeCs.orange {
+  background: #f39c12;
+}
+.badgeCs.purple {
+  background: #d912f3;
+}
+.badgeCs.blue {
+  background: #1221f3;
+}
+.badgeCs.green {
+  background: #2ecc71;
+}
+
+:root[data-theme='dark'] .badgeCs.orange {
+background: #945b00;
+}
+:root[data-theme='dark'] .badgeCs.purple {
+background: #650072;
+}
+:root[data-theme='dark'] .badgeCs.blue {
+background: #000875;
+}
+:root[data-theme='dark'] .badgeCs.green {
+background: #005021;
+}
+
+
+:root[data-theme='dark'] p.pc_tiCs {
+
+font-size: 20px;
+}
+
+.card-priceCs .h3_tiCs {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.card-priceCs .pc_tiCs {
+  font-size: 0.9rem;
+  color: #c8f7c5;
+  margin-top: 5px;
+}
+
+.card-listCs {
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.card-listCs .li_tiCs {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+/* ---- RESPONSIVO ---- */
+@media (max-width: 768px) {
+  .cards-containerCs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cardCs {
+    width: 90%;
+  }
+
+  .card-headerCs {
+    flex-direction: column;
+  }
+
+  .logoCs {
+    width: 50px;
+    height: 50px;
+  }
+}
+</style>
+
+<script>
+// 🌊 Fondo animado con colores personalizados
+document.querySelectorAll(".cardCs").forEach(card => {
+  const canvas = card.querySelector(".wave-bgCs");
+  const ctx = canvas.getContext("2d");
+
+  function resize() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener("resize", resize);
+
+  let step = 0;
+  const colorType = card.dataset.color;
+
+  // colores
+  /*const palettes = {
+    blue: {
+      gradientTop: "#001a33",
+      gradientBottom: "#003399",
+      waveColor: "rgba(52, 152, 219, ", // azul rey
+    },
+    orange: {
+      gradientTop: "#331a00",
+      gradientBottom: "#e67e22",
+      waveColor: "rgba(243, 156, 18, ", // naranja
+    }
+  };*/
+  const palettes = {
+  blue: {
+    gradientTop: "#001a33",
+    gradientBottom: "#003399",
+    waveColor: "rgba(52, 152, 219, ",
+  },
+  orange: {
+    gradientTop: "#331a00",
+    gradientBottom: "#e67e22",
+    waveColor: "rgba(243, 156, 18, ",
+  },
+  green: {
+    gradientTop: "#003300",
+    gradientBottom: "#00cc66",
+    waveColor: "rgba(46, 204, 113, ",
+  },
+  purple: {
+    gradientTop: "#2e004f",
+    gradientBottom: "#8e44ad",
+    waveColor: "rgba(155, 89, 182, ",
+  }
+};
+
+  const palette = palettes[colorType] || palettes.blue;
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Fondo degradado
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, palette.gradientTop);
+    gradient.addColorStop(1, palette.gradientBottom);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Ondas animadas
+    for (let i = 0; i < 3; i++) {
+      ctx.beginPath();
+      ctx.fillStyle = `${palette.waveColor}${0.35 - i * 0.1})`;
+      const waveY = canvas.height / 1.8 + i * 25;
+      let angle = step + i * 70;
+
+      ctx.moveTo(0, waveY);
+      for (let x = 0; x <= canvas.width; x++) {
+        const y =
+          Math.sin((x + angle) * 0.02) * 15 +
+          Math.cos((x + angle) * 0.015) * 10 +
+          waveY;
+        ctx.lineTo(x, y);
+      }
+
+      ctx.lineTo(canvas.width, canvas.height);
+      ctx.lineTo(0, canvas.height);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    step += 1.2;
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+});
+</script>
+    </nav><br><br><br><br><br><br>
+
+
+
+    <canvas id="exa" width="600" height="600" class="exago"></canvas>
+<script>
+const canvas = document.getElementById('exa');
+const ctx = canvas.getContext('2d');
+
+let width = canvas.width;
+let height = canvas.height;
+
+let centerX, centerY;
+const radius = 200;
+
+function updateCenter() {
+  const rect = canvas.getBoundingClientRect();
+  centerX = rect.width / 2;
+  centerY = rect.height / 2;
+}
+
+window.addEventListener('resize', updateCenter);
+updateCenter();
+
+let time = 0;
+
+//  Función para dibujar un hexágono animado
+function drawHexagon(cx, cy, r, rotation = 0) {
+  ctx.beginPath();
+  for (let i = 0; i <= 6; i++) {
+    const angle = (Math.PI / 3) * i + rotation; // 360° / 6 lados
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+}
+
+function drawExa(t) {
+  ctx.clearRect(0, 0, width, height);
+  updateCenter();
+
+   const colors = ['#FFA500', '#FF4500', '#FFFF00']; 
+
+  colors.forEach((color, i) => {
+    let waveRadius = radius + 10 * Math.sin(t + i * 2);
+    let offsetX = 5 * Math.sin(t * 2 + i * 5);
+    let offsetY = 5 * Math.cos(t * 2 + i * 5);
+
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 6;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 20;
+
+    // Dibuja hexágono en lugar de círculo
+    drawHexagon(centerX + offsetX, centerY + offsetY, waveRadius, t * 0.1 + i);
+    ctx.stroke();
+  });
+
+  // Puntos girando alrededor (sin cambios)
+  for (let i = 0; i < 20; i++) {
+    let angle = (Math.PI * 2 / 20) * i + t * 0.5;
+    let x = centerX + (radius - 40) * Math.cos(angle);
+    let y = centerY + (radius - 40) * Math.sin(angle);
+
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(0, 191, 255, 0.6)`;
+    ctx.shadowColor = 'rgba(0, 191, 255, 0.9)';
+    ctx.shadowBlur = 10;
+    ctx.arc(x, y, 5 + 3 * Math.sin(t + i), 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function animate(timeStamp) {
+  time += 0.02;
+  drawExa(time);
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>  
+
+
+    <script>
+  function setThemeByTime() {
+    const root = document.documentElement;
+    const now = new Date();
+    const hour = now.getHours();
+
+    // De 7:00 a 17:59 → modo día (light)
+    // De 18:00 a 6:59 → modo noche (dark)
+    if (hour >= 7 && hour < 18) {
+      root.setAttribute('data-theme', 'light');
+    } else {
+      root.setAttribute('data-theme', 'dark');
+    }
+  }
+
+  // Ejecutamos la función al cargar la página
+  window.onload = setThemeByTime;
+</script>
+  <!--DARK-->
+ <script>
+    function toggleTheme() {
+      const root = document.documentElement;
+      const currentTheme = root.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', newTheme);
+    }
+
+    (function(){
+      const root = document.documentElement;
+      const toggle = document.getElementById('themeToggle');
+      const label = document.getElementById('toggleLabel');
+      const storageKey = 'theme-preference';
+
+      // Devuelve 'dark' o 'light'
+      function getStoredPreference(){
+        try{ return localStorage.getItem(storageKey); }catch(e){ return null; }
+      }
+
+      // Detecta preferencia del sistema
+      function getSystemPreference(){
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      function applyTheme(theme){
+        if(theme === 'dark'){
+          root.setAttribute('data-theme','dark');
+          toggle.setAttribute('aria-pressed','true');
+          label.textContent = 'Modo claro';
+        }else{
+          root.setAttribute('data-theme','light');
+          toggle.setAttribute('aria-pressed','false');
+          label.textContent = 'Modo nocturno';
+        }
+      }
+
+      function savePreference(theme){
+        try{ localStorage.setItem(storageKey, theme); }catch(e){/* silenciar si el almacenamiento falla */}
+      }
+
+      // Inicialización: preferencia almacenada > preferencia del sistema > claro
+      const stored = getStoredPreference();
+      const initial = stored || getSystemPreference() || 'light';
+      applyTheme(initial);
+
+      // Listener del botón
+      toggle.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        savePreference(next);
+      });
+
+      // Soporte para atajo de teclado: tecla D
+      window.addEventListener('keydown', (e) => {
+        if(e.key.toLowerCase() === 'd' && !e.metaKey && !e.ctrlKey && !e.altKey){
+          e.preventDefault();
+          toggle.click();
+        }
+      });
+
+      // Si el usuario cambia la preferencia del sistema en tiempo real, puede respetarse
+      if(window.matchMedia){
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+          // Si el usuario ya guardó una preferencia, no sobrescribimos
+          if(getStoredPreference()) return;
+          applyTheme(e.matches ? 'dark' : 'light');
+        });
+      }
+
+    })();
+  </script>
+  <script>
+  function presentToast(position, element) {
+    // Toma el texto del botón presionado
+    const message = element ? element.textContent.trim() : 'Mantenimiento ⚙';
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${position}`;
+    toast.textContent = `${message}`; // muestra el nombre dinámico
+    
+    document.body.appendChild(toast);
+
+    // Mostrar el toast
+    setTimeout(() => {
+      toast.classList.add('show');
+    }, 100);
+
+    // Ocultar y eliminar después de 1500ms
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => {
+        document.body.removeChild(toast);
+      }, 300);
+    }, 1500);
+  }
+</script>
+
+<script>
+    // Borrar contenido si se detecta DevTools
+   function borrarContenido() {
+   document.body.innerHTML = `
+    <style>/* From Uiverse.io by DipeshPun91 */ 
+.card {
+  width: 280px;
+  height: 280px;
+  background: linear-gradient(135deg, #05062d, #02012a);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(0, 234, 255, 0.3);
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  box-shadow:
+    0 0 15px rgba(0, 234, 255, 0.2),
+    0 0 30px rgba(151, 65, 252, 0.15);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 22px;
+  border: 2px solid transparent;
+  background: linear-gradient(
+      135deg,
+      rgba(0, 234, 255, 0.8),
+      rgba(139, 0, 255, 0.6)
+    )
+    border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+  animation: pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 20px rgba(0, 234, 255, 0.3),
+    0 0 40px rgba(151, 65, 252, 0.2);
+}
+
+.error-message {
+  font-size: 18px;
+  font-weight: 600;
+  color: #00eaff;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  animation: fade-in 1.5s ease-out;
+  text-shadow: 0 0 8px rgba(0, 234, 255, 0.5);
+  letter-spacing: 1px;
+}
+
+.error-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  font-weight: 900;
+  color: #ffffff;
+  text-transform: uppercase;
+  position: relative;
+  line-height: 1;
+  letter-spacing: 3px;
+  margin: 15px 0;
+}
+
+.error-item {
+  position: relative;
+  margin: 5px 0;
+}
+
+.error-title span {
+  position: relative;
+  z-index: 1;
+  text-shadow:
+    2px 2px 0 #fded00,
+    -2px -2px 0 #00eaff;
+}
+
+.error-title .error-glitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-shadow:
+    2px 2px 0 #00e572,
+    -2px -2px 0 #8b00ff;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  animation: glitch 2.5s infinite linear alternate;
+  opacity: 0.8;
+}
+
+.error-title .error-glitch--secondary {
+  text-shadow:
+    -2px -2px 0 #ff3366,
+    2px 2px 0 #00ccff;
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+  animation-delay: 0.5s;
+}
+
+.error-title:hover .error-glitch {
+  display: block;
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: polygon(
+      0 2%,
+      100% 2%,
+      100% 95%,
+      95% 95%,
+      95% 90%,
+      85% 90%,
+      85% 95%,
+      8% 95%,
+      0 70%
+    );
+  }
+  2%,
+  8% {
+    clip-path: polygon(
+      0 78%,
+      100% 78%,
+      100% 100%,
+      95% 100%,
+      95% 90%,
+      85% 90%,
+      85% 100%,
+      8% 100%,
+      0 78%
+    );
+    transform: translate(-5%, 0);
+  }
+  6% {
+    clip-path: polygon(
+      0 78%,
+      100% 78%,
+      100% 100%,
+      95% 100%,
+      95% 90%,
+      85% 90%,
+      85% 100%,
+      8% 100%,
+      0 78%
+    );
+    transform: translate(5%, 0);
+  }
+  9% {
+    clip-path: polygon(
+      0 78%,
+      100% 78%,
+      100% 100%,
+      95% 100%,
+      95% 90%,
+      85% 90%,
+      85% 100%,
+      8% 100%,
+      0 78%
+    );
+    transform: translate(0, 0);
+  }
+  25% {
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 0,
+      95% 0,
+      95% 0,
+      85% 0,
+      85% 0,
+      8% 0,
+      0 0
+    );
+    transform: translate(5%, 0);
+  }
+  30% {
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 0,
+      95% 0,
+      95% 0,
+      85% 0,
+      85% 0,
+      8% 0,
+      0 0
+    );
+    transform: translate(-5%, 0);
+  }
+  35%,
+  45% {
+    clip-path: polygon(
+      0 40%,
+      100% 40%,
+      100% 85%,
+      95% 85%,
+      95% 85%,
+      85% 85%,
+      85% 85%,
+      8% 85%,
+      0 70%
+    );
+    transform: translate(-5%);
+  }
+  50% {
+    clip-path: polygon(
+      0 40%,
+      100% 40%,
+      100% 85%,
+      95% 85%,
+      95% 85%,
+      85% 85%,
+      85% 85%,
+      8% 85%,
+      0 70%
+    );
+    transform: translate(0, 0);
+  }
+}
+
+.error-description {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 15px;
+  animation: fade-in 2s ease-out;
+  max-width: 80%;
+  line-height: 1.4;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 240px;
+    height: 240px;
+    padding: 15px;
+  }
+  .error-title {
+    font-size: 36px;
+  }
+}
+</style><br>
+<center>
+<div class="card">
+  <p class="error-message">Page Not Found</p>
+  <div class="error-title">
+    <div class="error-item">
+      <span aria-hidden="true">4O4</span>
+      <span aria-hidden="true" class="error-glitch">4O4</span>
+      <span aria-hidden="true" class="error-glitch error-glitch--secondary"
+        >4O4</span
+      >
+    </div>
+    <div class="error-item">
+      <span aria-hidden="true">Error</span>
+      <span aria-hidden="true" class="error-glitch">Error</span>
+      <span aria-hidden="true" class="error-glitch error-glitch--secondary"
+        >Error</span
+      >
+    </div>
+  </div>
+  <div class="error-description">The requested page could not be found</div>
+</div>
+</center><br>
+
+<div class="text-center">  
+          <a href="../pages/mantenimiento.html" class="btn-atras" style="
+            background-color: red; 
+            color: white; 
+            z-index: 1;
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            text-decoration: none;
+            font-weight: bold;
+          ">Regresar</a>
+        </div>
+
+  `;
+}
+    // Bloqueo de teclas (F12, Ctrl+Shift+I, Ctrl+U, etc.)
+    document.addEventListener('keydown', function (e) {
+      if (
+        e.key === "F12" || e.key === "F10" ||
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) ||
+        (e.ctrlKey && e.key === "U")
+      ) {
+        e.preventDefault();
+        borrarContenido();
+        return false;
+      }
+    });
+
+    // Bloquear clic derecho
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+      borrarContenido();
+    });
+ // Bloquear Ctrl+U
+        document.addEventListener('keydown', function (e) {
+        if (e.ctrlKey && e.key.toLowerCase() === 'u') {
+            e.preventDefault();
+            borrarContenido();
+        }
+        });
+    // Detección continua de DevTools abiertos
+    setInterval(() => {
+      const threshold = 300;
+      if (
+        window.outerWidth - window.innerWidth > threshold ||
+        window.outerHeight - window.innerHeight > threshold
+      ) {
+        borrarContenido();
+      }
+    }, 1000);
+  </script>
+
+  <script>
+    var _0x5a2d = ["\x61\x6C\x65\x72\x74", "\x48\x6F\x6C\x61\x2C\x20\x67\x72\x61\x63\x69\x61\x73\x20\x70\x6F\x72\x20\x76\x69\x73\x69\x74\x61\x72\x20\x6D\x69\x20\x73\x69\x74\x69\x6F\x2E"];
+    function saludar() {
+      window[_0x5a2d[0]](_0x5a2d[1]);
+    };
+  </script>
+  
+    
+</body>
+</html>

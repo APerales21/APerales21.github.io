@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/tapir.png" />
+  <title>Tapir</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+    html{
+      margin: 0; height: 100%;
+      font-family: 'Montserrat', sans-serif;
+      overflow: hidden;
+      background: #000000;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .cas {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      filter: blur(10px);
+    }
+
+    .container {
+      position: relative;
+      text-align: center;
+      max-width: 400px;
+      padding: 20px;
+      z-index: 1;
+     
+    }
+    .logo {
+      font-size: 80px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: white;
+      filter: drop-shadow(0 0 10px #FFA500);
+    }
+
+    h1 {
+      font-weight: 700;
+      margin: 10px 0 0 0;
+      font-size: 24px;
+      letter-spacing: 1.2px;
+    }
+
+    small {
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      opacity: 0.8;
+      display: block;
+      
+    }
+
+    p {
+      font-size: 14px;
+      opacity: 0.8;
+      margin: 6px 0;
+    }
+
+    p.space {
+      margin-bottom: 35px;
+    }
+
+    .button {
+      background: #FFA500;
+      border: none;
+      padding: 12px 30px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: white;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none; 
+    }
+
+    .button:hover {
+      background: #c07d02;
+    }
+  .tp{
+    width: 200px;
+    height: 150px;
+
+  }
+ @media (min-width: 993px) and (max-width: 1200px){
+footer {
+    height: 30px;
+  }
+ }
+
+  @media (max-width: 480px){
+    div.logo{
+      font-size: 46px;
+    }
+    img.tp{
+      height: 80px;
+      width: 90px;
+    }
+    a.button{
+      font-size: 10px;
+    }
+
+    footer {
+      height: 20px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-social a {
+    font-size: 10px;
+  }
+   
+  }
+  @media (max-width: 720px){
+    div.logo{
+      font-size: 50px;
+    }
+    
+    img.tp{
+      height: 80px;
+      width: 90px;
+    }
+     a.button{
+      font-size: 10px;
+    }
+  }
+  </style>
+</head>
+<body>
+ 
+
+    <main class="content">
+        <div class="container">
+          <img src="img/tapir.png" class="tp">
+          <div class="logo">TI</div>
+          <h1 >TAPIR INDIUSTRIES</h1>
+          <small>copyright © - 2025</small>
+          <p>Mantenimiento<strong> atencion al cliente y soporte en general.</strong></p><br>
+          <a class="button" href="pages/menu.html" title="menu">INICAR</a>
+          
+        <!--center>
+          <button type="button" class="btn" href="pages/menu.html">
+            <strong>INICAR</strong>
+            <div id="container-stars">
+              <div id="stars"></div>
+            </div>
+
+            <div id="glow">
+              <div class="circle"></div>
+              <div class="circle"></div>
+            </div>
+          </button>
+        </center-->
+        </div>
+    </main>
+
+    <!--style>
+      .btn {
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 13rem;
+      overflow: hidden;
+      height: 3rem;
+      background-size: 300% 300%;
+      cursor: pointer;
+      backdrop-filter: blur(1rem);
+      border-radius: 5rem;
+      transition: 0.5s;
+      animation: gradient_301 5s ease infinite;
+      border: double 4px transparent;
+      background-image: linear-gradient(#212121, #212121),
+        linear-gradient(
+          137.48deg,
+          #ffdb3b 10%,
+          #fe53bb 45%,
+          #8f51ea 67%,
+          #0044ff 87%
+        );
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
+#container-stars {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: 0.5s;
+  backdrop-filter: blur(1rem);
+  border-radius: 5rem;
+}
+
+strong {
+  z-index: 2;
+  font-family: "Avalors Personal Use";
+  font-size: 12px;
+  letter-spacing: 5px;
+  color: #ffffff;
+  text-shadow: 0 0 4px white;
+}
+
+#glow {
+  position: absolute;
+  display: flex;
+  width: 12rem;
+}
+
+.circle {
+  width: 100%;
+  height: 30px;
+  filter: blur(2rem);
+  animation: pulse_3011 4s infinite;
+  z-index: -1;
+}
+
+.circle:nth-of-type(1) {
+  background: rgba(254, 83, 186, 0.636);
+}
+
+.circle:nth-of-type(2) {
+  background: rgba(142, 81, 234, 0.704);
+}
+
+.btn:hover #container-stars {
+  z-index: 1;
+  background-color: #212121;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.btn:active {
+  border: double 4px #fe53bb;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  animation: none;
+}
+
+.btn:active .circle {
+  background: #fe53bb;
+}
+
+#stars {
+  position: relative;
+  background: transparent;
+  width: 200rem;
+  height: 200rem;
+}
+
+#stars::after {
+  content: "";
+  position: absolute;
+  top: -10rem;
+  left: -100rem;
+  width: 100%;
+  height: 100%;
+  animation: animStarRotate 90s linear infinite;
+}
+
+#stars::after {
+  background-image: radial-gradient(#ffffff 1px, transparent 1%);
+  background-size: 50px 50px;
+}
+
+#stars::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 170%;
+  height: 500%;
+  animation: animStar 60s linear infinite;
+}
+
+#stars::before {
+  background-image: radial-gradient(#ffffff 1px, transparent 1%);
+  background-size: 50px 50px;
+  opacity: 0.5;
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-135rem);
+  }
+}
+
+@keyframes animStarRotate {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0);
+  }
+}
+
+@keyframes gradient_301 {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse_3011 {
+  0% {
+    transform: scale(0.75);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.75);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+    </style-->
+
+    <!--footer>
+      <div class="footer-content">
+          <div class="footer-social"><br>
+              <a href="" target="_blank" rel="noopener noreferrer" >
+                <i class="fa-brands fa-whatsapp"></i> 33 5047 6514
+            </a>
+          </div>
+      </div>
+    </footer-->
+
+
+
+
+<canvas id="exa" width="600" height="600"></canvas>
+<script>
+const canvas = document.getElementById('exa');
+const ctx = canvas.getContext('2d');
+
+let width = canvas.width;
+let height = canvas.height;
+
+let centerX, centerY;
+const radius = 250;
+
+function updateCenter() {
+  const rect = canvas.getBoundingClientRect();
+  centerX = rect.width / 2;
+  centerY = rect.height / 2;
+}
+
+window.addEventListener('resize', updateCenter);
+updateCenter();
+
+let time = 0;
+
+//  Función para dibujar un hexágono animado
+function drawHexagon(cx, cy, r, rotation = 0) {
+  ctx.beginPath();
+  for (let i = 0; i <= 6; i++) {
+    const angle = (Math.PI / 3) * i + rotation; // 360° / 6 lados
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+}
+
+function drawexa(t) {
+  ctx.clearRect(0, 0, width, height);
+  updateCenter();
+
+   const colors = ['#FFA500', '#FF4500', '#FFFF00']; 
+
+  colors.forEach((color, i) => {
+    let waveRadius = radius + 10 * Math.sin(t + i * 2);
+    let offsetX = 5 * Math.sin(t * 2 + i * 5);
+    let offsetY = 5 * Math.cos(t * 2 + i * 5);
+
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 6;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 20;
+
+    // Dibuja hexágono en lugar de círculo
+    drawHexagon(centerX + offsetX, centerY + offsetY, waveRadius, t * 0.1 + i);
+    ctx.stroke();
+  });
+
+  // Puntos girando alrededor (sin cambios)
+  for (let i = 0; i < 20; i++) {
+    let angle = (Math.PI * 2 / 20) * i + t * 0.5;
+    let x = centerX + (radius - 40) * Math.cos(angle);
+    let y = centerY + (radius - 40) * Math.sin(angle);
+
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(0, 191, 255, 0.6)`;
+    ctx.shadowColor = 'rgba(0, 191, 255, 0.9)';
+    ctx.shadowBlur = 10;
+    ctx.arc(x, y, 5 + 3 * Math.sin(t + i), 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function animate(timeStamp) {
+  time += 0.02;
+  drawexa(time);
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>  
+
+  <script>
+    // Borrar contenido si se detecta DevTools
+   function borrarContenido() {
+   document.body.innerHTML = `
+    <style>/* From Uiverse.io by DipeshPun91 */ 
+.card {
+  width: 280px;
+  height: 280px;
+  background: linear-gradient(135deg, #05062d, #02012a);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(0, 234, 255, 0.3);
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  box-shadow:
+    0 0 15px rgba(0, 234, 255, 0.2),
+    0 0 30px rgba(151, 65, 252, 0.15);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 22px;
+  border: 2px solid transparent;
+  background: linear-gradient(
+      135deg,
+      rgba(0, 234, 255, 0.8),
+      rgba(139, 0, 255, 0.6)
+    )
+    border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+  animation: pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 20px rgba(0, 234, 255, 0.3),
+    0 0 40px rgba(151, 65, 252, 0.2);
+}
+
+.error-message {
+  font-size: 18px;
+  font-weight: 600;
+  color: #00eaff;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  animation: fade-in 1.5s ease-out;
+  text-shadow: 0 0 8px rgba(0, 234, 255, 0.5);
+  letter-spacing: 1px;
+}
+
+.error-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  font-weight: 900;
+  color: #ffffff;
+  text-transform: uppercase;
+  position: relative;
+  line-height: 1;
+  letter-spacing: 3px;
+  margin: 15px 0;
+}
+
+.error-item {
+  position: relative;
+  margin: 5px 0;
+}
+
+.error-title span {
+  position: relative;
+  z-index: 1;
+  text-shadow:
+    2px 2px 0 #fded00,
+    -2px -2px 0 #00eaff;
+}
+
+.error-title .error-glitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-shadow:
+    2px 2px 0 #00e572,
+    -2px -2px 0 #8b00ff;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  animation: glitch 2.5s infinite linear alternate;
+  opacity: 0.8;
+}
+
+.error-title .error-glitch--secondary {
+  text-shadow:
+    -2px -2px 0 #ff3366,
+    2px 2px 0 #00ccff;
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+  animation-delay: 0.5s;
+}
+
+.error-title:hover .error-glitch {
+  display: block;
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: polygon(
+      0 2%,
+      100% 2%,
+      100% 95%,
+      95% 95%,
+      95% 90%,
+      85% 90%,
+      85% 95%,
+      8% 95%,
+      0 70%
+    );
+  }
+  2%,
+  8% {
+    clip-path: polygon(
+      0 78%,
+      100% 78%,
+      100% 100%,
+      95% 100%,
+      95% 90%,
+      85% 90%,
+      85% 100%,
+      8% 100%,
+      0 78%
+    );
+    transform: translate(-5%, 0);
+  }
+  6% {
+    clip-path: polygon(
+      0 78%,
+      100% 78%,
+      100% 100%,
+      95% 100%,
+      95% 90%,
+      85% 90%,
+      85% 100%,
+      8% 100%,
+      0 78%
+    );
+    transform: translate(5%, 0);
+  }
+  9% {
+    clip-path: polygon(
+      0 78%,
+      100% 78%,
+      100% 100%,
+      95% 100%,
+      95% 90%,
+      85% 90%,
+      85% 100%,
+      8% 100%,
+      0 78%
+    );
+    transform: translate(0, 0);
+  }
+  25% {
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 0,
+      95% 0,
+      95% 0,
+      85% 0,
+      85% 0,
+      8% 0,
+      0 0
+    );
+    transform: translate(5%, 0);
+  }
+  30% {
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 0,
+      95% 0,
+      95% 0,
+      85% 0,
+      85% 0,
+      8% 0,
+      0 0
+    );
+    transform: translate(-5%, 0);
+  }
+  35%,
+  45% {
+    clip-path: polygon(
+      0 40%,
+      100% 40%,
+      100% 85%,
+      95% 85%,
+      95% 85%,
+      85% 85%,
+      85% 85%,
+      8% 85%,
+      0 70%
+    );
+    transform: translate(-5%);
+  }
+  50% {
+    clip-path: polygon(
+      0 40%,
+      100% 40%,
+      100% 85%,
+      95% 85%,
+      95% 85%,
+      85% 85%,
+      85% 85%,
+      8% 85%,
+      0 70%
+    );
+    transform: translate(0, 0);
+  }
+}
+
+.error-description {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 15px;
+  animation: fade-in 2s ease-out;
+  max-width: 80%;
+  line-height: 1.4;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 240px;
+    height: 240px;
+    padding: 15px;
+  }
+  .error-title {
+    font-size: 36px;
+  }
+}
+</style><br>
+<center>
+<div class="card">
+  <p class="error-message">Page Not Found</p>
+  <div class="error-title">
+    <div class="error-item">
+      <span aria-hidden="true">4O4</span>
+      <span aria-hidden="true" class="error-glitch">4O4</span>
+      <span aria-hidden="true" class="error-glitch error-glitch--secondary"
+        >4O4</span
+      >
+    </div>
+    <div class="error-item">
+      <span aria-hidden="true">Error</span>
+      <span aria-hidden="true" class="error-glitch">Error</span>
+      <span aria-hidden="true" class="error-glitch error-glitch--secondary"
+        >Error</span
+      >
+    </div>
+  </div>
+  <div class="error-description">The requested page could not be found</div>
+</div>
+</center><br>
+<center>
+<div class="text-center">  
+          <a href="index.html" class="btn-atras" style="
+            background-color: red; 
+            color: white; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            text-decoration: none;
+            font-weight: bold;
+          ">Regresar</a>
+        </div>
+</center>
+        
+  `;
+}
+    // Bloqueo de teclas (F12, Ctrl+Shift+I, Ctrl+U, etc.)
+    document.addEventListener('keydown', function (e) {
+      if (
+        e.key === "F12" || e.key === "F10" ||
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) ||
+        (e.ctrlKey && e.key === "U")
+      ) {
+        e.preventDefault();
+        borrarContenido();
+        return false;
+      }
+    });
+
+    // Bloquear clic derecho
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+      borrarContenido();
+    });
+ // Bloquear Ctrl+U
+        document.addEventListener('keydown', function (e) {
+        if (e.ctrlKey && e.key.toLowerCase() === 'u') {
+            e.preventDefault();
+            borrarContenido();
+        }
+        });
+    // Detección continua de DevTools abiertos
+    setInterval(() => {
+      const threshold = 300;
+      if (
+        window.outerWidth - window.innerWidth > threshold ||
+        window.outerHeight - window.innerHeight > threshold
+      ) {
+        borrarContenido();
+      }
+    }, 1000);
+  </script>
+
+  <script>
+    var _0x5a2d = ["\x61\x6C\x65\x72\x74", "\x48\x6F\x6C\x61\x2C\x20\x67\x72\x61\x63\x69\x61\x73\x20\x70\x6F\x72\x20\x76\x69\x73\x69\x74\x61\x72\x20\x6D\x69\x20\x73\x69\x74\x69\x6F\x2E"];
+    function saludar() {
+      window[_0x5a2d[0]](_0x5a2d[1]);
+    };
+  </script>
+</body>
+</html>
+
+ 
