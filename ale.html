@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Figuras</title>
+</head>
+<body>
+
+<button onclick="changeShape()">Cambiar figura</button>
+<canvas id="exa" width="600" height="600"></canvas>
+<button onclick="toggleModo()">🌙 / ☀️</button>
+<style>
+  body {
+  margin: 0;
+  transition: background-color 1s ease, filter 1s ease;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(1);
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Overlay para simular luz en modo día */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  pointer-events: none;
+  transition: background 1s ease;
+  z-index: 0;
+}
+
+/* Modo NOCHE (por defecto) */
+body.modo-noche {
+  background-image: url('ruta-tu-fondo-noche.jpg'); /* Pon tu fondo noche aquí */
+  filter: brightness(0.6) saturate(1.2);
+}
+
+body.modo-noche::before {
+  background: rgba(0,0,0,0.3);
+}
+
+/* Modo DÍA */
+body.modo-dia {
+  background-image: url('ruta-tu-fondo-dia.jpg'); /* Pon tu fondo día aquí */
+  filter: brightness(1.2) saturate(0.8);
+}
+
+body.modo-dia::before {
+  background: rgba(255,255,255,0.3);
+}
+
+/* Botón simple */
+button {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 10;
+  padding: 10px 15px;
+  border: none;
+  background: #00bfffcc;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #0077aa;
+}
+</style>
+
+<script>
+  function setModoSegunHora() {
+  const hour = new Date().getHours();
+  if (hour >= 7 && hour < 19) {
+    document.body.classList.add('modo-dia');
+    document.body.classList.remove('modo-noche');
+  } else {
+    document.body.classList.add('modo-noche');
+    document.body.classList.remove('modo-dia');
+  }
+}
+
+function toggleModo() {
+  if (document.body.classList.contains('modo-dia')) {
+    document.body.classList.remove('modo-dia');
+    document.body.classList.add('modo-noche');
+  } else {
+    document.body.classList.remove('modo-noche');
+    document.body.classList.add('modo-dia');
+  }
+}
+
+// Ejecutar al cargar la página
+window.onload = () => {
+  setModoSegunHora();
+};
+</script>
+
+
+
+<script>
+const canvas = document.getElementById('exa');
+const ctx = canvas.getContext('2d');
+
+let width = canvas.width;
+let height = canvas.height;
+
+let centerX, centerY;
+const radius = 250;
+
+function updateCenter() {
+  const rect = canvas.getBoundingClientRect();
+  centerX = rect.width / 2;
+  centerY = rect.height / 2;
+}
+
+window.addEventListener('resize', updateCenter);
+updateCenter();
+
+let time = 0;
+
+// 🔷 FIGURAS
+function drawHexagon(cx, cy, r, rotation = 0) {
+  ctx.beginPath();
+  for (let i = 0; i <= 6; i++) {
+    const angle = (Math.PI / 3) * i + rotation;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+}
+
+function drawTriangle(cx, cy, r, rotation = 0) {
+  ctx.beginPath();
+  for (let i = 0; i <= 3; i++) {
+    const angle = (Math.PI * 2 / 3) * i + rotation;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+}
+
+function drawSquare(cx, cy, r, rotation = 0) {
+  ctx.beginPath();
+  for (let i = 0; i <= 4; i++) {
+    const angle = (Math.PI * 2 / 4) * i + rotation;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+}
+
+function drawPentagon(cx, cy, r, rotation = 0) {
+  ctx.beginPath();
+  for (let i = 0; i <= 5; i++) {
+    const angle = (Math.PI * 2 / 5) * i + rotation;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+}
+
+// 🔀 FIGURAS
+const shapes = [drawHexagon, drawTriangle, drawSquare, drawPentagon];
+let currentShape = drawHexagon;
+
+function changeShape() {
+  const randomIndex = Math.floor(Math.random() * shapes.length);
+  currentShape = shapes[randomIndex];
+}
+
+// 🎨 DIBUJO
+function drawexa(t) {
+  ctx.clearRect(0, 0, width, height);
+  updateCenter();
+
+  const colors = ['#FFA500', '#FF4500', '#FFFF00'];
+
+  colors.forEach((color, i) => {
+    let waveRadius = radius + 10 * Math.sin(t + i * 2);
+    let offsetX = 5 * Math.sin(t * 2 + i * 5);
+    let offsetY = 5 * Math.cos(t * 2 + i * 5);
+
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 6;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 20;
+
+    currentShape(centerX + offsetX, centerY + offsetY, waveRadius, t * 0.1 + i);
+    ctx.stroke();
+  });
+
+  // 🔵 puntos
+  for (let i = 0; i < 20; i++) {
+    let angle = (Math.PI * 2 / 20) * i + t * 0.5;
+    let x = centerX + (radius - 40) * Math.cos(angle);
+    let y = centerY + (radius - 40) * Math.sin(angle);
+
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(0, 191, 255, 0.6)`;
+    ctx.shadowColor = 'rgba(0, 191, 255, 0.9)';
+    ctx.shadowBlur = 10;
+    ctx.arc(x, y, 5 + 3 * Math.sin(t + i), 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+// 🔁 animación
+function animate() {
+  time += 0.02;
+  drawexa(time);
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
