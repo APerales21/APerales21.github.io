@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  <link rel="icon" href="../img/tapir.png" />
+  <link rel="stylesheet" type="text/css" href="../css/menu.css">
+  <style>
+    canvas {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+        filter: blur(10px);
+        pointer-events: none;
+    }
+  .logo {
+      font-size: 80px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: black;
+      filter: drop-shadow(0 0 10px #FFA500);
+    }
+    :root[data-theme='dark'] .logo {
+        color: white;
+    }
+
+    .container {
+      position: relative;
+      text-align: center;
+      padding: 20px;
+      z-index: 1;
+    }
+     .ti_h1 {
+      font-weight: 700;
+      margin: 10px 0 0 0;
+      font-size: 24px;
+      letter-spacing: 1.2px;
+      filter: drop-shadow(0 0 10px #FFA500);
+    }
+
+    /* Configuración de colores de Juan Pablo */
+    :root {
+      --salmon: #FF751F;
+      --marron-obs: #5A3E2A;
+      --Amarillo-pastel: #F4D878;
+      --contraste: #242129;
+      --durazno: #FFBD59;
+      --blanco-palido: #fff;
+    }
+
+         /* Variables de color (modo claro por defecto) */
+    :root{
+      --bg: #ffffff;
+      --text: #111827;
+      --card: #f8fafc;
+      --accent: #2563eb;
+      --muted: #6b7280;
+      --glass: rgba(0,0,0,0.04);
+      --transition: 250ms ease;
+    }
+
+    /* Modo oscuro */
+    :root[data-theme='dark']{
+      --bg: #0b1220;
+      --text: #e6eef8;
+      --card: #091021;
+      --accent: #60a5fa;
+      --muted: #9aa6b2;
+      --glass: rgba(255,255,255,0.03);
+    }
+
+    /* Tipografía y layout */
+    
+    body{
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      transition: background var(--transition), color var(--transition);
+      box-sizing:border-box;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:18px;
+    }
+
+    
+    p.lead{margin:6px 0 0;color:var(--muted)}
+
+    .card{
+      background:linear-gradient(180deg, var(--card), rgba(0,0,0,0));
+      border-radius:12px;
+      padding:18px;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.08);
+      backdrop-filter: blur(6px);
+      transition: box-shadow var(--transition), background var(--transition);
+    }
+
+    /* Botón toggle */
+    .toggle-btn{
+      appearance:none;
+      border:0;
+      padding:8px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:var(--glass);
+      color:var(--text);
+      transition: transform 120ms ease, background var(--transition), color var(--transition);
+      font-weight:600;
+      font-size:0.95rem;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100000;
+    }
+    .toggle-btn:active{transform:scale(0.98)}
+
+    .lucide-demo-btn{
+      appearance:none;
+      border:1px solid rgba(255,117,31,0.45);
+      padding:8px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(0,0,0,0.58);
+      color:#fff;
+      transition: transform 120ms ease, background var(--transition), color var(--transition), border-color var(--transition);
+      font-weight:600;
+      font-size:0.95rem;
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      z-index: 100000;
+    }
+    .lucide-demo-btn:hover{ transform: translateY(-1px); }
+    .lucide-demo-btn:active{ transform: scale(0.98); }
+    .lucide-demo-btn.is-active{
+      background: rgba(255,117,31,0.9);
+      color: #000;
+      border-color: rgba(255,255,255,0.35);
+    }
+    :root[data-theme='dark'] .lucide-demo-btn{
+      background: rgba(255,255,255,0.72);
+      color: #000;
+      border-color: rgba(0,0,0,0.18);
+    }
+    :root[data-theme='dark'] .lucide-demo-btn.is-active{
+      background: rgba(255,117,31,0.92);
+      color: #000;
+    }
+
+    
+    .moon{
+      width:18px;height:18px;display:inline-block;flex-shrink:0;
+    }
+
+    /* Ejemplo de contenido */
+    .grid{display:grid;grid-template-columns:1fr 280px;gap:14px;margin-top:14px}
+    .main{min-height:220px}
+    .sidebar{min-height:220px}
+
+    .card p{line-height:1.5;color:var(--muted)}
+
+    /* Pequeñas adaptaciones responsive */
+    @media (max-width:720px){
+      .grid{grid-template-columns:1fr;}
+    }
+
+    
+    /* Fondo modo claro */
+body {
+  background: var(--bg) url('../img/day.gif') 
+              no-repeat center center fixed;
+  background-size: cover;
+  transition: background 0.6s ease, color 0.6s ease;
+}
+/* Fondo modo oscuro */
+:root[data-theme='dark'] body {
+  background: var(--bg) url('../img/not.gif') 
+              no-repeat center center fixed;
+  background-size: cover;
+}
+
+    body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(231, 231, 231, 0.2); /* capa clara */
+  z-index: -1;
+  transition: background 0.6s ease;
+}
+
+:root[data-theme='dark'] body::before {
+  background: rgba(0, 0, 0, 0.5); /* capa oscura */
+}
+
+/*  claro  */
+:root[data-theme='light'] .tooltip-text {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+}
+/*  claro  */
+:root[data-theme='light'] .toggle-btn{
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+ 
+}
+
+/*oscuro*/
+:root[data-theme='dark'] .toggle-btn {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #000;
+}
+/*oscuro*/
+:root[data-theme='dark'] .tooltip-text {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000;
+}
+
+
+:root[data-theme='light'] .toast {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+}
+
+
+:root[data-theme='dark'] .toast {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000;
+}
+
+  .hd1 {
+    position: fixed;
+    top: 5px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    z-index: 9999;
+  }
+
+  .back-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    width: 80px;
+    height: 80px;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .back-icon:hover {
+    transform: translateX(-2px);
+  }
+
+  :root[data-theme='dark'] .back-icon {
+    color: #fff;
+  }
+
+  .hd2 {
+    position: fixed;
+    top: 5px;
+    left: 100px; 
+    width: 80px;
+    height: 80px;
+    z-index: 9999;
+  }
+
+  .top-brand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #FF751F;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .top-brand-icon:hover {
+    transform: rotate(8deg) scale(1.03);
+  }
+
+  :root[data-theme='dark'] .top-brand-icon {
+    color: #F4D878;
+  }
+
+.header-top {
+  position: fixed;
+  top: 1px; /* Distancia desde el borde superior */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 999;
+
+}
+
+
+@media (max-width: 480px) {
+    .container {
+        margin-top: 30px;
+    }
+}
+@media (max-width: 480px) {
+  #toggleLabel {
+    display: none;
+  }
+}
+  </style>
+
+   <style>
+            .dark-image,
+            .light-image {
+            display: none;
+            }
+
+            /* Mostrar imagen clara cuando el tema es claro */
+            html[data-theme='light'] .light-image {
+            display: inline;
+            }
+
+            /* Mostrar imagen oscura cuando el tema es oscuro */
+            html[data-theme='dark'] .dark-image {
+            display: inline;
+            }
+     .td{
+            height: 200px;
+            width: 200px;
+            aspect-ratio: 4 / 3; /* ajusta a la proporción de tu imagen */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        @media (max-width: 480px) {
+            .td {
+                height: 150px;
+                width: 150px;
+            }
+        }
+        
+        .text-center{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tbl {
+            border-collapse: collapse;
+        }
+
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip-text {
+            position: absolute;
+            top: 45%; /* 👈 Ajustado */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #000;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+            text-align: center;
+            }
+  
+        .tooltip-container:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        @media (max-width: 480px) {
+           .tooltip-text {
+            visibility: visible;
+            opacity: 0.5;
+        }
+          div.logo{
+            font-size: 45px;
+          }
+          h1 .ti_h1{
+             font-size: 35px;
+          }
+          a .hd1{
+            width: 40px;
+            height: 40px;
+          }
+          img .hd2{
+            width: 40px;
+            height: 40px;
+          }
+        }
+        @media (max-width: 480px) {
+          .hd2{
+            width: 0px;
+            height: 0px;
+          }
+          .hd1{
+             width: 40px;
+            height: 40px;
+          }
+        }
+
+        .cards-carousel {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cards-carousel__hint {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .cards-carousel__viewport {
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 117, 31, 0.8) rgba(0, 0, 0, 0.15);
+            cursor: grab;
+            touch-action: pan-x;
+            scroll-snap-type: x mandatory;
+            padding: 12px 4px 20px;
+        }
+
+        .cards-carousel__viewport.dragging {
+            cursor: grabbing;
+            scroll-behavior: auto;
+        }
+
+        .cards-carousel__viewport::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .cards-carousel__viewport::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 999px;
+        }
+
+        .cards-carousel__viewport::-webkit-scrollbar-thumb {
+            background: rgba(255, 117, 31, 0.8);
+            border-radius: 999px;
+        }
+
+        .cards-carousel__track {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            width: max-content;
+            padding: 6px 10px 12px;
+        }
+
+        .cards-carousel__item {
+            flex: 0 0 auto;
+            width: 250px;
+            scroll-snap-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .cards-carousel__item {
+                width: 240px;
+            }
+        }
+
+        section.container.my-5 > .row.justify-content-center {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            padding: 0 0 20px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 117, 31, 0.8) rgba(0, 0, 0, 0.15);
+            touch-action: pan-x;
+        }
+
+        section.container.my-5 > .row.justify-content-center::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        section.container.my-5 > .row.justify-content-center::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 999px;
+        }
+
+        section.container.my-5 > .row.justify-content-center::-webkit-scrollbar-thumb {
+            background: rgba(255, 117, 31, 0.8);
+            border-radius: 999px;
+        }
+
+        section.container.my-5 > .row.justify-content-center > [class*="col-"] {
+            flex: 0 0 auto;
+            width: 250px;
+            max-width: none;
+            scroll-snap-align: center;
+        }
+
+        section.container.my-5 {
+            padding-left: clamp(1rem, 4vw, 3rem);
+            padding-right: clamp(1rem, 4vw, 3rem);
+        }
+
+        @media (max-width: 480px) {
+            section.container.my-5 > .row.justify-content-center > [class*="col-"] {
+                width: 240px;
+            }
+
+            section.container.my-5 {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <a href="../index.html">
+            <i data-lucide="arrow-left" class="hd1 back-icon" title="Atras" aria-hidden="true"></i>
+          </a>
+          <a href="../pages/fundadores.html">
+            <i data-lucide="hexagon" class="hd2 top-brand-icon" title="TI (Tapir Industries)" aria-hidden="true"></i>
+          </a>
+        <div class="header-top">
+            <!--div class="logo">TI</div-->
+            <h1 class="ti_h1">TAPIR INDUSTRIES</h1>
+        </div>
+        <div class="container">     
+            <button id="themeToggle" class="toggle-btn" aria-pressed="false" title="Alternar modo claro/oscuro">
+                <svg class="moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span id="toggleLabel">Modo nocturno</span>
+            </button>
+            <button id="lucideDemoBtn" class="lucide-demo-btn" type="button" aria-pressed="false" title="Botón de ejemplo con Lucide">
+                <i data-lucide="menu" aria-hidden="true"></i>
+                <span>Lucide demo</span>
+            </button>
+        </div> 
+    </header>
+
+     <section class="container my-5" style="padding-top:100px;">
+        <div class="row justify-content-center">
+
+    
+            <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="text-center">
+                        <div class="tooltip-container">
+                            <div class="card">
+                        <div class="head">Mantenimiento</div>
+                        <div class="content">
+                            Realizamos mentenimiento ó algun cambio de Disco o actualizamos tu antiguo equipo!
+                        <br />
+                        <a href="../pages/mantenimiento.html">
+                          <button class="button">INTRO</button>
+                        </a>
+                        </div>
+                      </div>
+                        </div>   
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="tooltip-container">
+                        <div class="card">
+                          <div class="head">Reparaciones</div>
+                        <div class="content">
+                            Cambio Pantallas de Celular Estrelladas y de Baterias!
+                        <br />
+                        <a href="../pages/celulares.html">
+                          <button class="button">INTRO</button>
+                        </a>
+                        </div>
+                      </div>
+                    </div>   
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="tooltip-container">
+                        <div class="card">
+                        <div class="head">Controles</div>
+                        <div class="content">
+                            Reparación de Joysticks de controles de Xbox, Play station y Nintendo!
+                        <br />
+                        <a href="../pages/consolas.html">
+                          <button class="button">Button</button>
+                        </a>
+                        </div>
+                      </div>
+                    </div>   
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="tooltip-container">
+                        <div class="card">
+                        <div class="head">Impresoras</div>
+                        <div class="content">
+                            Reparacion de impresoras, cabezal o alguna falla del equipo!
+                        <br />
+                        <a href="#">
+                          <button class="button">Button</button>
+                        </a>
+                        </div>
+                      </div>
+                    </div>   
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="tooltip-container">
+                      <div class="card">
+                        <div class="head">Diseño grafico</div>
+                        <div class="content">
+                            Realizamos tu creatividad y la plasmamos en una imagen, publicidad o algun Logo! 
+                        <br />
+                        <a href="">
+                          <button class="button">Button</button>
+                        </a>
+                        </div>
+                      </div>
+                    </div>   
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="tooltip-container">
+                      <div class="card">
+                        <div class="head">Desarollo Movil y Web</div>
+                        <div class="content">
+                            ¡Desarollamos algún sistema o aplicación de interes!
+                        <br />
+                        <a href="">
+                          <button class="button">Button</button>
+                        </a>
+                        </div>
+                      </div>
+                    </div>   
+                </div>
+            </div>
+
+        </div>
+    </section>  <br><br>
+
+    <!-- Footer -->
+    <footer class="footer-section text-center text-lg-start" style="color: #FF751F; background: #000;">
+        <div class="container py-4">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10">
+                    <div class="p-4 rounded-4 border text-start" style="background: #000; border-color: rgba(255,117,31,0.35); box-shadow: 0 10px 24px rgba(255,117,31,0.10);">
+                        <h2 class="h5 fw-bold mb-3">Servicio a domicilio</h2>
+                        <p class="mb-2 fw-semibold">Llevamos la reparación hasta tu casa u oficina.</p>
+                        <p class="mb-1"><strong>Ubicaciones:</strong> Tepic y San Cayetano, Nayarit.</p>
+                        <p class="mb-1"><strong>Tel:</strong> 312 123 4567</p>
+                        <p class="mb-1"><strong>Email:</strong> contacto@tapirindustries.com</p>
+                        <p class="mb-1"><strong>Horario:</strong> Lun - Vie 8am a 8pm.</p>
+                        <p class="mb-0"><strong>Disponibilidad:</strong> fines de semana según demanda.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center py-3" style="color: #FF751F;">
+            © 2024 Tapir Industries
+        </div>
+    </footer>
+
+    <style>
+        .footer-section {
+            background: #000;
+            transition: background 0.3s ease;
+            position: relative;
+            left: auto;
+            bottom: auto;
+            width: 100%;
+            opacity: 1;
+            margin-top: 32px;
+        }
+        :root[data-theme='dark'] .footer-section {
+            background: #000;
+        }
+        :root[data-theme='dark'] .footer-section .border {
+            border-color: rgba(255,117,31,0.35) !important;
+        }
+        footer.footer-section {
+            position: relative;
+            left: auto;
+            bottom: auto;
+            height: auto;
+        }
+    </style>
+
+
+<!--CARTA WINDOWS-->
+<style>
+    /* From Uiverse.io by vaibhavchandranv */ 
+.card {
+  font-family: Montserrat, sans-serif;
+  width: 250px;
+  height: 250px;
+  translate: -6px -6px;
+  background: #53EAFD;
+  border: 3px solid #000000;
+  box-shadow: 12px 12px 0 #000000;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.head {
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  width: 100%;
+  height: 32px;
+  background: #F0F9FF;
+  padding: 5px 12px;
+  color: #000000;
+  border-bottom: 3px solid #000000;
+}
+
+.content {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.button {
+  padding: 5px 10px;
+  margin-top: 10px;
+  border: 3px solid #000000;
+  box-shadow: 3px 3px 0 #000000;
+  font-weight: 750;
+  background: #90A1B9;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.button:hover {
+  translate: 1.5px 1.5px;
+  box-shadow: 1.5px 1.5px 0 #000000;
+  background: #1ac2ff;
+}
+
+.button:active {
+  translate: 3px 3px;
+  box-shadow: 0 0 0 #000000;
+}
+
+.card:hover {
+  translate: -6px;
+}
+
+</style>
+
+    <canvas id="exa" width="600" height="600"></canvas>
+<script>
+const canvas = document.getElementById('exa');
+const ctx = canvas.getContext('2d');
+
+let width = canvas.width;
+let height = canvas.height;
+
+let centerX, centerY;
+const radius = 200;
+
+function updateCenter() {
+  const rect = canvas.getBoundingClientRect();
+  centerX = rect.width / 2;
+  centerY = rect.height / 2;
+}
+
+window.addEventListener('resize', updateCenter);
+updateCenter();
+
+let time = 0;
+
+//  Función para dibujar un hexágono animado
+function drawHexagon(cx, cy, r, rotation = 0) {
+  ctx.beginPath();
+  for (let i = 0; i <= 6; i++) {
+    const angle = (Math.PI / 3) * i + rotation; // 360° / 6 lados
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+}
+
+function drawExa(t) {
+  ctx.clearRect(0, 0, width, height);
+  updateCenter();
+
+   const colors = ['#FFA500', '#FF4500', '#FFFF00']; 
+
+  colors.forEach((color, i) => {
+    let waveRadius = radius + 10 * Math.sin(t + i * 2);
+    let offsetX = 5 * Math.sin(t * 2 + i * 5);
+    let offsetY = 5 * Math.cos(t * 2 + i * 5);
+
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 6;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 20;
+
+    // Dibuja hexágono en lugar de círculo
+    drawHexagon(centerX + offsetX, centerY + offsetY, waveRadius, t * 0.1 + i);
+    ctx.stroke();
+  });
+
+  // Puntos girando alrededor (sin cambios)
+  for (let i = 0; i < 20; i++) {
+    let angle = (Math.PI * 2 / 20) * i + t * 0.5;
+    let x = centerX + (radius - 40) * Math.cos(angle);
+    let y = centerY + (radius - 40) * Math.sin(angle);
+
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(0, 191, 255, 0.6)`;
+    ctx.shadowColor = 'rgba(0, 191, 255, 0.9)';
+    ctx.shadowBlur = 10;
+    ctx.arc(x, y, 5 + 3 * Math.sin(t + i), 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function animate(timeStamp) {
+  time += 0.02;
+  drawExa(time);
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>  
+
+
+    <script>
+  function setThemeByTime() {
+    const root = document.documentElement;
+    const now = new Date();
+    const hour = now.getHours();
+
+    // De 7:00 a 17:59 → modo día (light)
+    // De 18:00 a 6:59 → modo noche (dark)
+    if (hour >= 7 && hour < 18) {
+      root.setAttribute('data-theme', 'light');
+    } else {
+      root.setAttribute('data-theme', 'dark');
+    }
+  }
+
+  // Ejecutamos la función al cargar la página
+  window.onload = setThemeByTime;
+</script>
+  <!--DARK-->
+ <script>
+    function toggleTheme() {
+      const root = document.documentElement;
+      const currentTheme = root.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', newTheme);
+    }
+
+    (function(){
+      const root = document.documentElement;
+      const toggle = document.getElementById('themeToggle');
+      const label = document.getElementById('toggleLabel');
+      const storageKey = 'theme-preference';
+
+      // Devuelve 'dark' o 'light'
+      function getStoredPreference(){
+        try{ return localStorage.getItem(storageKey); }catch(e){ return null; }
+      }
+
+      // Detecta preferencia del sistema
+      function getSystemPreference(){
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      function applyTheme(theme){
+        if(theme === 'dark'){
+          root.setAttribute('data-theme','dark');
+          toggle.setAttribute('aria-pressed','true');
+          label.textContent = 'Modo claro';
+        }else{
+          root.setAttribute('data-theme','light');
+          toggle.setAttribute('aria-pressed','false');
+          label.textContent = 'Modo nocturno';
+        }
+      }
+
+      function savePreference(theme){
+        try{ localStorage.setItem(storageKey, theme); }catch(e){/* silenciar si el almacenamiento falla */}
+      }
+
+      // Inicialización: preferencia almacenada > preferencia del sistema > claro
+      const stored = getStoredPreference();
+      const initial = stored || getSystemPreference() || 'light';
+      applyTheme(initial);
+
+      // Listener del botón
+      toggle.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        savePreference(next);
+      });
+
+      // Soporte para atajo de teclado: tecla D
+      window.addEventListener('keydown', (e) => {
+        if(e.key.toLowerCase() === 'd' && !e.metaKey && !e.ctrlKey && !e.altKey){
+          e.preventDefault();
+          toggle.click();
+        }
+      });
+
+      // Si el usuario cambia la preferencia del sistema en tiempo real, puede respetarse
+      if(window.matchMedia){
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+          // Si el usuario ya guardó una preferencia, no sobrescribimos
+          if(getStoredPreference()) return;
+          applyTheme(e.matches ? 'dark' : 'light');
+        });
+      }
+
+    })();
+  </script>
+  
+
+<script>
+  (function () {
+    const rail = document.querySelector('section.container.my-5 > .row.justify-content-center');
+    if (!rail) return;
+
+    let isDown = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+
+    rail.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      e.preventDefault();
+      rail.scrollLeft += e.deltaY;
+    }, { passive: false });
+
+    rail.addEventListener('pointerdown', (e) => {
+      isDown = true;
+      startX = e.clientX;
+      startScrollLeft = rail.scrollLeft;
+      rail.classList.add('dragging');
+      rail.setPointerCapture(e.pointerId);
+    });
+
+    rail.addEventListener('pointermove', (e) => {
+      if (!isDown) return;
+      rail.scrollLeft = startScrollLeft - (e.clientX - startX);
+    });
+
+    const stopDrag = (e) => {
+      if (!isDown) return;
+      isDown = false;
+      rail.classList.remove('dragging');
+      if (e && rail.hasPointerCapture && rail.hasPointerCapture(e.pointerId)) {
+        rail.releasePointerCapture(e.pointerId);
+      }
+    };
+
+    rail.addEventListener('pointerup', stopDrag);
+    rail.addEventListener('pointercancel', stopDrag);
+    rail.addEventListener('pointerleave', stopDrag);
+  })();
+</script>
+
+
+  <script>
+    // Borrar contenido si se detecta DevTools
+   function borrarContenido() {
+   document.body.innerHTML = `
+    <style>/* From Uiverse.io by DipeshPun91 */ 
+.card {
+  width: 280px;
+  height: 280px;
+  background: linear-gradient(135deg, #05062d, #02012a);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(0, 234, 255, 0.3);
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  box-shadow:
+    0 0 15px rgba(0, 234, 255, 0.2),
+    0 0 30px rgba(151, 65, 252, 0.15);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 22px;
+  border: 2px solid transparent;
+  background: linear-gradient(
+      135deg,
+      rgba(0, 234, 255, 0.8),
+      rgba(139, 0, 255, 0.6)
+    )
+    border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+  animation: pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 20px rgba(0, 234, 255, 0.3),
+    0 0 40px rgba(151, 65, 252, 0.2);
+}
+
+.error-message {
+  font-size: 18px;
+  font-weight: 600;
+  color: #00eaff;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  animation: fade-in 1.5s ease-out;
+  text-shadow: 0 0 8px rgba(0, 234, 255, 0.5);
+  letter-spacing: 1px;
+}
+
+.error-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  font-weight: 900;
+  color: #ffffff;
+  text-transform: uppercase;
+  position: relative;
+  line-height: 1;
+  letter-spacing: 3px;
+  margin: 15px 0;
+}
+
+.error-item {
+  position: relative;
+  margin: 5px 0;
+}
+
+.error-title span {
+  position: relative;
+  z-index: 1;
+  text-shadow:
+    2px 2px 0 #fded00,
+    -2px -2px 0 #00eaff;
+}
+
+.error-title .error-glitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-shadow:
+    2px 2px 0 #00e572,
+    -2px -2px 0 #8b00ff;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  animation: glitch 2.5s infinite linear alternate;
+  opacity: 0.8;
+}
+
+.error-title .error-glitch--secondary {
+  text-shadow:
+    -2px -2px 0 #ff3366,
+    2px 2px 0 #00ccff;
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+  animation-delay: 0.5s;
+}
+
+.error-title:hover .error-glitch {
+  display: block;
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: polygon(
+      0 2%,
+      100% 2%,
+      100% 95%,
+      95% 95%,
+      95% 90%,
+      85% 90%,
+      85% 95%,
+      8% 95%,
+      0 70%
+    );
+  }
+  2%,
+  8% {
+    clip-path: polygon(
+      0 78%,
+      100% 78%,
+      100% 100%,
+      95% 100%,
+      95% 90%,
+      85% 90%,
+      85% 100%,
+      8% 100%,
+      0 78%
+    );
+    transform: translate(-5%, 0);
+  }
+  6% {
+    clip-path: polygon(
+      0 78%,
+      100% 78%,
+      100% 100%,
+      95% 100%,
+      95% 90%,
+      85% 90%,
+      85% 100%,
+      8% 100%,
+      0 78%
+    );
+    transform: translate(5%, 0);
+  }
+  9% {
+    clip-path: polygon(
+      0 78%,
+      100% 78%,
+      100% 100%,
+      95% 100%,
+      95% 90%,
+      85% 90%,
+      85% 100%,
+      8% 100%,
+      0 78%
+    );
+    transform: translate(0, 0);
+  }
+  25% {
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 0,
+      95% 0,
+      95% 0,
+      85% 0,
+      85% 0,
+      8% 0,
+      0 0
+    );
+    transform: translate(5%, 0);
+  }
+  30% {
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 0,
+      95% 0,
+      95% 0,
+      85% 0,
+      85% 0,
+      8% 0,
+      0 0
+    );
+    transform: translate(-5%, 0);
+  }
+  35%,
+  45% {
+    clip-path: polygon(
+      0 40%,
+      100% 40%,
+      100% 85%,
+      95% 85%,
+      95% 85%,
+      85% 85%,
+      85% 85%,
+      8% 85%,
+      0 70%
+    );
+    transform: translate(-5%);
+  }
+  50% {
+    clip-path: polygon(
+      0 40%,
+      100% 40%,
+      100% 85%,
+      95% 85%,
+      95% 85%,
+      85% 85%,
+      85% 85%,
+      8% 85%,
+      0 70%
+    );
+    transform: translate(0, 0);
+  }
+}
+
+.error-description {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 15px;
+  animation: fade-in 2s ease-out;
+  max-width: 80%;
+  line-height: 1.4;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 240px;
+    height: 240px;
+    padding: 15px;
+  }
+  .error-title {
+    font-size: 36px;
+  }
+}
+</style><br>
+<center>
+<div class="card">
+  <p class="error-message">Page Not Found</p>
+  <div class="error-title">
+    <div class="error-item">
+      <span aria-hidden="true">4O4</span>
+      <span aria-hidden="true" class="error-glitch">4O4</span>
+      <span aria-hidden="true" class="error-glitch error-glitch--secondary"
+        >4O4</span
+      >
+    </div>
+    <div class="error-item">
+      <span aria-hidden="true">Error</span>
+      <span aria-hidden="true" class="error-glitch">Error</span>
+      <span aria-hidden="true" class="error-glitch error-glitch--secondary"
+        >Error</span
+      >
+    </div>
+  </div>
+  <div class="error-description">The requested page could not be found</div>
+</div>
+</center><br>
+
+<div class="text-center">  
+          <a href="../pages/menu.html" class="btn-atras" style="
+            background-color: red; 
+            color: white; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            text-decoration: none;
+            font-weight: bold;
+          ">Regresar</a>
+        </div>
+
+  `;
+}
+    // Bloqueo de teclas (F12, Ctrl+Shift+I, Ctrl+U, etc.)
+    document.addEventListener('keydown', function (e) {
+      if (
+        e.key === "F12" || e.key === "F10" ||
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) ||
+        (e.ctrlKey && e.key === "U")
+      ) {
+        e.preventDefault();
+        borrarContenido();
+        return false;
+      }
+    });
+
+    // Bloquear clic derecho
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+      borrarContenido();
+    });
+ // Bloquear Ctrl+U
+        document.addEventListener('keydown', function (e) {
+        if (e.ctrlKey && e.key.toLowerCase() === 'u') {
+            e.preventDefault();
+            borrarContenido();
+        }
+        });
+    // Detección continua de DevTools abiertos
+    setInterval(() => {
+      const threshold = 300;
+      if (
+        window.outerWidth - window.innerWidth > threshold ||
+        window.outerHeight - window.innerHeight > threshold
+      ) {
+        borrarContenido();
+      }
+    }, 1000);
+  </script>
+
+<script type="module" src="../src/main.js"></script>
+
+  <script>
+    var _0x5a2d = ["\x61\x6C\x65\x72\x74", "\x48\x6F\x6C\x61\x2C\x20\x67\x72\x61\x63\x69\x61\x73\x20\x70\x6F\x72\x20\x76\x69\x73\x69\x74\x61\x72\x20\x6D\x69\x20\x73\x69\x74\x69\x6F\x2E"];
+    function saludar() {
+      window[_0x5a2d[0]](_0x5a2d[1]);
+    };
+  </script>
+    
+</body>
+</html>
