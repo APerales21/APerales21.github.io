@@ -128,43 +128,6 @@
     }
     .toggle-btn:active{transform:scale(0.98)}
 
-    .lucide-demo-btn{
-      appearance:none;
-      border:1px solid rgba(255,117,31,0.45);
-      padding:8px 12px;
-      border-radius:999px;
-      cursor:pointer;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      background:rgba(0,0,0,0.58);
-      color:#fff;
-      transition: transform 120ms ease, background var(--transition), color var(--transition), border-color var(--transition);
-      font-weight:600;
-      font-size:0.95rem;
-      position: fixed;
-      top: 70px;
-      right: 20px;
-      z-index: 100000;
-    }
-    .lucide-demo-btn:hover{ transform: translateY(-1px); }
-    .lucide-demo-btn:active{ transform: scale(0.98); }
-    .lucide-demo-btn.is-active{
-      background: rgba(255,117,31,0.9);
-      color: #000;
-      border-color: rgba(255,255,255,0.35);
-    }
-    :root[data-theme='dark'] .lucide-demo-btn{
-      background: rgba(255,255,255,0.72);
-      color: #000;
-      border-color: rgba(0,0,0,0.18);
-    }
-    :root[data-theme='dark'] .lucide-demo-btn.is-active{
-      background: rgba(255,117,31,0.92);
-      color: #000;
-    }
-
-    
     .moon{
       width:18px;height:18px;display:inline-block;flex-shrink:0;
     }
@@ -538,10 +501,7 @@ body {
 <body>
     <header>
     <a href="../index.html">
-            <i data-lucide="arrow-left" class="hd1 back-icon" title="Atras" aria-hidden="true"></i>
-          </a>
-          <a href="../pages/fundadores.html">
-            <i data-lucide="hexagon" class="hd2 top-brand-icon" title="TI (Tapir Industries)" aria-hidden="true"></i>
+            <i data-lucide="arrow-big-left-dash" class="hd1 back-icon" title="Atras" aria-hidden="true"></i>
           </a>
         <div class="header-top">
             <!--div class="logo">TI</div-->
@@ -554,115 +514,105 @@ body {
                 </svg>
                 <span id="toggleLabel">Modo nocturno</span>
             </button>
-            <button id="lucideDemoBtn" class="lucide-demo-btn" type="button" aria-pressed="false" title="Botón de ejemplo con Lucide">
-                <i data-lucide="menu" aria-hidden="true"></i>
-                <span>Lucide demo</span>
-            </button>
         </div> 
     </header>
 
-     <section class="container my-5" style="padding-top:100px;">
-        <div class="row justify-content-center">
+     <section class="services-section container my-5">
+        <div class="services-grid">
 
     
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="service-card-cell">
                 <div class="text-center">
                         <div class="tooltip-container">
-                            <div class="card">
-                        <div class="head">Mantenimiento</div>
-                        <div class="content">
-                            Realizamos mentenimiento ó algun cambio de Disco o actualizamos tu antiguo equipo!
-                        <br />
-                        <a href="../pages/mantenimiento.html">
-                          <button class="button">INTRO</button>
-                        </a>
+                            <a class="card service-card-link" href="../pages/mantenimiento.html">
+                        <div class="head">
+                          <i data-lucide="wrench" class="service-icon" aria-hidden="true"></i>
+                          <span>Mantenimiento</span>
                         </div>
-                      </div>
+                        <div class="content">
+                            Realizamos mantenimiento, cambio de Disco o actualizamos equipos antiguos!
+                        </div>
+                      </a>
                         </div>   
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="service-card-cell">
                 <div class="text-center">
                     <div class="tooltip-container">
-                        <div class="card">
-                          <div class="head">Reparaciones</div>
+                        <a class="card service-card-link" href="../pages/celulares.html">
+                          <div class="head">
+                            <i data-lucide="smartphone" class="service-icon" aria-hidden="true"></i>
+                            <span>Reparaciones</span>
+                          </div>
                         <div class="content">
                             Cambio Pantallas de Celular Estrelladas y de Baterias!
-                        <br />
-                        <a href="../pages/celulares.html">
-                          <button class="button">INTRO</button>
-                        </a>
                         </div>
-                      </div>
+                      </a>
                     </div>   
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="service-card-cell">
                 <div class="text-center">
                     <div class="tooltip-container">
-                        <div class="card">
-                        <div class="head">Controles</div>
+                        <a class="card service-card-link" href="../pages/consolas.html">
+                        <div class="head">
+                          <i data-lucide="gamepad-2" class="service-icon" aria-hidden="true"></i>
+                          <span>Controles</span>
+                        </div>
                         <div class="content">
                             Reparación de Joysticks de controles de Xbox, Play station y Nintendo!
-                        <br />
-                        <a href="../pages/consolas.html">
-                          <button class="button">Button</button>
-                        </a>
                         </div>
-                      </div>
+                      </a>
                     </div>   
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="service-card-cell">
                 <div class="text-center">
                     <div class="tooltip-container">
-                        <div class="card">
-                        <div class="head">Impresoras</div>
+                        <a class="card service-card-link" href="#">
+                        <div class="head">
+                          <i data-lucide="printer" class="service-icon" aria-hidden="true"></i>
+                          <span>Impresoras</span>
+                        </div>
                         <div class="content">
                             Reparacion de impresoras, cabezal o alguna falla del equipo!
-                        <br />
-                        <a href="#">
-                          <button class="button">Button</button>
-                        </a>
                         </div>
-                      </div>
+                      </a>
                     </div>   
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="service-card-cell">
                 <div class="text-center">
                     <div class="tooltip-container">
-                      <div class="card">
-                        <div class="head">Diseño grafico</div>
+                      <a class="card service-card-link" href="">
+                        <div class="head">
+                          <i data-lucide="palette" class="service-icon" aria-hidden="true"></i>
+                          <span>Diseño grafico</span>
+                        </div>
                         <div class="content">
                             Realizamos tu creatividad y la plasmamos en una imagen, publicidad o algun Logo! 
-                        <br />
-                        <a href="">
-                          <button class="button">Button</button>
-                        </a>
                         </div>
-                      </div>
+                      </a>
                     </div>   
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="service-card-cell">
                 <div class="text-center">
                     <div class="tooltip-container">
-                      <div class="card">
-                        <div class="head">Desarollo Movil y Web</div>
+                      <a class="card service-card-link" href="">
+                        <div class="head">
+                          <i data-lucide="code-2" class="service-icon" aria-hidden="true"></i>
+                          <span>Desarollo Movil y Web</span>
+                        </div>
                         <div class="content">
                             ¡Desarollamos algún sistema o aplicación de interes!
-                        <br />
-                        <a href="">
-                          <button class="button">Button</button>
-                        </a>
                         </div>
-                      </div>
+                      </a>
                     </div>   
                 </div>
             </div>
@@ -721,16 +671,58 @@ body {
 <!--CARTA WINDOWS-->
 <style>
     /* From Uiverse.io by vaibhavchandranv */ 
+.services-section {
+  padding-top: 100px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 250px);
+  gap: 36px 44px;
+  justify-content: center;
+  align-items: start;
+  margin: 0 auto;
+}
+
+.service-card-cell,
+.services-grid .text-center,
+.services-grid .tooltip-container {
+  display: flex;
+  justify-content: center;
+}
+
+.service-card-cell {
+  width: 250px;
+}
+
 .card {
   font-family: Montserrat, sans-serif;
   width: 250px;
   height: 250px;
   translate: -6px -6px;
-  background: #53EAFD;
+  background: var(--salmon);
   border: 3px solid #000000;
   box-shadow: 12px 12px 0 #000000;
   overflow: hidden;
   transition: all 0.3s ease;
+}
+
+.service-card-link {
+  color: #000000;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+}
+
+.service-card-link:hover,
+.service-card-link:focus {
+  color: #000000;
+  text-decoration: none;
+}
+
+.service-card-link:focus-visible {
+  outline: 3px solid var(--blanco-palido);
+  outline-offset: 4px;
 }
 
 .head {
@@ -738,15 +730,29 @@ body {
   font-size: 14px;
   font-weight: 900;
   width: 100%;
-  height: 32px;
+  min-height: 74px;
   background: #F0F9FF;
-  padding: 5px 12px;
+  padding: 8px 12px 7px;
   color: #000000;
   border-bottom: 3px solid #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.service-icon {
+  width: 28px;
+  height: 28px;
+  stroke-width: 2.4;
+  flex: 0 0 auto;
 }
 
 .content {
-  padding: 8px 12px;
+  padding: 10px 12px 8px;
   font-size: 14px;
   font-weight: 600;
 }
@@ -775,6 +781,24 @@ body {
 
 .card:hover {
   translate: -6px;
+}
+
+:root[data-theme='dark'] .services-grid .card {
+  border-color: var(--blanco-palido);
+  box-shadow: 12px 12px 0 var(--blanco-palido);
+}
+
+@media (max-width: 900px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 250px);
+  }
+}
+
+@media (max-width: 620px) {
+  .services-grid {
+    grid-template-columns: 250px;
+    gap: 28px;
+  }
 }
 
 </style>
