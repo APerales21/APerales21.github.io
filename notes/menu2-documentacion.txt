@@ -1,0 +1,107 @@
+Documentación de menu2.html
+===========================
+
+Archivo: pages/menu2.html
+Ubicación de la documentación: notes/menu2-documentacion.txt
+
+1. Propósito general
+-------------------
+Este archivo representa una página de servicios con un diseño visual tipo "Windows XP/retro" y un sistema de tema claro/oscuro. Muestra tarjetas de servicios con enlaces a otras páginas del sitio y un pie de página con información de contacto.
+
+2. Estructura principal
+-----------------------
+La página está organizada en estas secciones:
+
+- Header:
+  - Botón de regreso a la página anterior.
+  - Título principal: TAPIR INDUSTRIES.
+  - Botón para alternar entre modo claro y oscuro.
+
+- Sección de servicios:
+  - Contiene varias tarjetas de servicio.
+  - Cada tarjeta es un enlace a otra página o a un marcador vacío.
+  - Los servicios mostrados son:
+    - Mantenimiento
+    - Reparaciones
+    - Controles
+    - Impresoras
+    - Diseño gráfico
+    - Desarrollo móvil y web
+
+- Footer:
+  - Muestra información de servicio a domicilio, ubicación, teléfono, correo, horario y disponibilidad.
+
+3. Estilos y tema visual
+------------------------
+El archivo incluye estilos inline en la etiqueta head y también estilos adicionales para el footer y las tarjetas.
+
+Puntos importantes:
+- Usa variables CSS como --bg, --text, --card, --accent, --muted, --glass y --transition.
+- El modo claro y oscuro se activan mediante el atributo data-theme en el elemento html.
+- El color del fondo cambia según el tema:
+  - Claro: usa la imagen day.gif como fondo.
+  - Oscuro: usa la imagen not.gif como fondo.
+- La cabecera, las tarjetas y el footer adaptan colores según el tema.
+
+4. Modo claro/oscuro
+--------------------
+El tema se controla con JavaScript y con el atributo data-theme.
+
+Comportamiento:
+- Al cargar la página, se intenta aplicar un tema inicial basado en:
+  1. Preferencia guardada en localStorage.
+  2. Preferencia del sistema.
+  3. Modo claro como valor por defecto.
+- También existe una función que intenta establecer el tema según la hora del día:
+  - Entre las 7:00 y las 17:59 se usa light.
+  - Entre las 18:00 y las 6:59 se usa dark.
+- El botón con id themeToggle alterna el tema manualmente.
+- El texto del botón se actualiza según el estado actual.
+
+5. Animación del canvas
+-----------------------
+Se incluye un canvas con id exa en la parte inferior de la página.
+
+Función:
+- Dibuja hexágonos animados con colores naranja/rojo/amarillo.
+- Añade puntos girando alrededor del centro.
+- La animación se ejecuta con requestAnimationFrame.
+
+Importante para cambios futuros:
+- Si se modifica el canvas o el estilo, conviene mantener el id exa y el contexto 2D del canvas.
+- El fondo blur del canvas y el z-index 0 ayudan a que no interfiera con el contenido principal.
+
+6. Scripts incluidos
+--------------------
+El archivo carga varios scripts inline y uno externo:
+
+- Script externo:
+  - ../src/main.js
+
+- Scripts inline:
+  - Lógica de tema claro/oscuro.
+  - Animación del canvas.
+  - Script de arrastre o desplazamiento horizontal para una fila de tarjetas (actualmente no aplica a la estructura HTML presente).
+  - Script de protección contra inspección del código (DevTools), que:
+    - Bloquea F12, Ctrl+Shift+I, Ctrl+U y clic derecho.
+    - Reemplaza el contenido del body con una pantalla de error si se detecta actividad sospechosa.
+    - Detecta cambios de tamaño de ventana que puedan indicar DevTools abiertos.
+
+7. Consideraciones importantes para futuras modificaciones
+--------------------------------------------------------
+- No cambiar los IDs themeToggle y toggleLabel si se quiere conservar la lógica del tema.
+- Si se agregan o cambian tarjetas de servicio, mantener la clase service-card-link para conservar el estilo visual.
+- Si se cambian los enlaces de las tarjetas, revisar que las rutas relativas sigan siendo correctas.
+- Si se modifica el diseño del header o del footer, tener en cuenta que utilizan variables CSS y estilos dependientes del atributo data-theme.
+- Si se eliminan o cambian los elementos con clases como service-card-link, head, content, footer-panel, etc., se pueden romper estilos visuales ya definidos.
+
+8. Archivos relacionados
+------------------------
+- pages/menu2.html: página principal.
+- css/menu.css: estilos externos relacionados con el menú.
+- src/main.js: script externo que probablemente carga iconos de Lucide u otros recursos.
+- img/day.gif y img/not.gif: fondos para los modos claro y oscuro.
+
+9. Nota de mantenimiento
+------------------------
+Esta página mezcla HTML, CSS inline, imágenes, animaciones y scripts de protección. Por eso, cualquier cambio debe revisarse con cuidado para no afectar la experiencia visual o el sistema de temas.

@@ -7,6 +7,14 @@ import {
   Printer,
   Palette,
   Code2,
+  Truck,
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  CalendarDays,
+  Moon,
+  Sun,
 } from 'lucide';
 
 createIcons({
@@ -18,5 +26,13 @@ createIcons({
     Printer,
     Palette,
     Code2,
+    Truck,
+    MapPin,
+    Phone,
+    Mail,
+    Clock,
+    CalendarDays,
+    Moon,
+    Sun,
   },
 });

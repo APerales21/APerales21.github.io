@@ -52,7 +52,7 @@
       --Amarillo-pastel: #F4D878;
       --contraste: #242129;
       --durazno: #FFBD59;
-      --blanco-palido: #fff;
+      --blanco-palido: #f8fafc;
     }
 
          /* Variables de color (modo claro por defecto) */
@@ -88,10 +88,38 @@
     }
 
     header{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      min-height: 76px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      margin-bottom:18px;
+      margin-bottom:0;
+      background: var(--blanco-palido);
+      color: var(--text);
+      border-bottom: 1px solid rgba(255,117,31,0.35);
+      box-shadow: 0 10px 24px rgba(255,117,31,0.10);
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+      z-index: 9998;
+    }
+
+    header > a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 20px;
+      z-index: 100000;
+    }
+
+    .header-actions {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: 20px;
+      z-index: 100000;
     }
 
     
@@ -109,27 +137,35 @@
     /* Botón toggle */
     .toggle-btn{
       appearance:none;
-      border:0;
+      border:1px solid rgba(255,117,31,0.35);
       padding:8px 12px;
       border-radius:999px;
       cursor:pointer;
       display:inline-flex;
       align-items:center;
       gap:8px;
-      background:var(--glass);
+      background:var(--bg);
       color:var(--text);
-      transition: transform 120ms ease, background var(--transition), color var(--transition);
+      box-shadow: 0 10px 24px rgba(255,117,31,0.10);
+      transition: transform 120ms ease, background var(--transition), color var(--transition), border-color var(--transition);
       font-weight:600;
       font-size:0.95rem;
-      position: fixed;
-      top: 20px;
-      right: 20px;
+      position: static;
       z-index: 100000;
     }
     .toggle-btn:active{transform:scale(0.98)}
 
-    .moon{
-      width:18px;height:18px;display:inline-block;flex-shrink:0;
+    .theme-icon{
+      width:18px;
+      height:18px;
+      display:none;
+      flex-shrink:0;
+      stroke-width:2.2;
+    }
+
+    .toggle-btn[data-active-theme='light'] .theme-icon--moon,
+    .toggle-btn[data-active-theme='dark'] .theme-icon--sun{
+      display:inline-block;
     }
 
     /* Ejemplo de contenido */
@@ -179,15 +215,15 @@ body {
 }
 /*  claro  */
 :root[data-theme='light'] .toggle-btn{
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
+  background-color: var(--bg);
+  color: var(--text);
  
 }
 
 /*oscuro*/
 :root[data-theme='dark'] .toggle-btn {
-  background-color: rgba(255, 255, 255, 0.7);
-  color: #000;
+  background-color: var(--bg);
+  color: var(--text);
 }
 /*oscuro*/
 :root[data-theme='dark'] .tooltip-text {
@@ -208,30 +244,24 @@ body {
 }
 
   .hd1 {
-    position: fixed;
-    top: 5px;
-    left: 20px;
-    width: 80px;
-    height: 80px;
-    z-index: 9999;
+    position: static;
+    width: 48px;
+    height: 48px;
+    z-index: 100000;
   }
 
   .back-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #000;
-    width: 80px;
-    height: 80px;
+    color: var(--text);
+    width: 48px;
+    height: 48px;
     transition: transform 0.2s ease, color 0.2s ease;
   }
 
   .back-icon:hover {
     transform: translateX(-2px);
-  }
-
-  :root[data-theme='dark'] .back-icon {
-    color: #fff;
   }
 
   .hd2 {
@@ -260,12 +290,12 @@ body {
   }
 
 .header-top {
-  position: fixed;
-  top: 1px; /* Distancia desde el borde superior */
+  position: absolute;
+  top: 50%; /* Distancia desde el borde superior */
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 999;
+  z-index: 100000;
 
 }
 
@@ -360,9 +390,10 @@ body {
           h1 .ti_h1{
              font-size: 35px;
           }
-          a .hd1{
-            width: 40px;
-            height: 40px;
+          a .hd1,
+          .back-icon{
+            width: 32px;
+            height: 32px;
           }
           img .hd2{
             width: 40px;
@@ -374,9 +405,10 @@ body {
             width: 0px;
             height: 0px;
           }
-          .hd1{
-             width: 40px;
-            height: 40px;
+          .hd1,
+          .back-icon{
+             width: 32px;
+            height: 32px;
           }
         }
 
@@ -507,11 +539,10 @@ body {
             <!--div class="logo">TI</div-->
             <h1 class="ti_h1">TAPIR INDUSTRIES</h1>
         </div>
-        <div class="container">     
+        <div class="header-actions">     
             <button id="themeToggle" class="toggle-btn" aria-pressed="false" title="Alternar modo claro/oscuro">
-                <svg class="moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <i data-lucide="moon" class="theme-icon theme-icon--moon" aria-hidden="true"></i>
+                <i data-lucide="sun" class="theme-icon theme-icon--sun" aria-hidden="true"></i>
                 <span id="toggleLabel">Modo nocturno</span>
             </button>
         </div> 
@@ -621,31 +652,54 @@ body {
     </section>  <br><br>
 
     <!-- Footer -->
-    <footer class="footer-section text-center text-lg-start" style="color: #FF751F; background: #000;">
+    <footer class="footer-section text-center text-lg-start">
         <div class="container py-4">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-10">
-                    <div class="p-4 rounded-4 border text-start" style="background: #000; border-color: rgba(255,117,31,0.35); box-shadow: 0 10px 24px rgba(255,117,31,0.10);">
-                        <h2 class="h5 fw-bold mb-3">Servicio a domicilio</h2>
-                        <p class="mb-2 fw-semibold">Llevamos la reparación hasta tu casa u oficina.</p>
-                        <p class="mb-1"><strong>Ubicaciones:</strong> Tepic y San Cayetano, Nayarit.</p>
-                        <p class="mb-1"><strong>Tel:</strong> 312 123 4567</p>
-                        <p class="mb-1"><strong>Email:</strong> contacto@tapirindustries.com</p>
-                        <p class="mb-1"><strong>Horario:</strong> Lun - Vie 8am a 8pm.</p>
-                        <p class="mb-0"><strong>Disponibilidad:</strong> fines de semana según demanda.</p>
+                    <div class="footer-panel p-4 rounded-4 border text-start">
+                        <h2 class="footer-title h5 fw-bold mb-3">
+                            <i data-lucide="truck" class="footer-icon footer-icon--title" aria-hidden="true"></i>
+                            <span>Servicio a domicilio</span>
+                        </h2>
+                        <p class="footer-line mb-2 fw-semibold">
+                            <i data-lucide="truck" class="footer-icon" aria-hidden="true"></i>
+                            <span>Llevamos la reparación hasta tu casa u oficina.</span>
+                        </p>
+                        <p class="footer-line mb-1">
+                            <i data-lucide="map-pin" class="footer-icon" aria-hidden="true"></i>
+                            <span><strong>Ubicaciones:</strong> Tepic y San Cayetano, Nayarit.</span>
+                        </p>
+                        <p class="footer-line mb-1">
+                            <i data-lucide="phone" class="footer-icon" aria-hidden="true"></i>
+                            <span><strong>Tel:</strong> 312 123 4567</span>
+                        </p>
+                        <p class="footer-line mb-1">
+                            <i data-lucide="mail" class="footer-icon" aria-hidden="true"></i>
+                            <span><strong>Email:</strong> contacto@tapirindustries.com</span>
+                        </p>
+                        <p class="footer-line mb-1">
+                            <i data-lucide="clock" class="footer-icon" aria-hidden="true"></i>
+                            <span><strong>Horario:</strong> Lun - Vie 8am a 8pm.</span>
+                        </p>
+                        <p class="footer-line mb-0">
+                            <i data-lucide="calendar-days" class="footer-icon" aria-hidden="true"></i>
+                            <span><strong>Disponibilidad:</strong> fines de semana según demanda.</span>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="text-center py-3" style="color: #FF751F;">
+        <div class="footer-copy text-center py-3">
             © 2024 Tapir Industries
         </div>
     </footer>
 
     <style>
         .footer-section {
-            background: #000;
-            transition: background 0.3s ease;
+            background: transparent;
+            color: var(--text);
+            border-top: 0;
+            transition: background var(--transition), color var(--transition);
             position: relative;
             left: auto;
             bottom: auto;
@@ -653,17 +707,42 @@ body {
             opacity: 1;
             margin-top: 32px;
         }
-        :root[data-theme='dark'] .footer-section {
-            background: #000;
-        }
-        :root[data-theme='dark'] .footer-section .border {
+        .footer-panel {
+            background: var(--blanco-palido);
             border-color: rgba(255,117,31,0.35) !important;
+            box-shadow: 0 10px 24px rgba(255,117,31,0.10);
+            transition: background var(--transition), color var(--transition), border-color var(--transition);
         }
         footer.footer-section {
             position: relative;
             left: auto;
             bottom: auto;
             height: auto;
+        }
+        .footer-copy {
+            color: var(--text);
+            transition: color var(--transition);
+        }
+        :root[data-theme='dark'] header,
+        :root[data-theme='dark'] .footer-panel {
+            background: var(--bg);
+        }
+        .footer-title,
+        .footer-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--salmon);
+            flex: 0 0 auto;
+            stroke-width: 2.4;
+        }
+        .footer-icon--title {
+            width: 24px;
+            height: 24px;
         }
     </style>
 
@@ -931,10 +1010,12 @@ animate();
         if(theme === 'dark'){
           root.setAttribute('data-theme','dark');
           toggle.setAttribute('aria-pressed','true');
+          toggle.dataset.activeTheme = 'dark';
           label.textContent = 'Modo claro';
         }else{
           root.setAttribute('data-theme','light');
           toggle.setAttribute('aria-pressed','false');
+          toggle.dataset.activeTheme = 'light';
           label.textContent = 'Modo nocturno';
         }
       }
