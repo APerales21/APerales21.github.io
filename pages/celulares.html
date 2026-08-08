@@ -1438,11 +1438,11 @@ animate();
     <!-- Menú superior -->
     <div class="top-menu">
         
-        <img src="../img/placa-madre.png" class="top-icon dark-image" data-page="placa" title="Placa madre">
-        <img src="../img/day/placa-madre (1).png" class="top-icon light-image" data-page="placa" title="Placa madre">
+        <img src="../img/pantalla.png" class="top-icon dark-image" data-page="pantalla" title="Pantallas">
+        <img src="../img/day/pantalla-day.png" class="top-icon light-image" data-page="pantalla" title="Pantallas">
         
-      <img src="../img/procesador.png" class="top-icon dark-image" data-page="procesador" title="Procesador">
-      <img src="../img/day/procesador (1).png" class="top-icon light-image" data-page="procesador" title="Procesador">
+      <img src="../img/bat.png" class="top-icon dark-image" data-page="bateria" title="Baterias">
+      <img src="../img/day/bat-day.png" class="top-icon light-image" data-page="bateria" title="Baterias">
 
       <!--img src="../img/memoria-ram.png" class="top-icon dark-image" data-page="ram" title="RAM">
       <img src="../img//day/memoria-ram (1).png" class="top-icon light-image" data-page="ram" title="RAM">
@@ -1465,15 +1465,15 @@ animate();
     <div class="page2" id="preview">
       <div style="display:flex;flex-wrap:wrap;justify-content:center;">
         <div class="app" data-page="monitor">
-          <img src="../img/analitica.png" alt="MONITOR" class="dark-image">
-          <img src="../img/day/analitica (1).png" alt="MONITOR" class="light-image">
-          <p>Monitor</p>
+          <img src="../img/pantalla.png" alt="MONITOR" class="dark-image">
+          <img src="../img/day/pantalla-day.png" alt="MONITOR" class="light-image">
+          <p>Panatallas Dañadas</p>
         </div>
 
         <div class="app" data-page="gabinete">
-          <img src="../img/upc (1).png" alt="GABINETE" class="dark-image">
-          <img src="../img/day/upc.png" alt="GABINETE" class="light-image">
-          <p>Gabinete</p>
+          <img src="../img/bat.png" alt="GABINETE" class="dark-image">
+          <img src="../img/day/bat-day.png" alt="GABINETE" class="light-image">
+          <p>Baterias Dañadas</p>
         </div>
 
         <!--div class="app" data-page="teclado">
@@ -1493,21 +1493,21 @@ animate();
     <!-- Apps internas -->
     <div class="page2" id="monitor"><h2>📁 ES File Explorer</h2><p>Simulación de explorador de archivos.</p><button class="back-btn" data-page="preview">⬅ Regresar</button></div>
     <div class="page2" id="gabinete"><h2>▶ Play Store</h2><p>Tienda de aplicaciones.</p><button class="back-btn" data-page="preview">⬅ Regresar</button></div>
-    <div class="page2" id="teclado"><h2>🕹 OneHand</h2><p>Configuraciones de control o personalización.</p><button class="back-btn" data-page="preview">⬅ Regresar</button></div>
-    <div class="page2" id="raton"><h2>🌐 Google Chrome</h2><p>Navegador integrado.</p><button class="back-btn" data-page="preview">⬅ Regresar</button></div>
+    <!--div class="page2" id="teclado"><h2>🕹 OneHand</h2><p>Configuraciones de control o personalización.</p><button class="back-btn" data-page="preview">⬅ Regresar</button></div>
+    <div class="page2" id="raton"><h2>🌐 Google Chrome</h2><p>Navegador integrado.</p><button class="back-btn" data-page="preview">⬅ Regresar</button></div-->
 
     <!-- Secciones principales -->
-     <div class="page2" id="placa">
+     <div class="page2" id="pantalla">
       <h2>📺 Videos</h2><p>Galería multimedia.</p>
       <button class="back-btn" data-page="preview">⬅ Regresar</button>
     </div>
 
-    <div class="page2" id="procesador">
+    <div class="page2" id="bateria">
       <h2>📺 Videos2</h2><p>Galería multimedia.</p>
       <button class="back-btn" data-page="preview">⬅ Regresar</button>
     </div>
 
-    <div class="page2" id="ram">
+    <!--div class="page2" id="ram">
       <h2>🎵 Música</h2><p>Reproductor de música.</p>
       <button class="back-btn" data-page="preview">⬅ Regresar</button>
     </div>
@@ -1530,7 +1530,7 @@ animate();
     <div class="page2" id="Disipacion">
       <h2>ventilador</h2><p>Configuraciones generales.</p>
       <button class="back-btn" data-page="preview">⬅ Regresar</button>
-    </div>
+    </div-->
 
     
 
@@ -1635,168 +1635,8 @@ window.addEventListener('offline', actualizarEstado);
 // Ejecutar al inicio
 actualizarEstado();
  
-/*const networkSpan = document.querySelector('.estado-red');
-
-function actualizarEstado() {
-  if (navigator.onLine) {
-    // Si el navegador soporta la API NetworkInformation
-    if ('connection' in navigator) {
-      const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      let tipo = connection.type || connection.effectiveType || 'unknown';
-      let texto = '📡 ';
-
-      if (tipo.includes('wifi')) texto += 'Wi-Fi';
-      else if (tipo.includes('ethernet')) texto += 'Cableada';
-      else if (tipo.includes('cellular')) texto += 'Datos móviles';
-      else texto += 'Conectado';
-
-      networkSpan.textContent = texto;
-
-      connection.addEventListener('change', actualizarEstado);
-    } else {
-      // API no soportada
-      networkSpan.textContent = '📡 Conectado (tipo desconocido)';
-    }
-  } else {
-    networkSpan.textContent = '❌ Sin conexión';
-  }
-}
-
-// Detecta cambios en el estado general de conexión
-window.addEventListener('online', actualizarEstado);
-window.addEventListener('offline', actualizarEstado);
-
-// Ejecutar al inicio
-actualizarEstado();*/
-
-/*const networkSpan = document.getElementById('network-status');
-
-function updateNetworkStatus() {
-  if (navigator.onLine) {
-    let txt = '📶 Conectado';
-    if ('connection' in navigator) {
-      const c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      const type = c.effectiveType || c.type || 'unknown';
-
-      if (type.includes('wifi')) txt = '📡 Conectado por Wi-Fi';
-      else if (type.includes('ethernet')) txt = '🔌 Conectado por cable';
-      else if (type.includes('cellular')) txt = '📱 Conectado por datos móviles';
-      else txt = '🌐 Conectado (tipo desconocido)';
-    }
-    networkSpan.textContent = txt;
-  } else {
-    networkSpan.textContent = '❌ Sin conexión a Internet';
-  }
-}
-
-// Detectar cambios de conexión/desconexión
-window.addEventListener('online', updateNetworkStatus);
-window.addEventListener('offline', updateNetworkStatus);
-
-// Intentar escuchar cambios de red (solo móvil)
-if ('connection' in navigator) {
-  navigator.connection.addEventListener('change', updateNetworkStatus);
-}
-
-// Inicializar
-updateNetworkStatus();*/
 </script>
 
-
-
-<!--DARK-->
-  <!--script>
-  function setThemeByTime() {
-    const root = document.documentElement;
-    const now = new Date();
-    const hour = now.getHours();
-
-    // De 7:00 a 17:59 → modo día (light)
-    // De 18:00 a 6:59 → modo noche (dark)
-    if (hour >= 7 && hour < 18) {
-      root.setAttribute('data-theme', 'light');
-    } else {
-      root.setAttribute('data-theme', 'dark');
-    }
-  }
-
-  // Ejecutamos la función al cargar la página
-  window.onload = setThemeByTime;
-</script-->
-  <!--DARK-->
- <!--script>
-    function toggleTheme() {
-      const root = document.documentElement;
-      const currentTheme = root.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', newTheme);
-    }
-
-    (function(){
-      const root = document.documentElement;
-      const toggle = document.getElementById('themeToggle');
-      const label = document.getElementById('toggleLabel');
-      const storageKey = 'theme-preference';
-
-      // Devuelve 'dark' o 'light'
-      function getStoredPreference(){
-        try{ return localStorage.getItem(storageKey); }catch(e){ return null; }
-      }
-
-      // Detecta preferencia del sistema
-      function getSystemPreference(){
-        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      }
-
-      function applyTheme(theme){
-        if(theme === 'dark'){
-          root.setAttribute('data-theme','dark');
-          toggle.setAttribute('aria-pressed','true');
-          label.textContent = 'Modo claro';
-        }else{
-          root.setAttribute('data-theme','light');
-          toggle.setAttribute('aria-pressed','false');
-          label.textContent = 'Modo nocturno';
-        }
-      }
-
-      function savePreference(theme){
-        try{ localStorage.setItem(storageKey, theme); }catch(e){/* silenciar si el almacenamiento falla */}
-      }
-
-      // Inicialización: preferencia almacenada > preferencia del sistema > claro
-      const stored = getStoredPreference();
-      const initial = stored || getSystemPreference() || 'light';
-      applyTheme(initial);
-
-      // Listener del botón
-      toggle.addEventListener('click', () => {
-        const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-        const next = current === 'dark' ? 'light' : 'dark';
-        applyTheme(next);
-        savePreference(next);
-      });
-
-      // Soporte para atajo de teclado: tecla D
-      window.addEventListener('keydown', (e) => {
-        if(e.key.toLowerCase() === 'd' && !e.metaKey && !e.ctrlKey && !e.altKey){
-          e.preventDefault();
-          toggle.click();
-        }
-      });
-
-      // Si el usuario cambia la preferencia del sistema en tiempo real, puede respetarse
-      if(window.matchMedia){
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-          // Si el usuario ya guardó una preferencia, no sobrescribimos
-          if(getStoredPreference()) return;
-          applyTheme(e.matches ? 'dark' : 'light');
-        });
-      }
-
-    })();
-  </script-->
-  
 
     <style>
     /*body{
