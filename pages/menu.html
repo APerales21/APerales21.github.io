@@ -34,6 +34,12 @@
       position: relative;
       text-align: center;
       padding: 20px;
+      z-index: 9999;
+    }
+      .container-bt {
+      position: relative;
+      text-align: center;
+      padding: 20px;
       
     }
      .ti_h1 {
@@ -348,6 +354,7 @@ body {
     </style>
 </head>
 <body>
+  <canvas id="exa" width="600" height="600"></canvas>
     <header>
           <a href="../index.html">
             <img src="../img/atras.png" class="hd1 dark-image" title="Atras">
@@ -361,7 +368,7 @@ body {
             <!--div class="logo">TI</div-->
             <h1 class="ti_h1">TAPIR INDUSTRIES</h1>
         </div>
-        <div class="container">     
+        <div class="container-bt">     
             <button id="themeToggle" class="toggle-btn" aria-pressed="false" title="Alternar modo claro/oscuro">
                 <svg class="moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -371,7 +378,7 @@ body {
         </div> 
     </header>
 
-     <section class="container my-5" style="padding-top:100px;">
+     <section class="container-bt my-5" style="padding-top:100px;">
         <div class="row justify-content-center">
 
     
@@ -577,7 +584,7 @@ body {
 
 </style>
 
-    <canvas id="exa" width="600" height="600"></canvas>
+    
 <script>
 const canvas = document.getElementById('exa');
 const ctx = canvas.getContext('2d');
