@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" href="../img/tapir.png" />
+  
   <style>
      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
@@ -228,6 +229,8 @@ body {
 :root[data-theme='light'] .title {
   color: #000;
 }
+
+
 
 /*.hd {
   position: fixed;
@@ -509,7 +512,9 @@ body {
                 <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <span id="toggleLabel">Modo nocturno</span>
-            </button>
+              </button>
+             
+        </div> 
         </div> 
     </header>
 
@@ -607,7 +612,7 @@ body {
             <div class="card-contentCs">
               <div class="card-headerCs">
                 <img src="../img/tapir.png" alt="TI" class="logoCs">
-                <h2>Bateria <span class="badgeCs blue">Baterias</span></h2>
+                <h2>Bateria <span class="badgeCs blue">Dañadas</span></h2>
               </div>
 
               <div class="card-priceCs">
@@ -863,9 +868,7 @@ document.querySelectorAll(".cardCs").forEach(card => {
   draw();
 });
 </script>
-    </nav><br><br><br><br><br><br>
-
-
+    </nav><br><br>
 
     <canvas id="exa" width="600" height="600" class="exago"></canvas>
 <script>
@@ -946,7 +949,6 @@ function animate(timeStamp) {
 
 animate();
 </script>  
-
 
     <script>
   function setThemeByTime() {
@@ -1431,6 +1433,351 @@ animate();
     };
   </script>
   
+<nav>
+  <div class="screen">
+    <!-- Menú superior -->
+    <div class="top-menu">
+        
+        <img src="../img/pantalla.png" class="top-icon dark-image" data-page="pantalla" title="Pantallas">
+        <img src="../img/day/pantalla-day.png" class="top-icon light-image" data-page="pantalla" title="Pantallas">
+        
+      <img src="../img/bat.png" class="top-icon dark-image" data-page="bateria" title="Baterias">
+      <img src="../img/day/bat-day.png" class="top-icon light-image" data-page="bateria" title="Baterias">
+
+      <!--img src="../img/memoria-ram.png" class="top-icon dark-image" data-page="ram" title="RAM">
+      <img src="../img//day/memoria-ram (1).png" class="top-icon light-image" data-page="ram" title="RAM">
+
+      <img src="../img/ssd (2).png" class="top-icon dark-image" data-page="ssd" title="SSD">
+      <img src="../img/day/ssd (3).png" class="top-icon light-image" data-page="ssd" title="SSD">
+
+      <img src="../img/fuerza.png" class="top-icon dark-image" data-page="fuente" title="Fuente de poder">
+      <img src="../img/day/fuerza (1).png" class="top-icon light-image" data-page="fuente" title="Fuente de poder">
+
+      <img src="../img/tarjeta-de-video.png" class="top-icon dark-image" data-page="grafica" title="Tajeta grafica">
+      <img src="../img/day/tarjeta-de-video (1).png" class="top-icon light-image" data-page="grafica" title="Tajeta grafica">
+
+      <img src="../img/ventilador.png" class="top-icon dark-image" data-page="Disipacion" title="ventilador">
+      <img src="../img/day/ventilador (1).png" class="top-icon light-image" data-page="Disipacion" title="ventilador">
+      -->
+    </div>
+
+    <!-- Menú principal -->
+    <div class="page2" id="preview">
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;">
+        <div class="app" data-page="monitor">
+          <img src="../img/pantalla.png" alt="MONITOR" class="dark-image">
+          <img src="../img/day/pantalla-day.png" alt="MONITOR" class="light-image">
+          <p>Panatallas Dañadas</p>
+        </div>
+
+        <div class="app" data-page="gabinete">
+          <img src="../img/bat.png" alt="GABINETE" class="dark-image">
+          <img src="../img/day/bat-day.png" alt="GABINETE" class="light-image">
+          <p>Baterias Dañadas</p>
+        </div>
+
+        <!--div class="app" data-page="teclado">
+          <img src="../img/teclado.png" alt="TECLADO" class="dark-image">
+          <img src="../img/day/teclado (1).png" alt="TECLADO" class="light-image">
+          <p>Teclado</p>
+        </div>
+
+        <div class="app" data-page="raton">
+          <img src="../img/clic-del-raton.png" alt="RATON/MOUSE" class="dark-image">
+          <img src="../img/day/clic-del-raton (1).png" alt="RATON/MOUSE" class="light-image">
+          <p>Mouse</p>
+        </div-->
+      </div>
+    </div>
+
+    <!-- Apps internas -->
+    <div class="page2" id="monitor"><h2>📁 ES File Explorer</h2><p>Simulación de explorador de archivos.</p><button class="back-btn" data-page="preview">⬅ Regresar</button></div>
+    <div class="page2" id="gabinete"><h2>▶ Play Store</h2><p>Tienda de aplicaciones.</p><button class="back-btn" data-page="preview">⬅ Regresar</button></div>
+    <!--div class="page2" id="teclado"><h2>🕹 OneHand</h2><p>Configuraciones de control o personalización.</p><button class="back-btn" data-page="preview">⬅ Regresar</button></div>
+    <div class="page2" id="raton"><h2>🌐 Google Chrome</h2><p>Navegador integrado.</p><button class="back-btn" data-page="preview">⬅ Regresar</button></div-->
+
+    <!-- Secciones principales -->
+     <div class="page2" id="pantalla">
+      <h2>📺 Videos</h2><p>Galería multimedia.</p>
+      <button class="back-btn" data-page="preview">⬅ Regresar</button>
+    </div>
+
+    <div class="page2" id="bateria">
+      <h2>📺 Videos2</h2><p>Galería multimedia.</p>
+      <button class="back-btn" data-page="preview">⬅ Regresar</button>
+    </div>
+
+    <!--div class="page2" id="ram">
+      <h2>🎵 Música</h2><p>Reproductor de música.</p>
+      <button class="back-btn" data-page="preview">⬅ Regresar</button>
+    </div>
+
+    <div class="page2" id="ssd">
+      <h2>⚙️ Ajustes  </h2><p>Configuraciones generales.</p>
+      <button class="back-btn" data-page="preview">⬅ Regresar</button>
+    </div>
+
+    <div class="page2" id="fuente">
+      <h2>fuente de poder</h2><p>Configuraciones generales.</p>
+      <button class="back-btn" data-page="preview">⬅ Regresar</button>
+    </div>
+
+    <div class="page2" id="grafica">
+      <h2>grafica</h2><p>Configuraciones generales.</p>
+      <button class="back-btn" data-page="preview">⬅ Regresar</button>
+    </div>
+
+    <div class="page2" id="Disipacion">
+      <h2>ventilador</h2><p>Configuraciones generales.</p>
+      <button class="back-btn" data-page="preview">⬅ Regresar</button>
+    </div-->
+
+    
+
+    <!-- Barra inferior -->
+    <div class="bottom-bar">
+      <span>🔋 Cargando...</span>
+      <span id="estadoRed">📡 Verificando conexión...</span>
+    </div>
+  </div>
+</nav>
+<script>
+    function showPage(id) {
+  pages.forEach(p => p.classList.remove("active"));
+  const page = document.getElementById(id);
+  if (page) page.classList.add("active");
+}
+
+document.querySelectorAll("[data-page]").forEach(btn => {
+  btn.addEventListener("click", () => showPage(btn.dataset.page));
+});
+</script>
+  <script>
+  // =========================
+  // CONTROL DE PANTALLAS
+  // =========================
+  const pages = document.querySelectorAll(".page2");
+  const topIcons = document.querySelectorAll(".top-icon");
+  const apps = document.querySelectorAll(".app");
+
+  function showPage(id) {
+    pages.forEach(p => p.classList.remove("active"));
+    const page = document.getElementById(id);
+    if (page) page.classList.add("active");
+  }
+
+  topIcons.forEach(icon => {
+    icon.addEventListener("click", () => showPage(icon.dataset.page));
+  });
+
+  apps.forEach(app => {
+    app.addEventListener("click", () => showPage(app.dataset.page));
+  });
+
+  // Mostrar la pantalla principal al iniciar
+  showPage("preview");
+
+  // =========================
+  // INFORMACIÓN DE BATERÍA
+  // =========================
+  const batterySpan = document.querySelector('.bottom-bar span:nth-child(1)');
+
+  if ('getBattery' in navigator) {
+    navigator.getBattery().then(battery => {
+      function updateBattery() {
+        let level = Math.round(battery.level * 100);
+        let charging = battery.charging ? '⚡ Cargando' : '';
+        batterySpan.textContent = `🔋 ${level}% ${charging}`;
+      }
+      updateBattery();
+
+      battery.addEventListener('levelchange', updateBattery);
+      battery.addEventListener('chargingchange', updateBattery);
+    }).catch(() => {
+      batterySpan.textContent = '🔋 Información no disponible';
+    });
+  } else {
+    batterySpan.textContent = '🔋 Información no disponible';
+  }
+
+  // =========================
+  // INFORMACIÓN DE CONEXIÓN
+  // =========================
+  const networkSpan = document.getElementById('estadoRed');
+
+function actualizarEstado() {
+  if (navigator.onLine) {
+    // Si el navegador tiene soporte para NetworkInformation
+    if (navigator.connection) {
+      const connection = navigator.connection;
+      let tipo = connection.type || connection.effectiveType || 'unknown';
+      let texto = '📡 ';
+
+      if (tipo.includes('wifi')) texto += 'Wi-Fi';
+      else if (tipo.includes('ethernet')) texto += 'Cableada';
+      else if (tipo.includes('cellular')) texto += 'Datos móviles';
+      else texto += 'Conectado';
+
+      networkSpan.textContent = texto;
+    } else {
+      // API no soportada
+      networkSpan.textContent = '📡 Conectado';
+    }
+  } else {
+    networkSpan.textContent = '❌ Sin conexión';
+  }
+}
+
+// Detecta cambios de conexión/desconexión
+window.addEventListener('online', actualizarEstado);
+window.addEventListener('offline', actualizarEstado);
+
+// Ejecutar al inicio
+actualizarEstado();
+ 
+</script>
+
+
+    <style>
+    /*body{
+        background: url('back.png') center/cover no-repeat;
+    }*/
+
+   /* h1{
+        color: white;
+    }*/
+
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+  }
+
+  .screen {
+    width: 1200px;
+    height: 500px;
+    border: 3px solid #ff7b00; /* Naranja principal */
+    border-radius: 10px;
+    box-shadow: 0 0 25px #ff7b00, inset 0 0 25px #ff7b00;
+    position: relative;
+    background: rgba(25, 10, 0, 0.9); /* Fondo oscuro cálido */
+    overflow: hidden;
+  }
+
+  /* --- Menú superior --- */
+  .top-menu {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+  }
+
+  .top-icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    filter: brightness(0.8);
+    transition: 0.3s;
+  }
+
+  .top-icon:hover {
+    filter: brightness(1.4);
+    transform: scale(1.1);
+  }
+
+  /* --- Páginas --- */
+  .page2 {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
+    color: #ffe8cc; /* Texto cálido */
+  }
+
+  .page2.active {
+    display: flex;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* --- Apps --- */
+  .app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+    margin: 15px;
+  }
+
+  .app:hover {
+    transform: scale(1.1);
+  }
+
+  .app img {
+    width: 80px;
+    height: 80px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(255, 128, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.05);
+    transition: box-shadow 0.3s;
+  }
+
+  .app img:hover {
+    box-shadow: 0 0 25px #ffb347;
+  }
+
+  .app p {
+    margin-top: 5px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px #ff7b00;
+  }
+
+  /* --- Barra inferior --- */
+  .bottom-bar {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #ffd8a8;
+    text-shadow: 0 0 4px #ff7b00;
+  }
+
+  /* --- Botón de regreso --- */
+  .back-btn {
+    background: rgba(255, 140, 0, 0.2);
+    border: 1px solid #ff7b00;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 15px;
+    transition: 0.3s;
+  }
+
+  .back-btn:hover {
+    background: rgba(255, 140, 0, 0.4);
+    box-shadow: 0 0 15px #ffb347;
+  }
+</style>
     
 </body>
 </html>
