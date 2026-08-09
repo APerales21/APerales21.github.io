@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo Tapir</title>
+  <style>
+    :root {
+      --bg: #fffaf2;
+      --panel: #ffffff;
+      --text: #2f241c;
+      --muted: #6b5a45;
+      --accent: #ff7a1a;
+      --accent-strong: #d85b00;
+      --border: #f0dfc8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, var(--bg), #ffe9cb);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+    }
+
+    .hero {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px 28px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+      color: var(--accent-strong);
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(255,122,26,0.25);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--accent-strong);
+      border: 1px solid var(--border);
+    }
+
+    .viewer {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+
+    iframe {
+      width: 100%;
+      min-height: 80vh;
+      border: 0;
+      background: #fff;
+      display: block;
+    }
+
+    .note {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 16px 12px 32px; }
+      .hero { padding: 18px 16px; }
+      iframe { min-height: 70vh; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h1>Catálogo Tapir</h1>
+      <p>Esta página muestra el catálogo en formato web para que puedas consultarlo directamente desde el navegador.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="./Cat%C3%A1logo%20Tapir_20260114_191044_0000.pdf" download>Descargar PDF</a>
+        <a class="btn btn-secondary" href="./index.html">Volver al inicio</a>
+      </div>
+    </section>
+
+    <section class="viewer">
+      <iframe
+        title="Catálogo Tapir"
+        src="./Cat%C3%A1logo%20Tapir_20260114_191044_0000.pdf"
+        loading="lazy"
+      ></iframe>
+    </section>
+
+    <p class="note">Si tu navegador no muestra el PDF, puedes abrirlo con el botón de descarga.</p>
+  </main>
+</body>
+</html>
