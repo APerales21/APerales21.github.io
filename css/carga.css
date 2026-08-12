@@ -1,0 +1,128 @@
+:root {
+    --negro: #050505;
+    --gris-profundo: #121212;
+    --gris-linea: #2a2a2a;
+    --blanco-tapir: #f1ede8;
+    --acento: #d8b07d;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+}
+
+body {
+    overflow: hidden;
+    color: var(--blanco-tapir);
+    background: var(--negro);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.escena {
+    position: relative;
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+    padding: 24px;
+    background:
+        radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.07), transparent 34%),
+        linear-gradient(180deg, #050505 0%, #111 52%, #050505 100%);
+}
+
+.escena::before {
+    position: absolute;
+    right: 0;
+    bottom: 16vh;
+    left: 0;
+    height: 1px;
+    content: "";
+    background: linear-gradient(90deg, transparent, rgba(241, 237, 232, 0.24), transparent);
+}
+
+.loader {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: min(100%, 520px);
+    justify-items: center;
+    gap: 18px;
+}
+
+.tapir {
+    width: 384px;
+    height: 256px;
+    background-image: url("../img/sprite/tapir-idle.png");
+    background-repeat: no-repeat;
+    background-size: 1536px 1024px;
+    filter: drop-shadow(0 28px 18px rgba(0, 0, 0, 0.72));
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    transform: scale(1.16);
+    transform-origin: center bottom;
+}
+
+.estado {
+    display: grid;
+    width: min(100%, 360px);
+    gap: 8px;
+    justify-items: center;
+    margin-top: 24px;
+}
+
+.marca,
+.porcentaje {
+    margin: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.marca {
+    color: rgba(241, 237, 232, 0.82);
+    font-size: 0.78rem;
+    letter-spacing: 0.18rem;
+}
+
+.porcentaje {
+    min-width: 48px;
+    color: var(--acento);
+    font-size: 0.9rem;
+}
+
+.barra {
+    width: 100%;
+    height: 10px;
+    overflow: hidden;
+    border: 1px solid var(--gris-linea);
+    border-radius: 999px;
+    background: var(--gris-profundo);
+}
+
+.barra__progreso {
+    display: block;
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #7a6147, var(--acento), var(--blanco-tapir));
+    box-shadow: 0 0 16px rgba(216, 176, 125, 0.34);
+    transition: width 120ms linear;
+}
+
+@media (max-width: 520px) {
+    .escena {
+        padding: 16px;
+    }
+
+    .tapir {
+        transform: scale(0.82);
+    }
+
+    .estado {
+        margin-top: 0;
+    }
+}

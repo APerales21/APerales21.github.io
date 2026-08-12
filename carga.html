@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pantalla de carga</title>
+    <link rel="stylesheet" href="css/carga.css">
+</head>
+<body>
+    <main class="escena" aria-label="Pantalla de carga">
+        <section class="loader" aria-live="polite">
+            <div class="tapir" role="img" aria-label="Tapir pixelart animado"></div>
+
+            <div class="estado">
+                <p class="marca">P-Carga</p>
+                <div class="barra" aria-hidden="true">
+                    <span class="barra__progreso"></span>
+                </div>
+                <p class="porcentaje">0%</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="src/carga.js"></script>
+</body>
+</html>
