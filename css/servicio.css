@@ -1,0 +1,404 @@
+/* ============================================================
+   Estilos compartidos de las páginas de servicio.
+   Usada por: impresoras.html, diseno.html, desarrollo.html
+   Mantiene el lenguaje visual de pages/menu.html (neo-brutalista:
+   borde negro de 3px y sombra dura) sin duplicarlo en cada archivo.
+   ============================================================ */
+
+/* Paleta de marca */
+:root {
+  --terracota: #D9762F;
+  --marron-obs: #5A3E2A;
+  --Amarillo-pastel: #F4D878;
+  --contraste: #242129;
+  --durazno: #FFBD59;
+  --blanco-palido: #f8fafc;
+  --whatsapp: #25D366;
+}
+
+/* Tema claro (por defecto) */
+:root {
+  --bg: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --linea: #000000;
+  --panel: var(--blanco-palido);
+  --transition: 250ms ease;
+}
+
+/* Tema oscuro */
+:root[data-theme='dark'] {
+  --bg: #0b1220;
+  --text: #e6eef8;
+  --muted: #9aa6b2;
+  --linea: var(--blanco-palido);
+  --panel: #0b1220;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding-top: 96px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Montserrat, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* ---------- Header ---------- */
+.encabezado {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 76px;
+  background: var(--blanco-palido);
+  border-bottom: 1px solid rgba(217, 118, 47, 0.35);
+  box-shadow: 0 10px 24px rgba(217, 118, 47, 0.1);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+:root[data-theme='dark'] .encabezado {
+  background: var(--bg);
+}
+
+.encabezado > a {
+  display: inline-flex;
+  margin-left: 20px;
+  color: var(--text);
+}
+
+.icono-atras {
+  width: 44px;
+  height: 44px;
+  transition: transform 200ms ease;
+}
+
+.encabezado > a:hover .icono-atras {
+  transform: translateX(-3px);
+}
+
+.marca {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 10px var(--durazno));
+}
+
+.acciones {
+  display: inline-flex;
+  margin-right: 20px;
+  margin-left: auto;
+}
+
+.boton-tema {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid rgba(217, 118, 47, 0.35);
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 120ms ease, background var(--transition), color var(--transition);
+}
+
+.boton-tema:active {
+  transform: scale(0.98);
+}
+
+.icono-tema {
+  display: none;
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+}
+
+.boton-tema[data-active-theme='light'] .icono-tema--luna,
+.boton-tema[data-active-theme='dark'] .icono-tema--sol {
+  display: inline-block;
+}
+
+/* ---------- Estructura ---------- */
+.contenedor {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 3rem);
+}
+
+.seccion {
+  margin-top: 48px;
+}
+
+.antetitulo {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+  color: var(--terracota);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.antetitulo svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 2.5;
+}
+
+h1,
+h2 {
+  margin: 0 0 12px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+}
+
+h2 {
+  font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+}
+
+/* ---------- Panel neo-brutalista ---------- */
+.panel {
+  padding: clamp(22px, 4vw, 36px);
+  background: var(--panel);
+  border: 3px solid var(--linea);
+  box-shadow: 12px 12px 0 var(--linea);
+  color: var(--text);
+  transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.portada p {
+  max-width: 62ch;
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ---------- Rejilla de tarjetas ---------- */
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  margin-top: 22px;
+}
+
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: var(--panel);
+  border: 3px solid var(--linea);
+  box-shadow: 8px 8px 0 var(--linea);
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+
+.tarjeta:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 11px 11px 0 var(--linea);
+}
+
+.tarjeta-icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 14px;
+  background: var(--durazno);
+  border: 2px solid #000000;
+  color: #000000;
+}
+
+.tarjeta-icono svg {
+  width: 26px;
+  height: 26px;
+  stroke-width: 2.4;
+}
+
+.tarjeta h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.tarjeta p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+/* ---------- Pasos del proceso ---------- */
+.pasos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+  padding: 0;
+  list-style: none;
+  counter-reset: paso;
+}
+
+.pasos li {
+  padding: 18px;
+  background: var(--Amarillo-pastel);
+  border: 2px solid #000000;
+  color: #000000;
+  counter-increment: paso;
+}
+
+.pasos li::before {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  content: counter(paso);
+}
+
+.pasos strong {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 900;
+}
+
+.pasos span {
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+/* ---------- Llamada a la acción ---------- */
+.cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+  gap: clamp(20px, 4vw, 42px);
+  align-items: center;
+  background: var(--terracota);
+}
+
+.cta p {
+  margin: 0;
+  color: #252525;
+  line-height: 1.6;
+}
+
+.cta .antetitulo {
+  color: #000000;
+}
+
+.canales {
+  display: grid;
+  gap: 12px;
+}
+
+.chip {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 48px;
+  padding: 10px 14px;
+  background: var(--blanco-palido);
+  border: 2px solid #000000;
+  box-shadow: 5px 5px 0 #000000;
+  color: #000000;
+  font-weight: 900;
+  text-decoration: none;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.chip:hover,
+.chip:focus {
+  color: #000000;
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 #000000;
+}
+
+.chip svg {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.4;
+}
+
+.chip--whatsapp {
+  background: var(--whatsapp);
+}
+
+/* Glifo de marca: relleno, no trazo como los iconos de Lucide */
+.glifo-whatsapp {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* ---------- Pie ---------- */
+.pie {
+  margin-top: 56px;
+  padding: 28px 0;
+  border-top: 3px solid var(--linea);
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.pie a {
+  color: var(--terracota);
+  font-weight: 700;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .cta {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  body {
+    padding-top: 84px;
+  }
+
+  .marca {
+    font-size: 17px;
+  }
+
+  .panel {
+    box-shadow: 7px 7px 0 var(--linea);
+  }
+
+  .etiqueta-tema {
+    display: none;
+  }
+}
+
+/* Respeta a quien pide menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+
+  .tarjeta:hover {
+    transform: none;
+  }
+}

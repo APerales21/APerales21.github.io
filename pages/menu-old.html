@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consolas</title>
+    <title>Menu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <link rel="icon" href="../img/tapir.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="css/menu.css">
   <style>
      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-    .exago {
+    canvas {
         position: fixed;
         top: 50%;
         left: 50%;
@@ -20,7 +19,6 @@
         filter: blur(10px);
         pointer-events: none;
     }
-   
   .logo {
       font-size: 80px;
       font-weight: bold;
@@ -36,8 +34,13 @@
       position: relative;
       text-align: center;
       padding: 20px;
-     /*z-index: 1;*/
-      height: 200px;
+      z-index: 9999;
+    }
+      .container-bt {
+      position: relative;
+      text-align: center;
+      padding: 20px;
+      
     }
      .ti_h1 {
       font-weight: 700;
@@ -46,9 +49,17 @@
       letter-spacing: 1.2px;
       filter: drop-shadow(0 0 10px #FFA500);
     }
-  </style>
-  <!--Dark-->
-  <style>
+
+    /* Configuración de colores de Juan Pablo */
+    :root {
+      --salmon: #FF751F;
+      --marron-obs: #5A3E2A;
+      --Amarillo-pastel: #F4D878;
+      --contraste: #242129;
+      --durazno: #FFBD59;
+      --blanco-palido: #fff;
+    }
+
          /* Variables de color (modo claro por defecto) */
     :root{
       --bg: #ffffff;
@@ -69,7 +80,7 @@
       --muted: #9aa6b2;
       --glass: rgba(255,255,255,0.03);
     }
- 
+
     /* Tipografía y layout */
     
     body{
@@ -118,7 +129,7 @@
       position: fixed;
       top: 20px;
       right: 20px;
-      z-index: 1000;
+      z-index: 100000;
     }
     .toggle-btn:active{transform:scale(0.98)}
 
@@ -158,10 +169,10 @@ body {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(228, 228, 228, 0.2);
+  background: rgba(231, 231, 231, 0.2); /* capa clara */
+  z-index: -1;
   transition: background 0.6s ease;
 }
-
 
 :root[data-theme='dark'] body::before {
   background: rgba(0, 0, 0, 0.5); /* capa oscura */
@@ -172,18 +183,11 @@ body {
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
 }
-
-/*oscuro*/
-:root[data-theme='dark'] .tooltip-text {
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #000;
-}
-
-
 /*  claro  */
 :root[data-theme='light'] .toggle-btn{
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
+ 
 }
 
 /*oscuro*/
@@ -191,60 +195,31 @@ body {
   background-color: rgba(255, 255, 255, 0.7);
   color: #000;
 }
+/*oscuro*/
+:root[data-theme='dark'] .tooltip-text {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000;
+}
 
 
-:root[data-theme='dark'] .card {
-  /*background-color: rgba(0, 0, 0, 0.8);*/
-  background-color: black;
+:root[data-theme='light'] .toast {
+  background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
-  border: 5px solid white;
-
 }
 
-:root[data-theme='light'] .card {
-  /*background-color: rgba(255, 255, 255, 0.9);*/
-  background-color: white;
-  color: #000;
-  border: 5px solid black;
-}
 
-:root[data-theme='light'] .sb {
-  /*background-color: rgba(255, 255, 255, 0.9);*/
+:root[data-theme='dark'] .toast {
+  background-color: rgba(255, 255, 255, 0.9);
   color: #000;
 }
 
-:root[data-theme='light'] .logo {
-  color: #000;
-  filter: drop-shadow(0 0 10px #FFA500);
-}
-
-:root[data-theme='light'] .card p {
-  color: #000;
-}
-
-
-:root[data-theme='light'] .fas {
-  color: #000;
-}
-:root[data-theme='light'] .title {
-  color: #000;
-}
-
-/*.hd {
-  position: fixed;
-  top: 5px;
-  left: 20px;
-  width: 60px;
-  height: 60px;
-  z-index: 9999;
-}*/
  .hd1 {
     position: fixed;
     top: 5px;
     left: 20px;
     width: 80px;
     height: 80px;
-    z-index: 10;
+    z-index: 9999;
   }
 
   .hd2 {
@@ -253,7 +228,7 @@ body {
     left: 100px; 
     width: 80px;
     height: 80px;
-    z-index: 10;
+    z-index: 9999;
   }
 
 .header-top {
@@ -266,6 +241,7 @@ body {
 
 }
 
+
 @media (max-width: 480px) {
     .container {
         margin-top: 30px;
@@ -275,21 +251,6 @@ body {
   #toggleLabel {
     display: none;
   }
-  div.logo{
-    font-size: 45px;
-  }
-  h1 .ti_h1{
-    font-size: 35px;
-  }
-  a .hd1{
-    width: 40px;
-    height: 40px;
-  }
-  .hd2{
-    width: 0px;
-    height: 0px;
-  }
-
 }
   </style>
 
@@ -364,134 +325,23 @@ body {
            .tooltip-text {
             visibility: visible;
             opacity: 0.5;
-
         }
+          div.logo{
+            font-size: 45px;
+          }
+          h1 .ti_h1{
+             font-size: 35px;
+          }
+          a .hd1{
+            width: 40px;
+            height: 40px;
+          }
+          img .hd2{
+            width: 40px;
+            height: 40px;
+          }
         }
-    </style>
-    <style>
-        /* Sección general */
-.services {
-  background-color: #0f0f10;
-  color: #ffffff;
-  text-align: center;
-  padding: 80px 20px;
-  font-family: "Poppins", sans-serif;
-}
-        /* Contenedor de tarjetas */
-        .title{
-            text-align: center;
-        }
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-}
-
-/* Tarjeta individual */
-.card {
-  background-color: #1c1c1f;
-  border-radius: 15px;
-  padding: 30px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-  filter: drop-shadow(0 0 8px #FFA500);
-}
-/* Icono cuadrado */
-
-.icon {
-  width: 100%;
-  height: 40px;
-  /*background-color: #6366f1;*/
-  background-color: #ffa600;
-  border-radius: 10px;
-  display: flex;                /* Flexbox para centrar */
-  align-items: center;          /* Centra verticalmente */
-  justify-content: center;      /* Centra horizontalmente */
-}
-.icon-xbox {
-  width: 100%;
-  height: 40px;
-  /*background-color: #6366f1;*/
-  background-color: #159756;
-  border-radius: 10px;
-  display: flex;                /* Flexbox para centrar */
-  align-items: center;          /* Centra verticalmente */
-  justify-content: center;      /* Centra horizontalmente */
-}
-.icon-ps {
-  width: 100%;
-  height: 40px;
-  /*background-color: #6366f1;*/
-  background-color: #153df0;
-  border-radius: 10px;
-  display: flex;                /* Flexbox para centrar */
-  align-items: center;          /* Centra verticalmente */
-  justify-content: center;      /* Centra horizontalmente */
-}
-.icon-nin {
-  width: 100%;
-  height: 40px;
-  /*background-color: #6366f1;*/
-  background-color: #ff0000;
-  border-radius: 10px;
-  display: flex;                /* Flexbox para centrar */
-  align-items: center;          /* Centra verticalmente */
-  justify-content: center;      /* Centra horizontalmente */
-}
-.icon i {
-  color: white;
-  font-size: 1.5rem;
-}
-
-/* Títulos de tarjeta */
-.card h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-/* Texto de tarjeta */
-.card p {
-  color: #d1d5db;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-  .services h2 {
-    font-size: 1.5rem;
-  }
-
-  .card {
-    text-align: center;
-  }
- 
-  .icon {
-    margin: 0 auto 15px;
-  }
-}
-/* Diseño RESPONSIVO para móviles */
-@media (max-width: 480px) {
-  .cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .card {
-    width: 90%;
-    max-width: none;
-  }
+        @media (max-width: 480px) {
           .hd2{
             width: 0px;
             height: 0px;
@@ -500,40 +350,25 @@ body {
              width: 40px;
             height: 40px;
           }
-}
-    </style>
-    <style>
-        .sec_ti{
-            position: relative;
-            text-align: center;
-            padding: 20px;
-            z-index: 1;
-        }
-        .p_ti{
-          color: black;
-        }
-        .qt{
-          width: auto;
-          height: 100px;
-          border: 2px solid red;
         }
     </style>
 </head>
 <body>
-  
+  <canvas id="exa" width="600" height="600"></canvas>
     <header>
-      <div class="container"> 
-        <a href="../pages/menu.html">
-          <img src="../img/atras.png" class="hd1 dark-image" title="Atras">
+          <a href="../index.html">
+            <img src="../img/atras.png" class="hd1 dark-image" title="Atras">
             <img src="../img/day/atras.png" class="hd1 light-image" title="Atras">
-        </a>
-        <img src="../img/tapir.png"  class="hd2 dark-image" title="TI (Tapir Industris)">
-          <img src="../img/day/tapir.png"  class="hd2 light-image" title="TI (Tapir Industris)">
+          </a>
+          <a href="../pages/fundadores.html">
+            <img src="../img/tapir.png"  class="hd2 dark-image" title="TI (Tapir Industries)">
+            <img src="../img/day/tapir.png"  class="hd2 light-image" title="TI (Tapir Industris)">
+          </a>
         <div class="header-top">
             <!--div class="logo">TI</div-->
             <h1 class="ti_h1">TAPIR INDUSTRIES</h1>
         </div>
-  
+        <div class="container-bt">     
             <button id="themeToggle" class="toggle-btn" aria-pressed="false" title="Alternar modo claro/oscuro">
                 <svg class="moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -543,376 +378,213 @@ body {
         </div> 
     </header>
 
-     <section class="sec_ti">
-      <div class="title"> <h1>Brindamos cambios<br> de Joysticks de cualquier consola.</h1></div><br>
-      <div class="cards">
-        <div class="card">
-          <div class="icon-xbox"><center><i class="fa-brands fa-xbox"></i></center></div><br>
-          <h3>Xbox</h3>
-          <p class="p_ti">Realizamos cambio de Joysticks para Xbox, 360, One y Series X/S.</p>
-        </div>
+     <section class="container-bt my-5" style="padding-top:100px;">
+        <div class="row justify-content-center">
 
-        <div class="card">
-          <div class="icon-ps"><center><i class="fa-brands fa-playstation"></i></center></div><br>
-          <h3>Play Station</h3>
-          <p class="p_ti">Realizamos cambios de Joysticks Ps4 y Ps5 Analogico o Digital.</p>
-        </div>
-
-        <div class="card">
-          <div class="icon-nin"><center><i class="fa-solid fa-gamepad"></i></center></div><br>
-          <h3>Nintendo</h3>
-          <p class="p_ti">Realizamos cambios de Joysticks Originales o Antidrift.</p>
-        </div>
-
-      </div>
-    </section><br><br><br>
-
-    <nav class="sec_ti">
-      <div class="cards-containerCs">
-          <!-- Carta 1-->
-          <div class="cardCs" data-color="green">
-            <canvas class="wave-bgCs"></canvas>
-            <div class="card-contentCs">
-              <div class="card-headerCs">
-                <img src="../img/tapir.png" alt="TI" class="logoCs">
-                <h2>Xbox X/S <span class="badgeCs green">Joysticks</span></h2>
-              </div>
-              <div class="card-priceCs">
-                <h3 class="h3_tiCs">Cambio ($300.00)</h3>
-                <p class="pc_tiCs">$300.00 por Mano de obra (Sujeto a cambios)</p>
-              </div>
-              <ul class="card-listCs">
-                <li class="li_tiCs">✔️ Limpieza interna</li>
-                <li class="li_tiCs">✔️ Joysticks Nuevo</li>
-                <li class="li_tiCs">✔️ Sustitución de refacción</li>
-              </ul>
+    
+            <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="text-center">
+                        <div class="tooltip-container">
+                            <div class="card">
+                        <div class="head">Mantenimiento</div>
+                        <div class="content">
+                            Realizamos mentenimiento ó algun cambio de Disco o actualizamos tu antiguo equipo!
+                        <br />
+                        <a href="../pages/mantenimiento.html">
+                          <button class="button">INTRO</button>
+                        </a>
+                        </div>
+                      </div>
+                        </div>   
+                </div>
             </div>
-          </div>
 
-          <!-- Carta 1: Azul Rey -->
-          <div class="cardCs" data-color="blue">
-            <canvas class="wave-bgCs"></canvas>
-            <div class="card-contentCs">
-              <div class="card-headerCs">
-                <img src="../img/tapir.png" alt="TI" class="logoCs">
-                <h2>PS <span class="badgeCs blue">Joysticks</span></h2>
-              </div>
-
-              <div class="card-priceCs">
-                <h3 class="h3_tiCs">Cambio ($300.00)</h3>
-                <p class="pc_tiCs">$300.00 por Mano de obra (Sujeto a cambios)</p>
-              </div>
-
-              <ul class="card-listCs">
-                <li class="li_tiCs">✔️ Limpieza interna</li>
-                <li class="li_tiCs">✔️ Joysticks Nuevo</li>
-                <li class="li_tiCs">✔️ Sustitución de refacción</li>
-              </ul>
+            <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="tooltip-container">
+                        <div class="card">
+                          <div class="head">Reparaciones</div>
+                        <div class="content">
+                            Cambio Pantallas de Celular Estrelladas y de Baterias!
+                        <br />
+                        <a href="../pages/celulares.html">
+                          <button class="button">INTRO</button>
+                        </a>
+                        </div>
+                      </div>
+                    </div>   
+                </div>
             </div>
-          </div>
 
-          <div class="cardCs" data-color="red">
-            <canvas class="wave-bgCs"></canvas>
-            <div class="card-contentCs">
-              <div class="card-headerCs">
-                <img src="../img/tapir.png" alt="TI" class="logoCs">
-                <h2>Nintendo <span class="badgeCs red">Joysticks</span></h2>
-              </div>
-
-              <div class="card-priceCs">
-                <h3 class="h3_tiCs">Cambio ($300.00)</h3>
-                <p class="pc_tiCs">$300.00 por Mano de obra (Sujeto a cambios)</p>
-              </div>
-
-              <ul class="card-listCs">
-                <li class="li_tiCs">✔️ Limpieza interna</li>
-                <li class="li_tiCs">✔️ Joysticks Nuevo</li>
-                <li class="li_tiCs">✔️ Sustitución de refacción</li>
-              </ul>
+            <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="tooltip-container">
+                        <div class="card">
+                        <div class="head">Controles</div>
+                        <div class="content">
+                            Reparación de Joysticks de controles de Xbox, Play station y Nintendo!
+                        <br />
+                        <a href="../pages/consolas.html">
+                          <button class="button">Button</button>
+                        </a>
+                        </div>
+                      </div>
+                    </div>   
+                </div>
             </div>
-          </div>
 
-        
-          <!--div class="cardCs" data-color="purple">
-            <canvas class="wave-bgCs"></canvas>
-            <div class="card-contentCs">
-              <div class="card-headerCs">
-                <img src="../img/tapir.png" alt="TI" class="logoCs">
-                <h2>Mantenimiento <span class="badgeCs purple">Preventivo</span></h2>
-              </div>
-
-              <div class="card-priceCs">
-                <h3 class="h3_tiCs">Mantenimiento $500.00</h3>
-                <p class="pc_tiCs">$219.00 por revisión</p>
-              </div>
-
-              <ul class="card-listCs">
-                <li class="li_tiCs">✔️ Limpieza completa</li>
-                <li class="li_tiCs">✔️ Archivos seguros</li>
-                <li class="li_tiCs">✔️ Ofertas y descuentos para miembros</li>
-              </ul>
+            <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="tooltip-container">
+                        <div class="card">
+                        <div class="head">Impresoras</div>
+                        <div class="content">
+                            Reparacion de impresoras, cabezal o alguna falla del equipo!
+                        <br />
+                        <a href="#">
+                          <button class="button">Button</button>
+                        </a>
+                        </div>
+                      </div>
+                    </div>   
+                </div>
             </div>
-          </div-->
 
-        
+            <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="tooltip-container">
+                      <div class="card">
+                        <div class="head">Diseño grafico</div>
+                        <div class="content">
+                            Realizamos tu creatividad y la plasmamos en una imagen, publicidad o algun Logo! 
+                        <br />
+                        <a href="">
+                          <button class="button">Button</button>
+                        </a>
+                        </div>
+                      </div>
+                    </div>   
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="tooltip-container">
+                      <div class="card">
+                        <div class="head">Desarollo Movil y Web</div>
+                        <div class="content">
+                            ¡Desarollamos algún sistema o aplicación de interes!
+                        <br />
+                        <a href="">
+                          <button class="button">Button</button>
+                        </a>
+                        </div>
+                      </div>
+                    </div>   
+                </div>
+            </div>
 
         </div>
-    </nav>
+    </section>  <br><br>
 
+    <!-- Footer -->
+    <footer class="footer-section text-center text-lg-start" style="color: #FF751F; background: #000;">
+        <div class="container py-4">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10">
+                    <div class="p-4 rounded-4 border text-start" style="background: #000; border-color: rgba(255,117,31,0.35); box-shadow: 0 10px 24px rgba(255,117,31,0.10);">
+                        <h2 class="h5 fw-bold mb-3">Servicio a domicilio</h2>
+                        <p class="mb-2 fw-semibold">Llevamos la reparación hasta tu casa u oficina.</p>
+                        <p class="mb-1"><strong>Ubicaciones:</strong> Tepic y San Cayetano, Nayarit.</p>
+                        <p class="mb-1"><strong>Tel:</strong> 312 123 4567</p>
+                        <p class="mb-1"><strong>Email:</strong> contacto@tapirindustries.com</p>
+                        <p class="mb-1"><strong>Horario:</strong> Lun - Vie 8am a 8pm.</p>
+                        <p class="mb-0"><strong>Disponibilidad:</strong> fines de semana según demanda.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center py-3" style="color: #FF751F;">
+            © 2024 Tapir Industries
+        </div>
+    </footer>
+
+    <style>
+        .footer-section {
+            background: #000;
+            transition: background 0.3s ease;
+        }
+        :root[data-theme='dark'] .footer-section {
+            background: #000;
+        }
+        :root[data-theme='dark'] .footer-section .border {
+            border-color: rgba(255,117,31,0.35) !important;
+        }
+    </style>
+
+
+<!--CARTA WINDOWS-->
 <style>
-
-/* Contenedor de cartas */
-.cards-containerCs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
-}
-
-/* ---- CARTAS ---- */
-.cardCs {
-  position: relative;
-  width: 350px;
-  border-radius: 15px;
+    /* From Uiverse.io by vaibhavchandranv */ 
+.card {
+  font-family: Montserrat, sans-serif;
+  width: 250px;
+  height: 250px;
+  translate: -6px -6px;
+  background: #53EAFD;
+  border: 3px solid #000000;
+  box-shadow: 12px 12px 0 #000000;
   overflow: hidden;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.cardCs:hover {
-  transform: scale(1.03);
-}
-
-/* Fondo animado interno */
-.wave-bgCs {
-  position: absolute;
-  top: 0;
-  left: 0;
+.head {
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  font-weight: 900;
   width: 100%;
-  height: 100%;
-  z-index: 0;
+  height: 32px;
+  background: #F0F9FF;
+  padding: 5px 12px;
+  color: #000000;
+  border-bottom: 3px solid #000000;
 }
 
-/* Contenido encima del fondo animado */
-.card-contentCs {
-  position: relative;
-  z-index: 1;
-  background: rgba(10, 30, 20, 0.55)!important;
-  color: white;
-  padding: 20px;
-  border-radius: 15px;
-  backdrop-filter: blur(4px);
+.content {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
-
-
-/* Cabecera y logo */
-.card-headerCs {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 15px;
+.button {
+  padding: 5px 10px;
+  margin-top: 10px;
+  border: 3px solid #000000;
+  box-shadow: 3px 3px 0 #000000;
+  font-weight: 750;
+  background: #90A1B9;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.logoCs {
-  width: 80px;
-  height: 70px;
+.button:hover {
+  translate: 1.5px 1.5px;
+  box-shadow: 1.5px 1.5px 0 #000000;
+  background: #1ac2ff;
 }
 
-.badgeCs {
-  background: #2ecc71;
-  color: #fff;
-  padding: 2px 8px;
-  border-radius: 5px;
-  font-size: 0.8rem;
+.button:active {
+  translate: 3px 3px;
+  box-shadow: 0 0 0 #000000;
 }
 
-.badgeCs.orange {
-  background: #f39c12;
-}
-.badgeCs.purple {
-  background: #d912f3;
-}
-.badgeCs.blue {
-  background: #1221f3;
-}
-.badgeCs.green {
-  background: #2ecc71;
-}
-.badgeCs.red {
-  background: #e92727;
+.card:hover {
+  translate: -6px;
 }
 
-:root[data-theme='dark'] .badgeCs.orange {
-background: #945b00;
-}
-:root[data-theme='dark'] .badgeCs.purple {
-background: #650072;
-}
-:root[data-theme='dark'] .badgeCs.blue {
-background: #000875;
-}
-:root[data-theme='dark'] .badgeCs.green {
-background: #005021;
-}
-:root[data-theme='dark'] .badgeCs.red {
-background: #500900;
-}
-
-
-:root[data-theme='dark'] p.pc_tiCs {
-
-font-size: 20px;
-}
-
-.card-priceCs .h3_tiCs {
-  font-size: 1.5rem;
-  margin: 0;
-}
-
-.card-priceCs .pc_tiCs {
-  font-size: 0.9rem;
-  color: #c8f7c5;
-  margin-top: 5px;
-}
-
-.card-listCs {
-  list-style: none;
-  margin-top: 20px;
-  padding: 0;
-}
-
-.card-listCs .li_tiCs {
-  margin-bottom: 10px;
-  font-size: 0.95rem;
-}
-
-/* ---- RESPONSIVO ---- */
-@media (max-width: 768px) {
-  .cards-containerCs {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .cardCs {
-    width: 90%;
-  }
-
-  .card-headerCs {
-    flex-direction: column;
-  }
-
-  .logoCs {
-    width: 50px;
-    height: 50px;
-  }
-}
 </style>
 
-<script>
-// 🌊 Fondo animado con colores personalizados
-document.querySelectorAll(".cardCs").forEach(card => {
-  const canvas = card.querySelector(".wave-bgCs");
-  const ctx = canvas.getContext("2d");
-
-  function resize() {
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-  resize();
-  window.addEventListener("resize", resize);
-
-  let step = 0;
-  const colorType = card.dataset.color;
-
-  // colores
-  /*const palettes = {
-    blue: {
-      gradientTop: "#001a33",
-      gradientBottom: "#003399",
-      waveColor: "rgba(52, 152, 219, ", // azul rey
-    },
-    orange: {
-      gradientTop: "#331a00",
-      gradientBottom: "#e67e22",
-      waveColor: "rgba(243, 156, 18, ", // naranja
-    }
-  };*/
-  const palettes = {
-  blue: {
-    gradientTop: "#001a33",
-    gradientBottom: "#003399",
-    waveColor: "rgba(52, 152, 219), ",
-  },
-  orange: {
-    gradientTop: "#331a00",
-    gradientBottom: "#e67e22",
-    waveColor: "rgba(243, 156, 18), ",
-  },
-  green: {
-    gradientTop: "#003300",
-    gradientBottom: "#00cc66",
-    waveColor: "rgba(46, 204, 113), ",
-  },
-  purple: {
-    gradientTop: "#2e004f",
-    gradientBottom: "#8e44ad",
-    waveColor: "rgba(155, 89, 182), ",
-  },
-   red: {
-  gradientTop: "#4f0000",       // rojo oscuro arriba
-  gradientBottom: "#e60012",    // rojo tipo Nintendo abajo
-  waveColor: "rgba(230, 0, 18, 0.5)", 
-},
-  
-};
-
-  const palette = palettes[colorType] || palettes.blue;
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Fondo degradado
-    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    gradient.addColorStop(0, palette.gradientTop);
-    gradient.addColorStop(1, palette.gradientBottom);
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Ondas animadas
-    for (let i = 0; i < 3; i++) {
-      ctx.beginPath();
-      ctx.fillStyle = `${palette.waveColor}${0.35 - i * 0.1})`;
-      const waveY = canvas.height / 1.8 + i * 25;
-      let angle = step + i * 70;
-
-      ctx.moveTo(0, waveY);
-      for (let x = 0; x <= canvas.width; x++) {
-        const y =
-          Math.sin((x + angle) * 0.02) * 15 +
-          Math.cos((x + angle) * 0.015) * 10 +
-          waveY;
-        ctx.lineTo(x, y);
-      }
-
-      ctx.lineTo(canvas.width, canvas.height);
-      ctx.lineTo(0, canvas.height);
-      ctx.closePath();
-      ctx.fill();
-    }
-
-    step += 1.2;
-    requestAnimationFrame(draw);
-  }
-
-  draw();
-});
-</script>
-    </nav><br><br><br><br><br><br>
-
-
-
-    <canvas id="exa" width="600" height="600" class="exago"></canvas>
+    
 <script>
 const canvas = document.getElementById('exa');
 const ctx = canvas.getContext('2d');
@@ -1084,31 +756,7 @@ animate();
 
     })();
   </script>
-  <script>
-  function presentToast(position, element) {
-    // Toma el texto del botón presionado
-    const message = element ? element.textContent.trim() : 'Mantenimiento ⚙';
-
-    const toast = document.createElement('div');
-    toast.className = `toast ${position}`;
-    toast.textContent = `${message}`; // muestra el nombre dinámico
-    
-    document.body.appendChild(toast);
-
-    // Mostrar el toast
-    setTimeout(() => {
-      toast.classList.add('show');
-    }, 100);
-
-    // Ocultar y eliminar después de 1500ms
-    setTimeout(() => {
-      toast.classList.remove('show');
-      setTimeout(() => {
-        document.body.removeChild(toast);
-      }, 300);
-    }, 1500);
-  }
-</script>
+  
 
 <script>
     // Borrar contenido si se detecta DevTools
@@ -1186,7 +834,7 @@ animate();
 .error-message {
   font-size: 18px;
   font-weight: 600;
-  color: #ffffff;
+  color: #00eaff;
   text-transform: uppercase;
   margin-bottom: 10px;
   animation: fade-in 1.5s ease-out;
@@ -1419,10 +1067,9 @@ animate();
 </center><br>
 
 <div class="text-center">  
-          <a href="../pages/celulares.html" class="btn-atras" style="
+          <a href="../pages/menu.html" class="btn-atras" style="
             background-color: red; 
             color: white; 
-            z-index: 1;
             padding: 10px 20px; 
             border-radius: 5px; 
             text-decoration: none;
@@ -1475,7 +1122,6 @@ animate();
       window[_0x5a2d[0]](_0x5a2d[1]);
     };
   </script>
-  
     
 </body>
 </html>
