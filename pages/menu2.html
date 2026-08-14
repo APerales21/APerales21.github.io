@@ -649,7 +649,106 @@ body {
             </div>
 
         </div>
-    </section>  <br><br>
+    </section>
+
+    <section id="nosotros" class="brand-section about-section container">
+        <div class="brand-panel about-panel">
+            <div class="section-kicker">
+                <i data-lucide="cpu" class="section-kicker-icon" aria-hidden="true"></i>
+                <span>Nosotros</span>
+            </div>
+            <div class="about-content">
+                <div>
+                    <h2>Soluciones tecnologicas con trato cercano</h2>
+                    <p>
+                        Tapir Industries nacio con la idea de acercar servicios de tecnologia confiables a hogares,
+                        negocios y estudiantes de Tepic y San Cayetano. Empezamos reparando equipos pieza por pieza y
+                        hoy acompanamos a nuestros clientes con mantenimiento, reparaciones, diseno y desarrollo digital.
+                    </p>
+                </div>
+                <div class="about-highlights" aria-label="Fortalezas de Tapir Industries">
+                    <div>
+                        <strong>Diagnostico claro</strong>
+                        <span>Te explicamos la falla y las opciones antes de avanzar.</span>
+                    </div>
+                    <div>
+                        <strong>Atencion a domicilio</strong>
+                        <span>Visitamos casa u oficina cuando el servicio lo permite.</span>
+                    </div>
+                    <div>
+                        <strong>Soporte integral</strong>
+                        <span>Reparamos, actualizamos y tambien creamos soluciones digitales.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resenas" class="brand-section reviews-section container">
+        <div class="section-heading">
+            <div class="section-kicker">
+                <i data-lucide="message-circle-heart" class="section-kicker-icon" aria-hidden="true"></i>
+                <span>Resenas</span>
+            </div>
+            <h2>Clientes que nos recomiendan</h2>
+        </div>
+        <div class="reviews-grid">
+            <article class="review-card">
+                <div class="review-stars" aria-label="5 de 5 estrellas">5/5</div>
+                <p>"Me explicaron todo con claridad y dejaron mi laptop mucho mas rapida. Excelente atencion."</p>
+                <strong>Mariana G.</strong>
+                <span>Mantenimiento de laptop</span>
+            </article>
+            <article class="review-card">
+                <div class="review-stars" aria-label="5 de 5 estrellas">5/5</div>
+                <p>"Cambiaron la pantalla de mi celular y quedo funcionando perfecto. Los recomiendo."</p>
+                <strong>Carlos R.</strong>
+                <span>Reparacion de celular</span>
+            </article>
+            <article class="review-card">
+                <div class="review-stars" aria-label="5 de 5 estrellas">5/5</div>
+                <p>"Nos ayudaron con imagen para redes y soporte tecnico. Rapidos, atentos y profesionales."</p>
+                <strong>Negocio local</strong>
+                <span>Diseno y soporte</span>
+            </article>
+        </div>
+    </section>
+
+    <section id="contacto" class="brand-section cta-section container">
+        <div class="cta-panel">
+            <div class="cta-copy">
+                <div class="section-kicker">
+                    <i data-lucide="phone-call" class="section-kicker-icon" aria-hidden="true"></i>
+                    <span>Contacto</span>
+                </div>
+                <h2>Agenda tu revision o cotizacion</h2>
+                <p>
+                    Cuentanos que necesitas y te orientamos con el siguiente paso para reparar, actualizar o crear tu
+                    solucion digital.
+                </p>
+            </div>
+            <div class="cta-actions" aria-label="Canales de contacto">
+                <a class="contact-chip contact-chip--primary" href="tel:3121234567">
+                    <i data-lucide="phone" aria-hidden="true"></i>
+                    <span>312 123 4567</span>
+                </a>
+                <a class="contact-chip" href="mailto:contacto@tapirindustries.com">
+                    <i data-lucide="mail" aria-hidden="true"></i>
+                    <span>contacto@tapirindustries.com</span>
+                </a>
+                <a class="contact-chip" href="#" aria-label="Facebook de Tapir Industries">
+                    <i data-lucide="share-2" aria-hidden="true"></i>
+                    <span>Tapir Industries</span>
+                </a>
+                <a class="contact-chip" href="#" aria-label="Instagram de Tapir Industries">
+                    <i data-lucide="at-sign" aria-hidden="true"></i>
+                    <span>@tapirindustries</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <br><br>
 
     <!-- Footer -->
     <footer class="footer-section text-center text-lg-start">
@@ -743,6 +842,354 @@ body {
         .footer-icon--title {
             width: 24px;
             height: 24px;
+        }
+
+        .brand-section {
+            position: relative;
+            z-index: 1;
+            margin-top: 42px;
+            padding-left: clamp(1rem, 4vw, 3rem);
+            padding-right: clamp(1rem, 4vw, 3rem);
+        }
+
+        .brand-panel,
+        .cta-panel,
+        .review-card {
+            background: var(--blanco-palido);
+            border: 3px solid #000000;
+            box-shadow: 12px 12px 0 #000000;
+            color: #000000;
+            transition: background var(--transition), color var(--transition), border-color var(--transition), box-shadow var(--transition);
+        }
+
+        .brand-panel,
+        .cta-panel {
+            padding: clamp(22px, 4vw, 36px);
+        }
+
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: var(--salmon);
+            font-weight: 900;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .section-kicker-icon {
+            width: 22px;
+            height: 22px;
+            stroke-width: 2.5;
+        }
+
+        .about-content,
+        .cta-panel {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+            gap: clamp(20px, 4vw, 42px);
+            align-items: center;
+        }
+
+        .about-content h2,
+        .section-heading h2,
+        .cta-copy h2 {
+            margin: 0 0 12px;
+            font-weight: 900;
+            letter-spacing: 0;
+        }
+
+        .about-content p,
+        .cta-copy p,
+        .review-card p {
+            color: #252525;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .about-highlights {
+            display: grid;
+            gap: 12px;
+        }
+
+        .about-highlights div {
+            background: var(--durazno);
+            border: 2px solid #000000;
+            padding: 14px;
+        }
+
+        .about-highlights strong,
+        .about-highlights span,
+        .review-card strong,
+        .review-card span {
+            display: block;
+        }
+
+        .about-highlights strong {
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .review-card {
+            padding: 20px;
+            min-height: 230px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .review-stars {
+            color: var(--salmon);
+            font-size: 1.15rem;
+            letter-spacing: 0;
+        }
+
+        .review-card strong {
+            margin-top: 16px;
+            font-weight: 900;
+        }
+
+        .review-card span {
+            color: #5A3E2A;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .cta-panel {
+            background: var(--salmon);
+        }
+
+        .cta-copy .section-kicker {
+            color: #000000;
+        }
+
+        .cta-actions {
+            display: grid;
+            gap: 12px;
+        }
+
+        .contact-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 48px;
+            padding: 10px 14px;
+            background: var(--blanco-palido);
+            border: 2px solid #000000;
+            color: #000000;
+            font-weight: 900;
+            text-decoration: none;
+            box-shadow: 5px 5px 0 #000000;
+            transition: transform 120ms ease, box-shadow 120ms ease, background var(--transition);
+        }
+
+        .contact-chip:hover,
+        .contact-chip:focus {
+            color: #000000;
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0 #000000;
+        }
+
+        .contact-chip svg {
+            width: 20px;
+            height: 20px;
+            flex: 0 0 auto;
+            stroke-width: 2.4;
+        }
+
+        .contact-chip--primary {
+            background: var(--Amarillo-pastel);
+        }
+
+        :root[data-theme='dark'] .brand-panel,
+        :root[data-theme='dark'] .review-card {
+            background: var(--bg);
+            border-color: var(--blanco-palido);
+            box-shadow: 12px 12px 0 var(--blanco-palido);
+            color: var(--text);
+        }
+
+        :root[data-theme='dark'] .about-content p,
+        :root[data-theme='dark'] .review-card p {
+            color: var(--muted);
+        }
+
+        :root[data-theme='dark'] .about-highlights div {
+            color: #000000;
+        }
+
+        :root[data-theme='dark'] .review-card span {
+            color: var(--Amarillo-pastel);
+        }
+
+        :root[data-theme='dark'] .cta-panel {
+            border-color: var(--blanco-palido);
+            box-shadow: 12px 12px 0 var(--blanco-palido);
+        }
+
+        @media (max-width: 900px) {
+            .about-content,
+            .cta-panel,
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand-panel,
+            .cta-panel,
+            .review-card {
+                box-shadow: 7px 7px 0 #000000;
+            }
+
+            :root[data-theme='dark'] .brand-panel,
+            :root[data-theme='dark'] .review-card,
+            :root[data-theme='dark'] .cta-panel {
+                box-shadow: 7px 7px 0 var(--blanco-palido);
+            }
+
+            .contact-chip {
+                align-items: flex-start;
+                overflow-wrap: anywhere;
+            }
+        }
+
+        .mini-tapir-widget {
+            position: fixed;
+            left: 18px;
+            bottom: 18px;
+            z-index: 9997;
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            pointer-events: none;
+        }
+
+        .mini-tapir-button {
+            position: relative;
+            width: 126px;
+            height: 94px;
+            padding: 0;
+            overflow: visible;
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .mini-tapir-sprite {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 384px;
+            height: 256px;
+            background-image: url("../img/sprite/tapir-idle.png");
+            background-repeat: no-repeat;
+            background-size: 1536px 1024px;
+            filter: drop-shadow(0 12px 10px rgba(0, 0, 0, 0.5));
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            transform: scale(0.32);
+            transform-origin: left bottom;
+            transition: transform 180ms ease, filter 180ms ease;
+        }
+
+        .mini-tapir-button:hover .mini-tapir-sprite,
+        .mini-tapir-button:focus-visible .mini-tapir-sprite,
+        .mini-tapir-widget.is-alert .mini-tapir-sprite {
+            filter: drop-shadow(0 14px 12px rgba(255, 117, 31, 0.44));
+            transform: scale(0.35) translateY(-3px);
+        }
+
+        .mini-tapir-talk {
+            position: relative;
+            width: min(220px, calc(100vw - 156px));
+            margin-bottom: 58px;
+            padding: 10px 12px;
+            background: var(--blanco-palido);
+            border: 2px solid #000000;
+            box-shadow: 5px 5px 0 #000000;
+            color: #000000;
+            font-size: 0.86rem;
+            font-weight: 800;
+            line-height: 1.35;
+            opacity: 0;
+            transform: translateX(-8px) translateY(8px);
+            transition: opacity 160ms ease, transform 160ms ease;
+            pointer-events: none;
+        }
+
+        .mini-tapir-talk::before {
+            position: absolute;
+            bottom: 16px;
+            left: -10px;
+            width: 16px;
+            height: 16px;
+            content: "";
+            background: var(--blanco-palido);
+            border-left: 2px solid #000000;
+            border-bottom: 2px solid #000000;
+            transform: rotate(45deg);
+        }
+
+        .mini-tapir-widget.is-speaking .mini-tapir-talk,
+        .mini-tapir-button:hover + .mini-tapir-talk,
+        .mini-tapir-button:focus-visible + .mini-tapir-talk {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
+        }
+
+        :root[data-theme='dark'] .mini-tapir-talk {
+            background: var(--bg);
+            border-color: var(--blanco-palido);
+            box-shadow: 5px 5px 0 var(--blanco-palido);
+            color: var(--text);
+        }
+
+        :root[data-theme='dark'] .mini-tapir-talk::before {
+            background: var(--bg);
+            border-color: var(--blanco-palido);
+        }
+
+        @media (max-width: 520px) {
+            .mini-tapir-widget {
+                left: 10px;
+                bottom: 10px;
+            }
+
+            .mini-tapir-button {
+                width: 94px;
+                height: 70px;
+            }
+
+            .mini-tapir-sprite {
+                transform: scale(0.24);
+            }
+
+            .mini-tapir-button:hover .mini-tapir-sprite,
+            .mini-tapir-button:focus-visible .mini-tapir-sprite,
+            .mini-tapir-widget.is-alert .mini-tapir-sprite {
+                transform: scale(0.26) translateY(-3px);
+            }
+
+            .mini-tapir-talk {
+                width: min(190px, calc(100vw - 112px));
+                margin-bottom: 42px;
+                font-size: 0.78rem;
+            }
         }
     </style>
 
@@ -883,6 +1330,13 @@ body {
 </style>
 
     <canvas id="exa" width="600" height="600"></canvas>
+
+    <aside class="mini-tapir-widget" aria-label="Asistente visual de Tapir Industries">
+        <button class="mini-tapir-button" type="button" aria-label="Escuchar al asistente Tapir">
+            <span class="mini-tapir-sprite" aria-hidden="true"></span>
+        </button>
+        <p class="mini-tapir-talk" aria-live="polite">Hola, reviso la ruta contigo.</p>
+    </aside>
 <script>
 const canvas = document.getElementById('exa');
 const ctx = canvas.getContext('2d');
@@ -961,6 +1415,120 @@ function animate(timeStamp) {
 
 animate();
 </script>  
+
+
+<script>
+  (function () {
+    const widget = document.querySelector('.mini-tapir-widget');
+    const sprite = document.querySelector('.mini-tapir-sprite');
+    const button = document.querySelector('.mini-tapir-button');
+    const talk = document.querySelector('.mini-tapir-talk');
+
+    if (!widget || !sprite || !button || !talk) return;
+
+    const frameWidth = 384;
+    const frameHeight = 512;
+    const columns = 4;
+    const targetCenterX = 192;
+    const targetBottomY = 236;
+    const idleAnimation = [
+      0, 0, 1, 1, 2, 3, 4, 4, 5, 6,
+      6, 7, 7, 6, 5, 4, 3, 2, 1, 0
+    ];
+    const frameBounds = [
+      { left: 48, right: 366, bottom: 472 },
+      { left: 51, right: 357, bottom: 473 },
+      { left: 39, right: 351, bottom: 475 },
+      { left: 14, right: 340, bottom: 476 },
+      { left: 67, right: 367, bottom: 317 },
+      { left: 27, right: 356, bottom: 319 },
+      { left: 24, right: 347, bottom: 319 },
+      { left: 14, right: 330, bottom: 317 },
+    ];
+    const messages = [
+      'Si algo falla, lo diagnosticamos claro.',
+      'Tengo el numero listo: 312 123 4567.',
+      'Tambien hacemos servicio a domicilio.',
+      'Puedes revisar las resenas antes de escribir.',
+      'Estoy aqui por si necesitas una cotizacion.',
+      'Tip: mantenimiento a tiempo evita sustos.'
+    ];
+    const scrollMessages = [
+      'Vas bien, abajo estan los datos de contacto.',
+      'Si quieres cotizar, toca el telefono.',
+      'Tambien puedes escribir por correo.'
+    ];
+
+    let currentFrame = 0;
+    let lastFrameTime = 0;
+    let messageIndex = 0;
+    let hideTimer = 0;
+    let scrollTimer = 0;
+    let lastScrollY = window.scrollY;
+
+    function showFrame(frame) {
+      const column = frame % columns;
+      const row = Math.floor(frame / columns);
+      const bounds = frameBounds[frame];
+      const centerX = (bounds.left + bounds.right) / 2;
+      const offsetX = targetCenterX - centerX;
+      const offsetY = targetBottomY - bounds.bottom;
+
+      sprite.style.backgroundPosition =
+        `${-(column * frameWidth) + offsetX}px ${-(row * frameHeight) + offsetY}px`;
+    }
+
+    function speak(message, duration) {
+      window.clearTimeout(hideTimer);
+      talk.textContent = message;
+      widget.classList.add('is-speaking', 'is-alert');
+
+      hideTimer = window.setTimeout(() => {
+        widget.classList.remove('is-speaking', 'is-alert');
+      }, duration || 3600);
+    }
+
+    function nextMessage() {
+      const message = messages[messageIndex % messages.length];
+      messageIndex += 1;
+      speak(message, 4200);
+    }
+
+    function animateTapir(timestamp) {
+      if (timestamp - lastFrameTime > 130) {
+        showFrame(idleAnimation[currentFrame]);
+        currentFrame = (currentFrame + 1) % idleAnimation.length;
+        lastFrameTime = timestamp;
+      }
+
+      requestAnimationFrame(animateTapir);
+    }
+
+    button.addEventListener('click', nextMessage);
+    button.addEventListener('mouseenter', () => {
+      speak('Hola, soy tu Tapir guia.', 2600);
+    });
+    button.addEventListener('focus', () => {
+      speak('Hola, soy tu Tapir guia.', 2600);
+    });
+
+    window.addEventListener('scroll', () => {
+      const distance = Math.abs(window.scrollY - lastScrollY);
+      if (distance < 180) return;
+
+      lastScrollY = window.scrollY;
+      window.clearTimeout(scrollTimer);
+      scrollTimer = window.setTimeout(() => {
+        const index = Math.floor(Math.random() * scrollMessages.length);
+        speak(scrollMessages[index], 3000);
+      }, 260);
+    }, { passive: true });
+
+    showFrame(0);
+    window.setTimeout(() => speak('Hola, te acompano por aqui.', 3200), 900);
+    requestAnimationFrame(animateTapir);
+  })();
+</script>
 
 
     <script>

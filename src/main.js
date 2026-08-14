@@ -15,6 +15,11 @@ import {
   CalendarDays,
   Moon,
   Sun,
+  Cpu,
+  MessageCircleHeart,
+  PhoneCall,
+  Share2,
+  AtSign,
 } from 'lucide';
 
 createIcons({
@@ -34,5 +39,10 @@ createIcons({
     CalendarDays,
     Moon,
     Sun,
+    Cpu,
+    MessageCircleHeart,
+    PhoneCall,
+    Share2,
+    AtSign,
   },
 });
