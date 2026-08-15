@@ -1,0 +1,366 @@
+Documentación de menu.html
+==========================
+
+Archivo: pages/menu.html
+Ubicación de la documentación: notes/menu-documentacion.txt
+
+NOTA DE RENOMBRADO (14/08/2026)
+Esta página se llamaba pages/menu2.html y era la versión nueva del menú. Al quedar
+terminada pasó a ser pages/menu.html, la página oficial de servicios. El menú anterior
+se conservó como pages/menu-old.html. Esta documentación se llamaba
+notes/menu2-documentacion.txt.
+
+Consecuencia importante: menu.html es ahora el destino al que ya apuntaban index.html
+(botón INICIAR) y los enlaces de regreso de celulares, consolas y mantenimiento, así que
+quedó integrada en la navegación sin tocar esos archivos.
+
+1. Propósito general
+-------------------
+Página oficial de servicios del sitio. Diseño neo-brutalista (bordes negros de 3px, sombras
+duras de 12px, paleta salmón/durazno) con sistema de tema claro/oscuro. Muestra tarjetas de
+servicios enlazadas a otras páginas, secciones de presentación, reseñas y contacto, y un pie
+de página con los datos del negocio.
+
+2. Estructura principal
+-----------------------
+La página está organizada en estas secciones:
+
+- Header (fijo):
+  - Botón de regreso a index.html.
+  - Título principal: TAPIR INDUSTRIES.
+  - Botón para alternar entre modo claro y oscuro.
+
+- Sección de servicios:
+  - Rejilla de 6 tarjetas. Cada una es un enlace a otra página o a un marcador vacío.
+  - Los servicios mostrados son:
+    - Mantenimiento    -> pages/mantenimiento.html
+    - Reparaciones     -> pages/celulares.html
+    - Controles        -> pages/consolas.html
+    - Impresoras       -> pages/impresoras.html
+    - Diseño gráfico   -> pages/diseno.html
+    - Desarrollo móvil y web -> pages/desarrollo.html
+
+- Sección "Nosotros" (id="nosotros"):
+  - Texto de presentación, tres fortalezas destacadas y un botón "Conoce al equipo"
+    que lleva a pages/fundadores.html.
+
+- Sección "Reseñas" (id="resenas"):
+  - Tres tarjetas de opinión. Cada una lleva estrella + calificación 5/5 y el sello
+    "Reseña de Facebook". Las opiniones provienen de la página de Facebook del negocio.
+
+- Sección "Contacto" (id="contacto"):
+  - Chips de contacto: WhatsApp, correo, Facebook e Instagram.
+
+- Asistente visual (mini-tapir-widget):
+  - Sprite animado fijo abajo a la izquierda que muestra mensajes rotativos.
+
+- Footer:
+  - Servicio a domicilio, ubicaciones, WhatsApp, correo, horario y disponibilidad.
+
+3. Estilos y tema visual
+------------------------
+El archivo incluye estilos inline en la etiqueta head y también estilos adicionales para el footer y las tarjetas.
+
+Puntos importantes:
+- Usa variables CSS como --bg, --text, --card, --accent, --muted, --glass y --transition.
+- El modo claro y oscuro se activan mediante el atributo data-theme en el elemento html.
+- El color del fondo cambia según el tema:
+  - Claro: usa la imagen day.gif como fondo.
+  - Oscuro: usa la imagen not.gif como fondo.
+- La cabecera, las tarjetas y el footer adaptan colores según el tema.
+
+4. Modo claro/oscuro
+--------------------
+El tema se controla con JavaScript y con el atributo data-theme.
+
+Comportamiento:
+- Al cargar la página, se intenta aplicar un tema inicial basado en:
+  1. Preferencia guardada en localStorage.
+  2. Preferencia del sistema.
+  3. Modo claro como valor por defecto.
+- También existe una función que intenta establecer el tema según la hora del día:
+  - Entre las 7:00 y las 17:59 se usa light.
+  - Entre las 18:00 y las 6:59 se usa dark.
+- El botón con id themeToggle alterna el tema manualmente.
+- El texto del botón se actualiza según el estado actual.
+
+5. Animación del canvas
+-----------------------
+Se incluye un canvas con id exa en la parte inferior de la página.
+
+Función:
+- Dibuja hexágonos animados con colores naranja/rojo/amarillo.
+- Añade puntos girando alrededor del centro.
+- La animación se ejecuta con requestAnimationFrame.
+
+Importante para cambios futuros:
+- Si se modifica el canvas o el estilo, conviene mantener el id exa y el contexto 2D del canvas.
+- El fondo blur del canvas y el z-index 0 ayudan a que no interfiera con el contenido principal.
+
+6. Scripts incluidos
+--------------------
+El archivo carga varios scripts inline y uno externo:
+
+- Script externo:
+  - https://unpkg.com/lucide@1.29.0/dist/umd/lucide.min.js (build UMD de Lucide)
+    Seguido de una llamada inline a lucide.createIcons(), que reemplaza cada
+    <i data-lucide="..."> por su <svg> conservando las clases CSS.
+
+    IMPORTANTE: antes esta pagina cargaba ../src/main.js como modulo. No funcionaba
+    en produccion porque src/main.js hace "import ... from 'lucide'" (especificador
+    bare) y GitHub Pages sirve la raiz del repositorio tal cual, sin pasar por Vite;
+    el navegador no puede resolver ese import y ningun icono se dibujaba. El build UMD
+    funciona igual servido como archivo estatico y con "npm run dev".
+    Si se cambia la version del CDN, debe coincidir con la de package.json.
+
+- Scripts inline:
+  - Lógica de tema claro/oscuro.
+  - Animación del canvas.
+  - Script de arrastre o desplazamiento horizontal para una fila de tarjetas (actualmente no aplica a la estructura HTML presente).
+  - Script de protección contra inspección del código (DevTools), que:
+    - Bloquea F12, Ctrl+Shift+I, Ctrl+U y clic derecho.
+    - Reemplaza el contenido del body con una pantalla de error si se detecta actividad sospechosa.
+    - Detecta cambios de tamaño de ventana que puedan indicar DevTools abiertos.
+
+7. Consideraciones importantes para futuras modificaciones
+--------------------------------------------------------
+- No cambiar los IDs themeToggle y toggleLabel si se quiere conservar la lógica del tema.
+- Si se agregan o cambian tarjetas de servicio, mantener la clase service-card-link para conservar el estilo visual.
+- Si se cambian los enlaces de las tarjetas, revisar que las rutas relativas sigan siendo correctas.
+- Si se modifica el diseño del header o del footer, tener en cuenta que utilizan variables CSS y estilos dependientes del atributo data-theme.
+- Si se eliminan o cambian los elementos con clases como service-card-link, head, content, footer-panel, etc., se pueden romper estilos visuales ya definidos.
+- En las tarjetas de reseña, la regla genérica .review-card span aplica display:block y un color
+  propio a TODOS los <span> de la tarjeta. La estrella y el "5/5" dependen de que
+  .review-stars span le gane en especificidad. Si se reordena o se mueve ese CSS, revisarlo.
+- Los iconos se generan en tiempo de ejecución: en el HTML son <i data-lucide="..."> y Lucide
+  los convierte en <svg> conservando el atributo class, pero descartando title. Por eso los
+  estilos deben apuntar a la clase, nunca a la etiqueta <i>.
+
+8. Archivos relacionados
+------------------------
+- pages/menu.html: esta página.
+- css/menu.css: estilos externos relacionados con el menú.
+- img/day.gif y img/not.gif: fondos para los modos claro y oscuro.
+- img/sprite/tapir-idle.png: hoja de sprites del asistente (mini-tapir-widget).
+- pages/fundadores.html: enlazada desde la sección Nosotros ("Conoce al equipo").
+- pages/mantenimiento.html, pages/celulares.html, pages/consolas.html: destinos de las
+  tres primeras tarjetas de servicio. Las tres enlazan de vuelta a esta página.
+- index.html: origen (botón INICIAR) y destino del botón de regreso del header.
+- src/main.js: YA NO LO USA esta página (ver sección 6). Lo sigue usando index.html.
+- pages/impresoras.html, pages/diseno.html, pages/desarrollo.html: destinos de las otras tres
+  tarjetas. Comparten css/servicio.css y src/servicio.js (ver sección 10, ronda 3).
+- pages/menu-old.html: menú anterior. Ya no está enlazado desde ningún sitio.
+- presupuesto.html: visor del catálogo en PDF. Existe pero esta página no lo enlaza todavía.
+
+9. Nota de mantenimiento
+------------------------
+Esta página mezcla HTML, CSS inline, imágenes, animaciones y scripts de protección. Por eso, cualquier cambio debe revisarse con cuidado para no afectar la experiencia visual o el sistema de temas.
+
+10. Cambios aplicados (14/08/2026)
+----------------------------------
+
+RONDA 1
+- Iconos: se reemplazó ../src/main.js por el build UMD de Lucide desde CDN (ver sección 6).
+  Verificado: los <i data-lucide> se convierten a <svg> conservando las clases
+  back-icon, theme-icon--moon/--sun, service-icon, section-kicker-icon y footer-icon.
+- Ortografía: acentos, eñes y signos de apertura "¡" en las tarjetas de servicio y en las
+  secciones Nosotros, Reseñas y Contacto, además de los mensajes del asistente tapir en JS.
+  Correcciones de peso: "Desarollo" -> "Desarrollo", "Resenas" -> "Reseñas".
+- Footer: © 2024 -> © 2026.
+- WhatsApp: chip nuevo en la sección Contacto (primera posición, fondo #25D366) y línea nueva
+  en el footer. El glifo es un SVG inline porque Lucide no incluye iconos de marca; usa la
+  clase .whatsapp-glyph (fill currentColor, sin trazo).
+
+RONDA 2
+- Teléfono: se confirmó el número real, 33 5047 6514 (+52 33 5047 6514). Sustituyó al
+  312 123 4567 de relleno, que ya no aparece en ningún punto de la página.
+  Se decidió publicar SOLO WhatsApp: se eliminaron el chip "tel:" de la sección Contacto y
+  la línea "Tel:" del footer, para no ofrecer un canal de llamadas sin confirmar.
+  El número vive ahora en 3 sitios: chip de Contacto, línea del footer y mensaje del tapir.
+  Formato del enlace: https://wa.me/523350476514?text=<mensaje prellenado>
+- Reseñas: se indicó su origen. Subtítulo "Opiniones publicadas en nuestra página de Facebook"
+  más un sello "Reseña de Facebook" en cada tarjeta.
+- Reseñas: estrella junto a la calificación 5/5, con <i data-lucide="star"> y la clase
+  .review-star-icon.
+  CUIDADO: existe una regla genérica .review-card span que aplica display:block y otro color a
+  todos los <span> de la tarjeta. Para que la estrella y el "5/5" queden en la misma línea se
+  añadió .review-stars span, que le gana en especificidad. Si se reordena el CSS, revisar esto.
+- Navegación: botón "Conoce al equipo" en la sección Nosotros, que reconecta
+  pages/fundadores.html. Había quedado inalcanzable al sustituir el menú viejo, porque el
+  enlace vivía solo en el menú anterior (hoy menu-old.html).
+- Redes sociales: los chips de Facebook e Instagram ya apuntan a los perfiles reales.
+  Verificado que ambas URL responden.
+    Facebook:  https://www.facebook.com/p/Tapir-Industries-61552082182452/
+    Instagram: https://www.instagram.com/tapirindustries
+
+RONDA 3
+- Se crearon las 3 páginas de servicio que faltaban y se conectaron sus tarjetas:
+    Impresoras            -> pages/impresoras.html
+    Diseño gráfico        -> pages/diseno.html
+    Desarrollo móvil/web  -> pages/desarrollo.html
+  Nombres en minúscula y sin acentos ni eñes, siguiendo la convención de las páginas que ya
+  existían (mantenimiento.html, celulares.html, consolas.html).
+
+  DECISIÓN IMPORTANTE: NO se clonaron las páginas de servicio antiguas. Aquellas arrastran
+  ~500 líneas de CSS inline, Font Awesome, iconos como imágenes, el bloqueo de DevTools y
+  lang="en". Copiarlas habría multiplicado por tres los pendientes P3, P6 y P7. Las nuevas
+  siguen el lenguaje visual de menu.html (neo-brutalista) pero con archivos compartidos:
+
+    css/servicio.css : paleta, temas, header, tarjetas, pasos, CTA y pie. Una sola hoja para
+                       las tres páginas, en vez de CSS repetido en cada archivo.
+    src/servicio.js  : llamada a lucide.createIcons() y lógica de tema.
+                       OJO: es un script CLÁSICO, no un módulo. No debe usar "import" nunca,
+                       por el mismo motivo explicado en la sección 6.
+
+  El tema de estas páginas NO tiene el problema P1: usan un solo criterio (lo guardado manda
+  sobre la preferencia del sistema) y comparten la clave 'theme-preference' de localStorage con
+  menu.html, así que la elección del usuario se respeta al navegar entre unas y otras.
+
+  Contenido: describen el servicio, las fallas o entregables típicos y el proceso de trabajo.
+  NO incluyen precios ni tiempos de entrega, porque no se contaba con esos datos. Ver C2.
+
+- Idioma: se corrigió <html lang="en"> por lang="es" en las 6 páginas que seguían declarando
+  inglés con contenido en español: menu.html, celulares.html, consolas.html, mantenimiento.html,
+  menu-old.html y menuprin.html. Verificado que ya no queda ninguna en el repositorio.
+  Afecta a lectores de pantalla (pronunciación), a Google y a la traducción automática.
+
+- css/style.css: la variable --salmon se renombró a --terracota (#D9762F). El resto del sitio ya
+  usaba var(--terracota), pero la definición seguía llamándose --salmon, así que la variable no
+  existía y pages/fundadores.html tenía 4 colores rotos: el título, el borde y fondo de la
+  tarjeta, y el botón "Volver al menú".
+
+FUERA DE ESTA PÁGINA, en la misma ronda
+- pages/celulares.html, pages/consolas.html y pages/mantenimiento.html: faltaba el "../" en
+  las rutas de los fondos, url('img/day.gif') y url('img/not.gif'). Al estar en pages/ apuntaban
+  a pages/img/, que no existe, y las tres se quedaban sin fondo en ambos temas. Corregido.
+- carga.html: era un callejón sin salida (carga.js no redirige al llegar al 100%). Se le añadió
+  el enlace "Volver al inicio", con la clase .volver definida en css/carga.css.
+- pages/fundadores.html: también era callejón sin salida. Se le añadió "Volver al menú".
+
+11. Pendientes
+--------------
+Detectados en la revisión y NO aplicados todavía. Ordenados por prioridad.
+
+Ya resueltos y retirados de esta lista: la página huérfana (el renombrado la integró en la
+navegación), el número de teléfono de relleno, el origen de las reseñas y el enlace de Facebook.
+
+PROGRAMACIÓN
+
+P1. Carrera de temas: la preferencia guardada se pierde en cada recarga.
+    window.onload = setThemeByTime corre DESPUÉS del IIFE que aplica localStorage y sobrescribe
+    data-theme según la hora, sin actualizar aria-pressed ni el texto del botón. Resultado: el
+    usuario elige un tema, recarga, y vuelve al de la hora, con el icono sol/luna desincronizado.
+    Hay que decidir cuál de los dos mecanismos manda y dejar solo ese.
+
+P2. RESUELTO. Las 6 tarjetas de servicio y los 2 chips de redes sociales ya tienen destino.
+    No queda ningún href="" ni href="#" en esta página.
+
+P3. El bloqueo de DevTools perjudica a clientes reales.
+    - El setInterval que compara outerWidth-innerWidth > 300 da falsos positivos con zoom del
+      navegador, ventana pequeña o barra lateral, y le borra la página a un visitante legítimo.
+    - Bloquear el clic derecho impide copiar el teléfono y el correo.
+    - No aporta seguridad: view-source, Ctrl+S o desactivar JS lo saltan.
+    Recomendación: eliminarlo.
+
+P4. Rendimiento: img/day.gif pesa 7.4 MB y es el fondo del modo claro. Es el mayor problema de
+    carga del sitio. Comprimir o sustituir por vídeo/imagen estática.
+    Secundario: Bootstrap completo por CDN para media docena de utilidades del footer, y dos
+    bucles requestAnimationFrame permanentes (canvas + sprite).
+
+P5. Páginas publicadas pero inalcanzables desde index.html (detectado en la auditoría de
+    navegación). Ninguna recibe enlaces, pero se siguen subiendo a producción:
+    - pages/menu-old.html: el menú anterior. Además le falta el "../" en css/menu.css.
+    - pages/menuprin.html: bastante rota. 15 recursos inexistentes (img/tapir.png,
+      img/television.png, img/atras.png, css/menu.css... todos sin "../") y enlaza a
+      dark.html, que no existe.
+    - presupuesto.html: el visor del catálogo (ver también C4).
+    Decidir si se borran, se archivan fuera del repo o se reconectan.
+
+P6. Accesibilidad y SEO:
+    - <title>Menu</title> genérico; faltan meta description y Open Graph, así que el enlace
+      compartido en WhatsApp o Facebook sale sin título ni imagen.
+    - <canvas id="exa"> es decorativo pero no tiene aria-hidden="true".
+    - El enlace de regreso del header no tiene nombre accesible: su único contenido es el icono,
+      que lleva aria-hidden="true", y Lucide descarta el atributo title al generar el <svg>.
+      Un lector de pantalla solo anuncia "enlace". Falta aria-label="Volver al inicio" en el <a>.
+    - El atajo global de la tecla "d" hace preventDefault en toda la página.
+    - Falta @media (prefers-reduced-motion: reduce) para canvas, sprite y GIFs de fondo.
+    - Los enlaces externos nuevos (WhatsApp, Facebook) abren en pestaña nueva. Conviene avisarlo
+      en el texto o con aria-label para quien usa lector de pantalla.
+
+P7. Código muerto: toggleTheme(), saludar()/_0x5a2d, el script de arrastre horizontal (su selector
+    no encuentra nada) y ~150 líneas de CSS sin uso (.cards-carousel__*, .logo, .hd2, .grid,
+    .main, .sidebar, .button, .td, .tbl, .dark-image, .light-image, p.lead, .toast).
+    .tooltip-text tiene estilos en 4 sitios pero no existe en el HTML: los seis
+    <div class="tooltip-container"> que envuelven las tarjetas no hacen nada.
+
+P8. .card está definida dos veces (regla genérica y regla de tarjeta de servicio) y se fusionan.
+    Funciona por accidente; tocar la primera romperá las tarjetas.
+
+P9. pages/menu-old.html todavía dice "© 2024 Tapir Industries".
+
+P10. Incidencias de navegación en otras páginas, detectadas en la auditoría:
+     - pages/consolas.html: el botón "Regresar" del bloqueo de DevTools apunta a
+       celulares.html en lugar de a consolas.html. Parece copy-paste.
+     - El mismo botón en index.html, celulares.html, mantenimiento.html y esta página apunta
+       a sí misma. Funciona (recarga y restaura la página) pero es confuso. Desaparece solo
+       si se aplica P3.
+
+P11. El repositorio no tiene .gitignore y node_modules/ está versionado, incluida la caché de
+     Vite (node_modules/.vite), que cambia sola y ensucia cada commit. También está el PDF del
+     catálogo de 8.5 MB en la raíz.
+
+CONTENIDO
+
+C1. Correo: verificar que el dominio de contacto@tapirindustries.com exista y reciba correo.
+    Es el último dato de contacto sin confirmar. Aparece en la sección Contacto y en el footer.
+    (El teléfono ya se resolvió, ver sección 10.)
+
+C1b. Decidir si se publica un número para llamadas. Hoy solo se ofrece WhatsApp. Si el
+     33 5047 6514 también recibe llamadas, conviene devolver el chip "tel:" y la línea del
+     footer, en formato internacional: tel:+523350476514
+
+C2. Falta lo que genera confianza en reparaciones: garantía ("30 días en mano de obra"), tiempo
+    de entrega, si el diagnóstico o la cotización son gratis, y rangos de precio "desde $XXX".
+    Aplica también a las 3 páginas nuevas (impresoras, diseno, desarrollo): se dejaron sin
+    precios ni plazos a propósito, por no inventarlos. En cuanto se tengan, conviene añadirlos:
+    es el dato que más piden los clientes antes de escribir.
+
+C3. Las reseñas ya declaran que vienen de Facebook, pero el texto sigue siendo el de relleno
+    ("Mariana G.", "Negocio local"). Falta sustituirlo por opiniones reales copiadas de la
+    página, y que el sello "Reseña de Facebook" enlace a la reseña o al perfil, para que el
+    visitante pueda comprobarlas.
+
+C4. Contenido ya existente en el repo y sin enlazar desde esta página:
+    - presupuesto.html (Catálogo Tapir en PDF): encaja como botón en la sección Contacto.
+    - img/tp1.jpeg y img/tp2.jpeg: solo se usan en fundadores.html. Faltan fotos reales de
+      trabajos (antes/después), que es lo que más convence en este giro.
+
+C5. El enlace de Instagram lleva el parámetro ?igsh=..., que Instagram añade al copiar el
+    enlace desde la app. Funciona, pero es un identificador de seguimiento de esa sesión y no
+    hace falta: https://www.instagram.com/tapirindustries responde igual. Conviene limpiarlo.
+
+C6. WhatsApp y correo están duplicados en la sección Contacto y en el footer: se van a
+    desincronizar. Al cambiar el número hubo que tocar 3 sitios a la vez. Conviene dejar el
+    detalle completo solo en el footer.
+
+C7. Falta dirección física o mapa. Dice "Tepic y San Cayetano" sin punto de referencia.
+    Ojo: el WhatsApp confirmado es lada 33, de Guadalajara, mientras que la página dice operar
+    en Tepic y San Cayetano, Nayarit. Conviene aclarar la zona de servicio real.
+
+C8. No hay formulario de contacto: quien no quiere escribir por WhatsApp solo tiene el correo.
+
+C9. Falta una sección de preguntas frecuentes ("¿cuánto cuesta cambiar una pantalla?",
+    "¿pierdo mis datos?"), que es el contenido que más tráfico orgánico atrae en este giro.
+
+12. Cómo verificar cambios en esta página
+-----------------------------------------
+- Iconos: abrir pages/menu.html con doble clic (file://). Eso reproduce el servido estático de
+  GitHub Pages, que es donde fallaba antes. Todos los iconos deben verse, incluidas las 3
+  estrellas de las reseñas. Si alguno falta, revisar que su nombre exista en la versión de
+  Lucide del CDN: los nombres van en kebab-case y la v1 renombró varios respecto a la v0.
+- Navegación: desde index.html se debe poder llegar a menú, a las 3 páginas de servicio, a
+  fundadores y a la pantalla de carga, y volver desde todas ellas sin usar el botón "atrás".
+- Temas: alternar claro/oscuro y comprobar que el chip verde de WhatsApp, las estrellas y los
+  paneles siguen legibles en ambos.
+- WhatsApp: el chip debe abrir wa.me con el mensaje prellenado; en móvil, la app.

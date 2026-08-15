@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="es" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
   <link rel="icon" href="../img/tapir.png" />
-  <link rel="stylesheet" type="text/css" href="css/menu.css">
+  <link rel="stylesheet" type="text/css" href="../css/menu.css">
   <style>
-     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-
     canvas {
         position: fixed;
         top: 50%;
@@ -34,13 +35,7 @@
       position: relative;
       text-align: center;
       padding: 20px;
-      z-index: 9999;
-    }
-      .container-bt {
-      position: relative;
-      text-align: center;
-      padding: 20px;
-      
+      z-index: 1;
     }
      .ti_h1 {
       font-weight: 700;
@@ -52,12 +47,12 @@
 
     /* Configuración de colores de Juan Pablo */
     :root {
-      --salmon: #FF751F;
+      --terracota: #D9762F;
       --marron-obs: #5A3E2A;
       --Amarillo-pastel: #F4D878;
       --contraste: #242129;
       --durazno: #FFBD59;
-      --blanco-palido: #fff;
+      --blanco-palido: #f8fafc;
     }
 
          /* Variables de color (modo claro por defecto) */
@@ -93,10 +88,38 @@
     }
 
     header{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      min-height: 76px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      margin-bottom:18px;
+      margin-bottom:0;
+      background: var(--blanco-palido);
+      color: var(--text);
+      border-bottom: 1px solid rgba(255,117,31,0.35);
+      box-shadow: 0 10px 24px rgba(255,117,31,0.10);
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+      z-index: 9998;
+    }
+
+    header > a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 20px;
+      z-index: 100000;
+    }
+
+    .header-actions {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: 20px;
+      z-index: 100000;
     }
 
     
@@ -114,28 +137,35 @@
     /* Botón toggle */
     .toggle-btn{
       appearance:none;
-      border:0;
+      border:1px solid rgba(255,117,31,0.35);
       padding:8px 12px;
       border-radius:999px;
       cursor:pointer;
       display:inline-flex;
       align-items:center;
       gap:8px;
-      background:var(--glass);
+      background:var(--bg);
       color:var(--text);
-      transition: transform 120ms ease, background var(--transition), color var(--transition);
+      box-shadow: 0 10px 24px rgba(255,117,31,0.10);
+      transition: transform 120ms ease, background var(--transition), color var(--transition), border-color var(--transition);
       font-weight:600;
       font-size:0.95rem;
-      position: fixed;
-      top: 20px;
-      right: 20px;
+      position: static;
       z-index: 100000;
     }
     .toggle-btn:active{transform:scale(0.98)}
 
-    
-    .moon{
-      width:18px;height:18px;display:inline-block;flex-shrink:0;
+    .theme-icon{
+      width:18px;
+      height:18px;
+      display:none;
+      flex-shrink:0;
+      stroke-width:2.2;
+    }
+
+    .toggle-btn[data-active-theme='light'] .theme-icon--moon,
+    .toggle-btn[data-active-theme='dark'] .theme-icon--sun{
+      display:inline-block;
     }
 
     /* Ejemplo de contenido */
@@ -185,15 +215,15 @@ body {
 }
 /*  claro  */
 :root[data-theme='light'] .toggle-btn{
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
+  background-color: var(--bg);
+  color: var(--text);
  
 }
 
 /*oscuro*/
 :root[data-theme='dark'] .toggle-btn {
-  background-color: rgba(255, 255, 255, 0.7);
-  color: #000;
+  background-color: var(--bg);
+  color: var(--text);
 }
 /*oscuro*/
 :root[data-theme='dark'] .tooltip-text {
@@ -213,13 +243,25 @@ body {
   color: #000;
 }
 
- .hd1 {
-    position: fixed;
-    top: 5px;
-    left: 20px;
-    width: 80px;
-    height: 80px;
-    z-index: 9999;
+  .hd1 {
+    position: static;
+    width: 48px;
+    height: 48px;
+    z-index: 100000;
+  }
+
+  .back-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    width: 48px;
+    height: 48px;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .back-icon:hover {
+    transform: translateX(-2px);
   }
 
   .hd2 {
@@ -231,13 +273,29 @@ body {
     z-index: 9999;
   }
 
+  .top-brand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #FF751F;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .top-brand-icon:hover {
+    transform: rotate(8deg) scale(1.03);
+  }
+
+  :root[data-theme='dark'] .top-brand-icon {
+    color: #F4D878;
+  }
+
 .header-top {
-  position: fixed;
-  top: 1px; /* Distancia desde el borde superior */
+  position: absolute;
+  top: 50%; /* Distancia desde el borde superior */
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 999;
+  z-index: 100000;
 
 }
 
@@ -332,9 +390,10 @@ body {
           h1 .ti_h1{
              font-size: 35px;
           }
-          a .hd1{
-            width: 40px;
-            height: 40px;
+          a .hd1,
+          .back-icon{
+            width: 32px;
+            height: 32px;
           }
           img .hd2{
             width: 40px;
@@ -346,179 +405,871 @@ body {
             width: 0px;
             height: 0px;
           }
-          .hd1{
-             width: 40px;
-            height: 40px;
+          .hd1,
+          .back-icon{
+             width: 32px;
+            height: 32px;
           }
+        }
+
+        .cards-carousel {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cards-carousel__hint {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .cards-carousel__viewport {
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 117, 31, 0.8) rgba(0, 0, 0, 0.15);
+            cursor: grab;
+            touch-action: pan-x;
+            scroll-snap-type: x mandatory;
+            padding: 12px 4px 20px;
+        }
+
+        .cards-carousel__viewport.dragging {
+            cursor: grabbing;
+            scroll-behavior: auto;
+        }
+
+        .cards-carousel__viewport::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .cards-carousel__viewport::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 999px;
+        }
+
+        .cards-carousel__viewport::-webkit-scrollbar-thumb {
+            background: rgba(255, 117, 31, 0.8);
+            border-radius: 999px;
+        }
+
+        .cards-carousel__track {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            width: max-content;
+            padding: 6px 10px 12px;
+        }
+
+        .cards-carousel__item {
+            flex: 0 0 auto;
+            width: 250px;
+            scroll-snap-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .cards-carousel__item {
+                width: 240px;
+            }
+        }
+
+        section.container.my-5 > .row.justify-content-center {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            padding: 0 0 20px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 117, 31, 0.8) rgba(0, 0, 0, 0.15);
+            touch-action: pan-x;
+        }
+
+        section.container.my-5 > .row.justify-content-center::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        section.container.my-5 > .row.justify-content-center::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 999px;
+        }
+
+        section.container.my-5 > .row.justify-content-center::-webkit-scrollbar-thumb {
+            background: rgba(255, 117, 31, 0.8);
+            border-radius: 999px;
+        }
+
+        section.container.my-5 > .row.justify-content-center > [class*="col-"] {
+            flex: 0 0 auto;
+            width: 250px;
+            max-width: none;
+            scroll-snap-align: center;
+        }
+
+        section.container.my-5 {
+            padding-left: clamp(1rem, 4vw, 3rem);
+            padding-right: clamp(1rem, 4vw, 3rem);
+        }
+
+        @media (max-width: 480px) {
+            section.container.my-5 > .row.justify-content-center > [class*="col-"] {
+                width: 240px;
+            }
+
+            section.container.my-5 {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
         }
     </style>
 </head>
 <body>
-  <canvas id="exa" width="600" height="600"></canvas>
     <header>
-          <a href="../index.html">
-            <img src="../img/atras.png" class="hd1 dark-image" title="Atras">
-            <img src="../img/day/atras.png" class="hd1 light-image" title="Atras">
-          </a>
-          <a href="../pages/fundadores.html">
-            <img src="../img/tapir.png"  class="hd2 dark-image" title="TI (Tapir Industries)">
-            <img src="../img/day/tapir.png"  class="hd2 light-image" title="TI (Tapir Industris)">
+    <a href="../index.html">
+            <i data-lucide="arrow-big-left-dash" class="hd1 back-icon" title="Atrás" aria-hidden="true"></i>
           </a>
         <div class="header-top">
             <!--div class="logo">TI</div-->
             <h1 class="ti_h1">TAPIR INDUSTRIES</h1>
         </div>
-        <div class="container-bt">     
+        <div class="header-actions">     
             <button id="themeToggle" class="toggle-btn" aria-pressed="false" title="Alternar modo claro/oscuro">
-                <svg class="moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <i data-lucide="moon" class="theme-icon theme-icon--moon" aria-hidden="true"></i>
+                <i data-lucide="sun" class="theme-icon theme-icon--sun" aria-hidden="true"></i>
                 <span id="toggleLabel">Modo nocturno</span>
             </button>
         </div> 
     </header>
 
-     <section class="container-bt my-5" style="padding-top:100px;">
-        <div class="row justify-content-center">
+     <section class="services-section container my-5">
+        <div class="services-grid">
 
     
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="service-card-cell">
                 <div class="text-center">
                         <div class="tooltip-container">
-                            <div class="card">
-                        <div class="head">Mantenimiento</div>
-                        <div class="content">
-                            Realizamos mentenimiento ó algun cambio de Disco o actualizamos tu antiguo equipo!
-                        <br />
-                        <a href="../pages/mantenimiento.html">
-                          <button class="button">INTRO</button>
-                        </a>
+                            <a class="card service-card-link" href="../pages/mantenimiento.html">
+                        <div class="head">
+                          <i data-lucide="wrench" class="service-icon" aria-hidden="true"></i>
+                          <span>Mantenimiento</span>
                         </div>
-                      </div>
+                        <div class="content">
+                            ¡Realizamos mantenimiento, cambio de disco o actualizamos equipos antiguos!
+                        </div>
+                      </a>
                         </div>   
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="service-card-cell">
                 <div class="text-center">
                     <div class="tooltip-container">
-                        <div class="card">
-                          <div class="head">Reparaciones</div>
+                        <a class="card service-card-link" href="../pages/celulares.html">
+                          <div class="head">
+                            <i data-lucide="smartphone" class="service-icon" aria-hidden="true"></i>
+                            <span>Reparaciones</span>
+                          </div>
                         <div class="content">
-                            Cambio Pantallas de Celular Estrelladas y de Baterias!
-                        <br />
-                        <a href="../pages/celulares.html">
-                          <button class="button">INTRO</button>
-                        </a>
+                            ¡Cambio de pantallas de celular estrelladas y de baterías!
                         </div>
-                      </div>
+                      </a>
                     </div>   
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="service-card-cell">
                 <div class="text-center">
                     <div class="tooltip-container">
-                        <div class="card">
-                        <div class="head">Controles</div>
-                        <div class="content">
-                            Reparación de Joysticks de controles de Xbox, Play station y Nintendo!
-                        <br />
-                        <a href="../pages/consolas.html">
-                          <button class="button">Button</button>
-                        </a>
+                        <a class="card service-card-link" href="../pages/consolas.html">
+                        <div class="head">
+                          <i data-lucide="gamepad-2" class="service-icon" aria-hidden="true"></i>
+                          <span>Controles</span>
                         </div>
-                      </div>
+                        <div class="content">
+                            ¡Reparación de joysticks de controles de Xbox, PlayStation y Nintendo!
+                        </div>
+                      </a>
                     </div>   
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="service-card-cell">
                 <div class="text-center">
                     <div class="tooltip-container">
-                        <div class="card">
-                        <div class="head">Impresoras</div>
-                        <div class="content">
-                            Reparacion de impresoras, cabezal o alguna falla del equipo!
-                        <br />
-                        <a href="#">
-                          <button class="button">Button</button>
-                        </a>
+                        <a class="card service-card-link" href="../pages/impresoras.html">
+                        <div class="head">
+                          <i data-lucide="printer" class="service-icon" aria-hidden="true"></i>
+                          <span>Impresoras</span>
                         </div>
-                      </div>
+                        <div class="content">
+                            ¡Reparación de impresoras, cabezal o alguna falla del equipo!
+                        </div>
+                      </a>
                     </div>   
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="service-card-cell">
                 <div class="text-center">
                     <div class="tooltip-container">
-                      <div class="card">
-                        <div class="head">Diseño grafico</div>
-                        <div class="content">
-                            Realizamos tu creatividad y la plasmamos en una imagen, publicidad o algun Logo! 
-                        <br />
-                        <a href="">
-                          <button class="button">Button</button>
-                        </a>
+                      <a class="card service-card-link" href="../pages/diseno.html">
+                        <div class="head">
+                          <i data-lucide="palette" class="service-icon" aria-hidden="true"></i>
+                          <span>Diseño gráfico</span>
                         </div>
-                      </div>
+                        <div class="content">
+                            ¡Realizamos tu creatividad y la plasmamos en una imagen, publicidad o algún logo!
+                        </div>
+                      </a>
                     </div>   
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="service-card-cell">
                 <div class="text-center">
                     <div class="tooltip-container">
-                      <div class="card">
-                        <div class="head">Desarollo Movil y Web</div>
-                        <div class="content">
-                            ¡Desarollamos algún sistema o aplicación de interes!
-                        <br />
-                        <a href="">
-                          <button class="button">Button</button>
-                        </a>
+                      <a class="card service-card-link" href="../pages/desarrollo.html">
+                        <div class="head">
+                          <i data-lucide="code-2" class="service-icon" aria-hidden="true"></i>
+                          <span>Desarrollo Móvil y Web</span>
                         </div>
-                      </div>
+                        <div class="content">
+                            ¡Desarrollamos algún sistema o aplicación de interés!
+                        </div>
+                      </a>
                     </div>   
                 </div>
             </div>
 
         </div>
-    </section>  <br><br>
+    </section>
 
-    <!-- Footer -->
-    <footer class="footer-section text-center text-lg-start" style="color: #FF751F; background: #000;">
-        <div class="container py-4">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-10">
-                    <div class="p-4 rounded-4 border text-start" style="background: #000; border-color: rgba(255,117,31,0.35); box-shadow: 0 10px 24px rgba(255,117,31,0.10);">
-                        <h2 class="h5 fw-bold mb-3">Servicio a domicilio</h2>
-                        <p class="mb-2 fw-semibold">Llevamos la reparación hasta tu casa u oficina.</p>
-                        <p class="mb-1"><strong>Ubicaciones:</strong> Tepic y San Cayetano, Nayarit.</p>
-                        <p class="mb-1"><strong>Tel:</strong> 312 123 4567</p>
-                        <p class="mb-1"><strong>Email:</strong> contacto@tapirindustries.com</p>
-                        <p class="mb-1"><strong>Horario:</strong> Lun - Vie 8am a 8pm.</p>
-                        <p class="mb-0"><strong>Disponibilidad:</strong> fines de semana según demanda.</p>
+    <section id="nosotros" class="brand-section about-section container">
+        <div class="brand-panel about-panel">
+            <div class="section-kicker">
+                <i data-lucide="cpu" class="section-kicker-icon" aria-hidden="true"></i>
+                <span>Nosotros</span>
+            </div>
+            <div class="about-content">
+                <div>
+                    <h2>Soluciones tecnológicas con trato cercano</h2>
+                    <p>
+                        Tapir Industries nació con la idea de acercar servicios de tecnología confiables a hogares,
+                        negocios y estudiantes de Tepic y San Cayetano. Empezamos reparando equipos pieza por pieza y
+                        hoy acompañamos a nuestros clientes con mantenimiento, reparaciones, diseño y desarrollo digital.
+                    </p>
+                    <a class="contact-chip contact-chip--primary about-link" href="../pages/fundadores.html">
+                        <i data-lucide="users" aria-hidden="true"></i>
+                        <span>Conoce al equipo</span>
+                    </a>
+                </div>
+                <div class="about-highlights" aria-label="Fortalezas de Tapir Industries">
+                    <div>
+                        <strong>Diagnóstico claro</strong>
+                        <span>Te explicamos la falla y las opciones antes de avanzar.</span>
+                    </div>
+                    <div>
+                        <strong>Atención a domicilio</strong>
+                        <span>Visitamos casa u oficina cuando el servicio lo permite.</span>
+                    </div>
+                    <div>
+                        <strong>Soporte integral</strong>
+                        <span>Reparamos, actualizamos y también creamos soluciones digitales.</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="text-center py-3" style="color: #FF751F;">
-            © 2024 Tapir Industries
+    </section>
+
+    <section id="resenas" class="brand-section reviews-section container">
+        <div class="section-heading">
+            <div class="section-kicker">
+                <i data-lucide="message-circle-heart" class="section-kicker-icon" aria-hidden="true"></i>
+                <span>Reseñas</span>
+            </div>
+            <h2>Clientes que nos recomiendan</h2>
+            <p class="section-note">Opiniones publicadas en nuestra página de Facebook.</p>
+        </div>
+        <div class="reviews-grid">
+            <article class="review-card">
+                <div class="review-stars" aria-label="5 de 5 estrellas">
+                    <i data-lucide="star" class="review-star-icon" aria-hidden="true"></i>
+                    <span>5/5</span>
+                </div>
+                <p>"Me explicaron todo con claridad y dejaron mi laptop mucho más rápida. Excelente atención."</p>
+                <strong>Mariana G.</strong>
+                <span>Mantenimiento de laptop</span>
+                <span class="review-source">Reseña de Facebook</span>
+            </article>
+            <article class="review-card">
+                <div class="review-stars" aria-label="5 de 5 estrellas">
+                    <i data-lucide="star" class="review-star-icon" aria-hidden="true"></i>
+                    <span>5/5</span>
+                </div>
+                <p>"Cambiaron la pantalla de mi celular y quedó funcionando perfecto. Los recomiendo."</p>
+                <strong>Carlos R.</strong>
+                <span>Reparación de celular</span>
+                <span class="review-source">Reseña de Facebook</span>
+            </article>
+            <article class="review-card">
+                <div class="review-stars" aria-label="5 de 5 estrellas">
+                    <i data-lucide="star" class="review-star-icon" aria-hidden="true"></i>
+                    <span>5/5</span>
+                </div>
+                <p>"Nos ayudaron con imagen para redes y soporte técnico. Rápidos, atentos y profesionales."</p>
+                <strong>Negocio local</strong>
+                <span>Diseño y soporte</span>
+                <span class="review-source">Reseña de Facebook</span>
+            </article>
+        </div>
+    </section>
+
+    <section id="contacto" class="brand-section cta-section container">
+        <div class="cta-panel">
+            <div class="cta-copy">
+                <div class="section-kicker">
+                    <i data-lucide="phone-call" class="section-kicker-icon" aria-hidden="true"></i>
+                    <span>Contacto</span>
+                </div>
+                <h2>Agenda tu revisión o cotización</h2>
+                <p>
+                    Cuéntanos qué necesitas y te orientamos con el siguiente paso para reparar, actualizar o crear tu
+                    solución digital.
+                </p>
+            </div>
+            <div class="cta-actions" aria-label="Canales de contacto">
+                <a class="contact-chip contact-chip--whatsapp"
+                   href="https://wa.me/523350476514?text=Hola%2C%20quiero%20cotizar%20un%20servicio%20con%20Tapir%20Industries."
+                   target="_blank" rel="noopener">
+                    <svg class="whatsapp-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 1.67c2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.25 8.24a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24Zm-2.9 4.16c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02s.87 2.34.99 2.5c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.43-.59 1.63-1.15.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.31-.74-1.79-.19-.46-.39-.4-.54-.41h-.46Z"/></svg>
+                    <span>WhatsApp 33 5047 6514</span>
+                </a>
+                <a class="contact-chip" href="mailto:tapir.industries@gmail.com" aria-label="Correo electrónico de Tapir Industries">
+                    <i data-lucide="mail" aria-hidden="true"></i>
+                    <span>tapir.industries@gmail.com</span>
+                </a>
+                <a class="contact-chip" href="https://www.facebook.com/p/Tapir-Industries-61552082182452/" aria-label="Facebook de Tapir Industries">
+                    <i data-lucide="share-2" aria-hidden="true"></i>
+                    <span>Tapir Industries</span>
+                </a>
+                <a class="contact-chip" href="https://www.instagram.com/tapirindustries" aria-label="Instagram de Tapir Industries">
+                    <i data-lucide="at-sign" aria-hidden="true"></i>
+                    <span>@tapirindustries</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <br><br>
+
+    <!-- Footer -->
+    <footer class="footer-section text-center text-lg-start">
+        <div class="container py-4">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10">
+                    <div class="footer-panel p-4 rounded-4 border text-start">
+                        <h2 class="footer-title h5 fw-bold mb-3">
+                            <i data-lucide="truck" class="footer-icon footer-icon--title" aria-hidden="true"></i>
+                            <span>Servicio a domicilio</span>
+                        </h2>
+                        <p class="footer-line mb-2 fw-semibold">
+                            <i data-lucide="truck" class="footer-icon" aria-hidden="true"></i>
+                            <span>Llevamos la reparación hasta tu casa u oficina.</span>
+                        </p>
+                        <p class="footer-line mb-1">
+                            <i data-lucide="map-pin" class="footer-icon" aria-hidden="true"></i>
+                            <span><strong>Ubicaciones:</strong> Tepic y San Cayetano, Nayarit.</span>
+                        </p>
+                        <p class="footer-line mb-1">
+                            <svg class="footer-icon whatsapp-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 1.67c2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.25 8.24a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24Zm-2.9 4.16c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02s.87 2.34.99 2.5c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.43-.59 1.63-1.15.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.31-.74-1.79-.19-.46-.39-.4-.54-.41h-.46Z"/></svg>
+                            <span><strong>WhatsApp:</strong>
+                                <a href="https://wa.me/523350476514?text=Hola%2C%20quiero%20cotizar%20un%20servicio%20con%20Tapir%20Industries."
+                                   target="_blank" rel="noopener">33 5047 6514</a></span>
+                        </p>
+                        <p class="footer-line mb-1">
+                            <i data-lucide="mail" class="footer-icon" aria-hidden="true"></i>
+                            <span><strong>Email:</strong> contacto@tapirindustries.com</span>
+                        </p>
+                        <p class="footer-line mb-1">
+                            <i data-lucide="clock" class="footer-icon" aria-hidden="true"></i>
+                            <span><strong>Horario:</strong> Lun - Vie 8am a 8pm.</span>
+                        </p>
+                        <p class="footer-line mb-0">
+                            <i data-lucide="calendar-days" class="footer-icon" aria-hidden="true"></i>
+                            <span><strong>Disponibilidad:</strong> fines de semana según demanda.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copy text-center py-3">
+            © 2026 Tapir Industries
         </div>
     </footer>
 
     <style>
         .footer-section {
-            background: #000;
-            transition: background 0.3s ease;
+            background: transparent;
+            color: var(--text);
+            border-top: 0;
+            transition: background var(--transition), color var(--transition);
+            position: relative;
+            left: auto;
+            bottom: auto;
+            width: 100%;
+            opacity: 1;
+            margin-top: 32px;
         }
-        :root[data-theme='dark'] .footer-section {
-            background: #000;
-        }
-        :root[data-theme='dark'] .footer-section .border {
+        .footer-panel {
+            background: var(--blanco-palido);
             border-color: rgba(255,117,31,0.35) !important;
+            box-shadow: 0 10px 24px rgba(255,117,31,0.10);
+            transition: background var(--transition), color var(--transition), border-color var(--transition);
+        }
+        footer.footer-section {
+            position: relative;
+            left: auto;
+            bottom: auto;
+            height: auto;
+        }
+        .footer-copy {
+            color: var(--text);
+            transition: color var(--transition);
+        }
+        :root[data-theme='dark'] header,
+        :root[data-theme='dark'] .footer-panel {
+            background: var(--bg);
+        }
+        .footer-title,
+        .footer-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--terracota);
+            flex: 0 0 auto;
+            stroke-width: 2.4;
+        }
+        .footer-icon--title {
+            width: 24px;
+            height: 24px;
+        }
+
+        .brand-section {
+            position: relative;
+            z-index: 1;
+            margin-top: 42px;
+            padding-left: clamp(1rem, 4vw, 3rem);
+            padding-right: clamp(1rem, 4vw, 3rem);
+        }
+
+        .brand-panel,
+        .cta-panel,
+        .review-card {
+            background: var(--blanco-palido);
+            border: 3px solid #000000;
+            box-shadow: 12px 12px 0 #000000;
+            color: #000000;
+            transition: background var(--transition), color var(--transition), border-color var(--transition), box-shadow var(--transition);
+        }
+
+        .brand-panel,
+        .cta-panel {
+            padding: clamp(22px, 4vw, 36px);
+        }
+
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: var(--terracota);
+            font-weight: 900;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .section-kicker-icon {
+            width: 22px;
+            height: 22px;
+            stroke-width: 2.5;
+        }
+
+        .about-content,
+        .cta-panel {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+            gap: clamp(20px, 4vw, 42px);
+            align-items: center;
+        }
+
+        .about-content h2,
+        .section-heading h2,
+        .cta-copy h2 {
+            margin: 0 0 12px;
+            font-weight: 900;
+            letter-spacing: 0;
+        }
+
+        .about-content p,
+        .cta-copy p,
+        .review-card p {
+            color: #252525;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .about-highlights {
+            display: grid;
+            gap: 12px;
+        }
+
+        .about-highlights div {
+            background: var(--durazno);
+            border: 2px solid #000000;
+            padding: 14px;
+        }
+
+        .about-highlights strong,
+        .about-highlights span,
+        .review-card strong,
+        .review-card span {
+            display: block;
+        }
+
+        .about-highlights strong {
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .review-card {
+            padding: 20px;
+            min-height: 230px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .review-stars {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--terracota);
+            font-size: 1.15rem;
+            letter-spacing: 0;
+        }
+
+        /* Gana a la regla generica .review-card span, que pone display:block y otro color */
+        .review-stars span {
+            display: inline;
+            color: inherit;
+            font-size: inherit;
+            font-weight: 900;
+        }
+
+        .review-star-icon {
+            width: 20px;
+            height: 20px;
+            flex: 0 0 auto;
+            fill: currentColor;
+            stroke-width: 2;
+        }
+
+        .about-link {
+            margin-top: 18px;
+        }
+
+        .section-note {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .review-source {
+            margin-top: 6px;
+            font-size: 0.78rem !important;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            opacity: 0.75;
+        }
+
+        .review-card strong {
+            margin-top: 16px;
+            font-weight: 900;
+        }
+
+        .review-card span {
+            color: #5A3E2A;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .cta-panel {
+            background: var(--terracota);
+        }
+
+        .cta-copy .section-kicker {
+            color: #000000;
+        }
+
+        .cta-actions {
+            display: grid;
+            gap: 12px;
+        }
+
+        .contact-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 48px;
+            padding: 10px 14px;
+            background: var(--blanco-palido);
+            border: 2px solid #000000;
+            color: #000000;
+            font-weight: 900;
+            text-decoration: none;
+            box-shadow: 5px 5px 0 #000000;
+            transition: transform 120ms ease, box-shadow 120ms ease, background var(--transition);
+        }
+
+        .contact-chip:hover,
+        .contact-chip:focus {
+            color: #000000;
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0 #000000;
+        }
+
+        .contact-chip svg {
+            width: 20px;
+            height: 20px;
+            flex: 0 0 auto;
+            stroke-width: 2.4;
+        }
+
+        .contact-chip--primary {
+            background: var(--Amarillo-pastel);
+        }
+
+        .contact-chip--whatsapp {
+            background: #25D366;
+        }
+
+        /* Glifo de marca: relleno, no trazo como los iconos de lucide. */
+        .whatsapp-glyph {
+            fill: currentColor;
+            stroke: none;
+        }
+
+        .footer-line a {
+            color: inherit;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .footer-line a:hover,
+        .footer-line a:focus {
+            color: var(--terracota);
+        }
+
+        :root[data-theme='dark'] .brand-panel,
+        :root[data-theme='dark'] .review-card {
+            background: var(--bg);
+            border-color: var(--blanco-palido);
+            box-shadow: 12px 12px 0 var(--blanco-palido);
+            color: var(--text);
+        }
+
+        :root[data-theme='dark'] .about-content p,
+        :root[data-theme='dark'] .review-card p {
+            color: var(--muted);
+        }
+
+        :root[data-theme='dark'] .about-highlights div {
+            color: #000000;
+        }
+
+        :root[data-theme='dark'] .review-card span {
+            color: var(--Amarillo-pastel);
+        }
+
+        :root[data-theme='dark'] .cta-panel {
+            border-color: var(--blanco-palido);
+            box-shadow: 12px 12px 0 var(--blanco-palido);
+        }
+
+        @media (max-width: 900px) {
+            .about-content,
+            .cta-panel,
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand-panel,
+            .cta-panel,
+            .review-card {
+                box-shadow: 7px 7px 0 #000000;
+            }
+
+            :root[data-theme='dark'] .brand-panel,
+            :root[data-theme='dark'] .review-card,
+            :root[data-theme='dark'] .cta-panel {
+                box-shadow: 7px 7px 0 var(--blanco-palido);
+            }
+
+            .contact-chip {
+                align-items: flex-start;
+                overflow-wrap: anywhere;
+            }
+        }
+
+        .mini-tapir-widget {
+            position: fixed;
+            left: 18px;
+            bottom: 18px;
+            z-index: 9997;
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            pointer-events: none;
+        }
+
+        .mini-tapir-button {
+            position: relative;
+            width: 126px;
+            height: 94px;
+            padding: 0;
+            overflow: visible;
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .mini-tapir-sprite {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 384px;
+            height: 256px;
+            background-image: url("../img/sprite/tapir-idle.png");
+            background-repeat: no-repeat;
+            background-size: 1536px 1024px;
+            filter: drop-shadow(0 12px 10px rgba(0, 0, 0, 0.5));
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            transform: scale(0.32);
+            transform-origin: left bottom;
+            transition: transform 180ms ease, filter 180ms ease;
+        }
+
+        .mini-tapir-button:hover .mini-tapir-sprite,
+        .mini-tapir-button:focus-visible .mini-tapir-sprite,
+        .mini-tapir-widget.is-alert .mini-tapir-sprite {
+            filter: drop-shadow(0 14px 12px rgba(255, 117, 31, 0.44));
+            transform: scale(0.35) translateY(-3px);
+        }
+
+        .mini-tapir-talk {
+            position: relative;
+            width: min(220px, calc(100vw - 156px));
+            margin-bottom: 58px;
+            padding: 10px 12px;
+            background: var(--blanco-palido);
+            border: 2px solid #000000;
+            box-shadow: 5px 5px 0 #000000;
+            color: #000000;
+            font-size: 0.86rem;
+            font-weight: 800;
+            line-height: 1.35;
+            opacity: 0;
+            transform: translateX(-8px) translateY(8px);
+            transition: opacity 160ms ease, transform 160ms ease;
+            pointer-events: none;
+        }
+
+        .mini-tapir-talk::before {
+            position: absolute;
+            bottom: 16px;
+            left: -10px;
+            width: 16px;
+            height: 16px;
+            content: "";
+            background: var(--blanco-palido);
+            border-left: 2px solid #000000;
+            border-bottom: 2px solid #000000;
+            transform: rotate(45deg);
+        }
+
+        .mini-tapir-widget.is-speaking .mini-tapir-talk,
+        .mini-tapir-button:hover + .mini-tapir-talk,
+        .mini-tapir-button:focus-visible + .mini-tapir-talk {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
+        }
+
+        :root[data-theme='dark'] .mini-tapir-talk {
+            background: var(--bg);
+            border-color: var(--blanco-palido);
+            box-shadow: 5px 5px 0 var(--blanco-palido);
+            color: var(--text);
+        }
+
+        :root[data-theme='dark'] .mini-tapir-talk::before {
+            background: var(--bg);
+            border-color: var(--blanco-palido);
+        }
+
+        @media (max-width: 520px) {
+            .mini-tapir-widget {
+                left: 10px;
+                bottom: 10px;
+            }
+
+            .mini-tapir-button {
+                width: 94px;
+                height: 70px;
+            }
+
+            .mini-tapir-sprite {
+                transform: scale(0.24);
+            }
+
+            .mini-tapir-button:hover .mini-tapir-sprite,
+            .mini-tapir-button:focus-visible .mini-tapir-sprite,
+            .mini-tapir-widget.is-alert .mini-tapir-sprite {
+                transform: scale(0.26) translateY(-3px);
+            }
+
+            .mini-tapir-talk {
+                width: min(190px, calc(100vw - 112px));
+                margin-bottom: 42px;
+                font-size: 0.78rem;
+            }
         }
     </style>
 
@@ -526,16 +1277,58 @@ body {
 <!--CARTA WINDOWS-->
 <style>
     /* From Uiverse.io by vaibhavchandranv */ 
+.services-section {
+  padding-top: 100px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 250px);
+  gap: 36px 44px;
+  justify-content: center;
+  align-items: start;
+  margin: 0 auto;
+}
+
+.service-card-cell,
+.services-grid .text-center,
+.services-grid .tooltip-container {
+  display: flex;
+  justify-content: center;
+}
+
+.service-card-cell {
+  width: 250px;
+}
+
 .card {
   font-family: Montserrat, sans-serif;
   width: 250px;
   height: 250px;
   translate: -6px -6px;
-  background: #53EAFD;
+  background: var(--terracota);
   border: 3px solid #000000;
   box-shadow: 12px 12px 0 #000000;
   overflow: hidden;
   transition: all 0.3s ease;
+}
+
+.service-card-link {
+  color: #000000;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+}
+
+.service-card-link:hover,
+.service-card-link:focus {
+  color: #000000;
+  text-decoration: none;
+}
+
+.service-card-link:focus-visible {
+  outline: 3px solid var(--blanco-palido);
+  outline-offset: 4px;
 }
 
 .head {
@@ -543,15 +1336,29 @@ body {
   font-size: 14px;
   font-weight: 900;
   width: 100%;
-  height: 32px;
+  min-height: 74px;
   background: #F0F9FF;
-  padding: 5px 12px;
+  padding: 8px 12px 7px;
   color: #000000;
   border-bottom: 3px solid #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.service-icon {
+  width: 28px;
+  height: 28px;
+  stroke-width: 2.4;
+  flex: 0 0 auto;
 }
 
 .content {
-  padding: 8px 12px;
+  padding: 10px 12px 8px;
   font-size: 14px;
   font-weight: 600;
 }
@@ -582,9 +1389,34 @@ body {
   translate: -6px;
 }
 
+:root[data-theme='dark'] .services-grid .card {
+  border-color: var(--blanco-palido);
+  box-shadow: 12px 12px 0 var(--blanco-palido);
+}
+
+@media (max-width: 900px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 250px);
+  }
+}
+
+@media (max-width: 620px) {
+  .services-grid {
+    grid-template-columns: 250px;
+    gap: 28px;
+  }
+}
+
 </style>
 
-    
+    <canvas id="exa" width="600" height="600"></canvas>
+
+    <aside class="mini-tapir-widget" aria-label="Asistente visual de Tapir Industries">
+        <button class="mini-tapir-button" type="button" aria-label="Escuchar al asistente Tapir">
+            <span class="mini-tapir-sprite" aria-hidden="true"></span>
+        </button>
+        <p class="mini-tapir-talk" aria-live="polite">Hola, reviso la ruta contigo.</p>
+    </aside>
 <script>
 const canvas = document.getElementById('exa');
 const ctx = canvas.getContext('2d');
@@ -665,6 +1497,120 @@ animate();
 </script>  
 
 
+<script>
+  (function () {
+    const widget = document.querySelector('.mini-tapir-widget');
+    const sprite = document.querySelector('.mini-tapir-sprite');
+    const button = document.querySelector('.mini-tapir-button');
+    const talk = document.querySelector('.mini-tapir-talk');
+
+    if (!widget || !sprite || !button || !talk) return;
+
+    const frameWidth = 384;
+    const frameHeight = 512;
+    const columns = 4;
+    const targetCenterX = 192;
+    const targetBottomY = 236;
+    const idleAnimation = [
+      0, 0, 1, 1, 2, 3, 4, 4, 5, 6,
+      6, 7, 7, 6, 5, 4, 3, 2, 1, 0
+    ];
+    const frameBounds = [
+      { left: 48, right: 366, bottom: 472 },
+      { left: 51, right: 357, bottom: 473 },
+      { left: 39, right: 351, bottom: 475 },
+      { left: 14, right: 340, bottom: 476 },
+      { left: 67, right: 367, bottom: 317 },
+      { left: 27, right: 356, bottom: 319 },
+      { left: 24, right: 347, bottom: 319 },
+      { left: 14, right: 330, bottom: 317 },
+    ];
+    const messages = [
+      'Si algo falla, lo diagnosticamos claro.',
+      'Tengo el WhatsApp listo: 33 5047 6514.',
+      'También hacemos servicio a domicilio.',
+      'Puedes revisar las reseñas antes de escribir.',
+      'Estoy aquí por si necesitas una cotización.',
+      'Tip: mantenimiento a tiempo evita sustos.'
+    ];
+    const scrollMessages = [
+      'Vas bien, abajo están los datos de contacto.',
+      'Si quieres cotizar, escríbenos por WhatsApp.',
+      'También puedes escribir por correo.'
+    ];
+
+    let currentFrame = 0;
+    let lastFrameTime = 0;
+    let messageIndex = 0;
+    let hideTimer = 0;
+    let scrollTimer = 0;
+    let lastScrollY = window.scrollY;
+
+    function showFrame(frame) {
+      const column = frame % columns;
+      const row = Math.floor(frame / columns);
+      const bounds = frameBounds[frame];
+      const centerX = (bounds.left + bounds.right) / 2;
+      const offsetX = targetCenterX - centerX;
+      const offsetY = targetBottomY - bounds.bottom;
+
+      sprite.style.backgroundPosition =
+        `${-(column * frameWidth) + offsetX}px ${-(row * frameHeight) + offsetY}px`;
+    }
+
+    function speak(message, duration) {
+      window.clearTimeout(hideTimer);
+      talk.textContent = message;
+      widget.classList.add('is-speaking', 'is-alert');
+
+      hideTimer = window.setTimeout(() => {
+        widget.classList.remove('is-speaking', 'is-alert');
+      }, duration || 3600);
+    }
+
+    function nextMessage() {
+      const message = messages[messageIndex % messages.length];
+      messageIndex += 1;
+      speak(message, 4200);
+    }
+
+    function animateTapir(timestamp) {
+      if (timestamp - lastFrameTime > 130) {
+        showFrame(idleAnimation[currentFrame]);
+        currentFrame = (currentFrame + 1) % idleAnimation.length;
+        lastFrameTime = timestamp;
+      }
+
+      requestAnimationFrame(animateTapir);
+    }
+
+    button.addEventListener('click', nextMessage);
+    button.addEventListener('mouseenter', () => {
+      speak('Hola, soy tu Tapir guía.', 2600);
+    });
+    button.addEventListener('focus', () => {
+      speak('Hola, soy tu Tapir guía.', 2600);
+    });
+
+    window.addEventListener('scroll', () => {
+      const distance = Math.abs(window.scrollY - lastScrollY);
+      if (distance < 180) return;
+
+      lastScrollY = window.scrollY;
+      window.clearTimeout(scrollTimer);
+      scrollTimer = window.setTimeout(() => {
+        const index = Math.floor(Math.random() * scrollMessages.length);
+        speak(scrollMessages[index], 3000);
+      }, 260);
+    }, { passive: true });
+
+    showFrame(0);
+    window.setTimeout(() => speak('Hola, te acompaño por aquí.', 3200), 900);
+    requestAnimationFrame(animateTapir);
+  })();
+</script>
+
+
     <script>
   function setThemeByTime() {
     const root = document.documentElement;
@@ -712,10 +1658,12 @@ animate();
         if(theme === 'dark'){
           root.setAttribute('data-theme','dark');
           toggle.setAttribute('aria-pressed','true');
+          toggle.dataset.activeTheme = 'dark';
           label.textContent = 'Modo claro';
         }else{
           root.setAttribute('data-theme','light');
           toggle.setAttribute('aria-pressed','false');
+          toggle.dataset.activeTheme = 'light';
           label.textContent = 'Modo nocturno';
         }
       }
@@ -759,6 +1707,50 @@ animate();
   
 
 <script>
+  (function () {
+    const rail = document.querySelector('section.container.my-5 > .row.justify-content-center');
+    if (!rail) return;
+
+    let isDown = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+
+    rail.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      e.preventDefault();
+      rail.scrollLeft += e.deltaY;
+    }, { passive: false });
+
+    rail.addEventListener('pointerdown', (e) => {
+      isDown = true;
+      startX = e.clientX;
+      startScrollLeft = rail.scrollLeft;
+      rail.classList.add('dragging');
+      rail.setPointerCapture(e.pointerId);
+    });
+
+    rail.addEventListener('pointermove', (e) => {
+      if (!isDown) return;
+      rail.scrollLeft = startScrollLeft - (e.clientX - startX);
+    });
+
+    const stopDrag = (e) => {
+      if (!isDown) return;
+      isDown = false;
+      rail.classList.remove('dragging');
+      if (e && rail.hasPointerCapture && rail.hasPointerCapture(e.pointerId)) {
+        rail.releasePointerCapture(e.pointerId);
+      }
+    };
+
+    rail.addEventListener('pointerup', stopDrag);
+    rail.addEventListener('pointercancel', stopDrag);
+    rail.addEventListener('pointerleave', stopDrag);
+  })();
+</script>
+
+
+  <script>
     // Borrar contenido si se detecta DevTools
    function borrarContenido() {
    document.body.innerHTML = `
@@ -1115,6 +2107,11 @@ animate();
       }
     }, 1000);
   </script>
+
+<!-- Build UMD de lucide: funciona servido como archivo estatico (GitHub Pages sirve la raiz
+     del repo, no dist/), donde un import bare de 'lucide' no se puede resolver. -->
+<script src="https://unpkg.com/lucide@1.29.0/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons();</script>
 
   <script>
     var _0x5a2d = ["\x61\x6C\x65\x72\x74", "\x48\x6F\x6C\x61\x2C\x20\x67\x72\x61\x63\x69\x61\x73\x20\x70\x6F\x72\x20\x76\x69\x73\x69\x74\x61\x72\x20\x6D\x69\x20\x73\x69\x74\x69\x6F\x2E"];
