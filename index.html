@@ -93,6 +93,85 @@
     height: 160px;
 
   }
+
+  /* Efecto cortina para TI → Tapir Industries */
+  .logo-expandable {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .logo-expandable .letter {
+    display: inline-block;
+    transition: opacity 0.3s ease;
+  }
+
+  .logo-expandable .expanded-text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    font-size: 80px;
+    font-weight: bold;
+    color: white;
+    filter: drop-shadow(0 0 10px #FFA500);
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .logo-expandable .expanded-part {
+    display: inline-block;
+    overflow: hidden;
+    max-width: 0;
+    transition: max-width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition-delay: inherit;
+  }
+
+  .logo-expandable .space {
+    display: inline-block;
+    width: 0;
+    overflow: hidden;
+    transition: width 0.3s ease;
+    transition-delay: 0.3s;
+  }
+
+  .logo-expandable:hover .expanded-text {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .logo-expandable:hover .expanded-part:nth-of-type(1) {
+    max-width: 200px;
+    transition-delay: 0.1s;
+  }
+
+  .logo-expandable:hover .expanded-part:nth-of-type(3) {
+    max-width: 400px;
+    transition-delay: 0.4s;
+  }
+
+  .logo-expandable:hover .space {
+    width: 20px;
+  }
+
+  /* Estado expandido permanente */
+  .logo-expandable.expanded .expanded-text {
+    opacity: 1;
+    transform: translateY(0);
+    position: relative;
+  }
+
+  .logo-expandable.expanded .expanded-part {
+    max-width: 500px;
+  }
+
+  .logo-expandable.expanded .space {
+    width: 20px;
+  }
  @media (min-width: 993px) and (max-width: 1200px){
 footer {
     height: 30px;
@@ -146,7 +225,15 @@ footer {
     <main class="content">
         <div class="container">
           <img src="img/tapir.png" class="tp">
-          <div class="logo">TI</div>
+          <div class="logo logo-expandable" id="logoTI">
+            <span class="letter letter-t">T</span><span class="letter letter-i">I</span>
+            <span class="expanded-text">
+              <span class="expanded-part">apir</span>
+              <span class="space"> </span>
+              <span class="expanded-part">ndustries</span>
+            </span>
+          </div>
+          <br>
           <h1 >TAPIR INDIUSTRIES</h1>
           <small>copyright © - 2025</small>
           <p>Mantenimiento<strong> atencion al cliente y soporte en general.</strong></p><br>
@@ -170,6 +257,16 @@ footer {
   </main>
 
   <script type="module" src="./src/main.js"></script>
+
+  <script>
+    // Efecto cortina TI → Tapir Industries
+    const logoTI = document.getElementById('logoTI');
+    
+    logoTI.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.classList.toggle('expanded');
+    });
+  </script>
 
     <!--style>
       .btn {
